@@ -1,0 +1,17 @@
+:root{
+    --button: #ef9273;
+    --background: #fef9f8;
+    --text: #0d0d0d;
+}
+
+body {
+    background: var(--background);
+    color: var(--text);
+}
+
+.btn{
+    background: var(--button);
+    color: white;
+    border-radius: 5px;
+    font-size: 18px;
+}
