@@ -1,17 +1,190 @@
-:root{
-    --button: #ef9273;
-    --background: #fef9f8;
-    --text: #0d0d0d;
+:root {
+  --button: #ef9273;
+  --background: #fef9f8;
+  --text: #0d0d0d;
 }
+
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins&display=swap');
 
 body {
-    background: var(--background);
-    color: var(--text);
+  background: var(--background);
+  color: var(--text);
+  box-sizing: border-box;
 }
 
-.btn{
-    background: var(--button);
-    color: white;
-    border-radius: 5px;
-    font-size: 18px;
+.btn {
+  background: var(--button);
+  color: white;
+  border-radius: 5px;
+  font-size: 18px;
 }
+
+/* =========================mainNav========================= */
+.menu-bar {
+  background-image: linear-gradient(-90deg, #ff9966, #ff5e62);
+}
+
+.nav-link {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #fff !important;
+  margin: 3px 0.5rem;
+  border: 1px solid transparent;
+}
+
+.navbar-nav {
+  text-align: right;
+  margin-right: 20px;
+}
+
+.menu-bar .nav-bar-toggler {
+  padding-right: 20px;
+  outline: none !important;
+  border: none !important;
+}
+
+.navbar-brand {
+  font-family: 'Pacifico', cursive;
+  font-size: 26px;
+  color: #fff;
+}
+
+.navbar-brand:hover {
+  color: #fff;
+}
+
+.navbar .fas {
+  color: #fff !important;
+  font-size: 24px;
+}
+
+.nav-link:hover {
+  font-weight: 600;
+  border-bottom: 1px solid #fff;
+}
+
+@media only screen and (max-width: 540px) {
+  .nav-link:hover {
+    border-bottom: 1px solid transparent;
+  }
+}
+
+.user-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  background-color: transparent;
+  border: 1px solid #fff;
+  border-radius: 10rem;
+}
+
+.user-btn:focus {
+  box-shadow: none;
+}
+
+.login-btn {
+  padding: 5px 5px;
+  background-color: transparent;
+  border: 2px solid #fff;
+  border-radius: 0.8rem;
+  font-weight: bold;
+  font-size: 1rem;
+  transform: translateY(5px);
+}
+
+.login-btn:focus {
+  box-shadow: none;
+}
+
+.login-btn:hover {
+  color: white;
+}
+
+.dropdown-item:focus {
+  background-color: var(--button) !important;
+}
+
+/* ================================================== */
+
+/* =========================Event Page========================= */
+
+.event__banner {
+  height: 200px;
+  margin: 100px 30px 3rem;
+
+  /* Display */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 3rem;
+  font-weight: bold;
+
+  color: var(--text);
+
+  background-color: white;
+  border-radius: 1rem;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.event__item {
+  margin: 1rem;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  background-color: white;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  color: var(--text);
+}
+
+.event__item__title {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.trainingpoint {
+  display: inline-block;
+  margin-left: 2rem;
+  padding: 0.15rem 0.3rem;
+
+  background-color: #358f80;
+  color: white;
+
+  border-radius: 0.5em;
+}
+
+.event__item__title span {
+  margin-left: 1rem;
+}
+
+.event__item-info span {
+  margin-left: 0.5rem;
+}
+
+.event__register-btn {
+  padding: 0.5rem 0.8rem;
+
+  font-weight: bold;
+  border-radius: 1rem;
+}
+
+.event__create {
+  padding: 1rem 3rem;
+  background-color: white;
+  border-radius: 1rem;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.event__rmv-btn {
+  width: 100px !important;
+  font-weight: bold;
+  border-radius: 0.5rem;
+  background-color: #e63946;
+}
+
+.event__rmv-btn i {
+  margin-left: 0.5rem;
+}
+
+/* ================================================== */
