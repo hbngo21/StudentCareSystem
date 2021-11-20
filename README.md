@@ -1,4 +1,4 @@
-# Student Care System - Database System Assignment - HK211 - HCMUT
+# Student Care System - Database System Assignment - HK211
 ## Danh sách thành viên:
 1. Ngô Thị Hà Bắc - 1912700
 2. Nguyễn Tuấn Minh - 1813095
