@@ -1,0 +1,122 @@
+<?php
+    require_once '../../../connection.php';
+    $studentid = '11111'
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+
+    <!-- user.css -->
+    <link rel="stylesheet" href="../../../css/main.css">
+    <style>
+        #pagination {
+            text-align: right;
+            padding: .5rem 1rem 1rem;
+        }
+
+        .page-item {
+            padding: 5px 9px;
+            color: #f94144;
+            background-color: #fff;
+
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+
+        }
+
+        .page-item:hover {
+            color: black;
+        }
+
+        .current-page {
+            background-color: #f94144;
+            color: #fff;
+        }
+
+        .validate {
+            display: none;
+            color: red;
+            margin: 0 0 15px 0;
+            font-weight: 400;
+            font-size: 13px;
+        }
+    </style>
+    <title>Danh sách đánh giá</title>
+    </title>
+</head>
+
+<body style="background-color: #f3f4f6;">
+    <!-- mainNav -->
+    <?php
+        require_once('../navbar.php')
+    ?>
+    <div style="padding: 100px;">
+      <div class="text-center mt-5">
+        <h4>CÁC ĐÁNH GIÁ CỦA SINH VIÊN</h4>
+      </div>
+          <?php
+                $sql = "SELECT * FROM FEEDBACK";
+                $result = $mysqli->query($sql);
+                $resultCheck = mysqli_num_rows($result);
+                if ($resultCheck > 0){
+                   echo "<table
+                    id=\"lst_xetccnn\"
+                    class=\"table table-bordered table-hover align-middle\"
+                    style=\"margin-left: auto; margin-right: auto; margin-top: 50px;\"
+                  >
+                    <thead class = \"align-middle\">
+                      <tr>
+                        <th style=\"text-align: center\">Ngày đánh giá</th>
+                        <th style=\"text-align: center\">Sinh viên</th>
+                        <th style=\"text-align: center\">Tiêu đề đánh giá</th>
+                      </tr>
+                    </thead>";
+                    while ($row = mysqli_fetch_assoc($result)){
+                        echo "<tbody>
+                        <tr>";
+                        echo "<td style=\"text-align: center\">" . date("d-m-Y H:i:s", strtotime($row['TIMESTAMP'])) . "</td>";
+                        $sql2 = "SELECT CONCAT(LASTNAME,' ',FIRSTNAME) AS NAME FROM STUDENT WHERE ID =". $row['STUDENTID']."";
+                        $result2 = $mysqli->query($sql2);
+                        echo "<td style=\"text-align: center\">" . mysqli_fetch_assoc($result2)['NAME'] . " - " . $row['STUDENTID'] . "</a></td>";
+                        echo "<td style=\"text-align: center\">
+                            <button type=\"button\" class=\"viewFeedback\" data-toggle=\"modal\" data-target=\"#exampleModal\">". $row['TITLE']. 
+                            "</button>
+                            <div class=\"modal fade\" id=\"exampleModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalLabel\" aria-hidden=\"true\">
+                                <div class=\"modal-dialog\" role=\"document\">
+                                <div class=\"modal-content\">
+                                    <div class=\"modal-header\">
+                                        <h5 class=\"modal-title\" id=\"exampleModalLabel\">".$row['TITLE']."</h5>
+                                        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">
+                                        <span aria-hidden=\"true\">&times;</span>
+                                    </button>
+                                    </div>
+                                    <div class=\"modal-body\">". $row['CONTENT'].
+                                    "</div>
+                                </div>
+                                </div>
+                            </div></button>";
+                        echo "</td></tr>
+                        </tbody>";
+                    }
+                }
+                else echo "<h5 class=\"text-center\" style=\"color: red\">Chưa có đánh giá nào!</h5>";
+            ?>
+      </table>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="/js/admin.js"></script>
+</body>
+
+</html>
