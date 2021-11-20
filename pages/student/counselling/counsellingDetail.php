@@ -1,7 +1,6 @@
 <?php
     require_once '../../../connection.php';
-    $studentid = 10000;
-    $timestamp = '2021-09-29 23:29:25';
+    $studentid = 12345;
 ?>
 
 <head>
@@ -56,7 +55,9 @@
 <body style="background-color: #f3f4f6;">
     <?php
         require_once('../navbar.php');
-        $sql = "SELECT * FROM REQUEST_COUNSELLING WHERE STUDENTID =".$studentid." AND REQUEST_TIMESTAMP = '2021-09-29 23:29:25';";
+        //$timestamp = $_GET['request_timestamp'];
+        $timestamp ='2021-09-01 07:53:47';
+        $sql = "SELECT * FROM REQUEST_COUNSELLING WHERE STUDENTID =".$studentid." AND REQUEST_TIMESTAMP = ".$timestamp.";";
         $result = $mysqli->query($sql);
         $row = mysqli_fetch_assoc($result);
         echo 
@@ -104,7 +105,6 @@
             </div>
         </div>
         </div>";
-        // mysqli_fetch_assoc($result)[''];
     ?>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>

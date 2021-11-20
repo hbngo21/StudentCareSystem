@@ -2,7 +2,8 @@
 require_once '../../../connection.php';
 $staffid = 5670;
 $studentid = 80000;
-$request_timestamp = '2021-11-16 21:20:01'
+$request_timestamp = '2021-11-16 21:20:01';
+date_default_timezone_set("Asia/Ho_Chi_Minh");
 ?>
 
 <!DOCTYPE html>
@@ -66,18 +67,18 @@ $request_timestamp = '2021-11-16 21:20:01'
         $result = $mysqli->query($sql);
         $row = mysqli_fetch_assoc($result);
         echo 
-        "<div style=\"padding: 100px;\">
-            <div class=\"text-center mt-5\">
+        "<div style='padding: 100px;'>
+            <div class='text-center mt-5'>
                 <h4>PHẢN HỒI YÊU CẦU TƯ VẤN - SV ".$studentid." NGÀY ". date("d-m-Y H:i:s", strtotime($request_timestamp)) ."</h4>
             </div>
-            <div class=\"row justify-content-between mt-5\">
-                <div class=\"col-7 mt-5 me-5\">
-                    <div class=\"row\">
-                        <div class=\"col justify-content-center\">
-                            <div class=\"card\" style=\"max-width: 35rem;\">
-                                <div class=\"card-header\">Yêu cầu tư vấn</div>
-                                <div class=\"card-body\">
-                                    <div class=\"card-text\">
+            <div class='row justify-content-between mt-5'>
+                <div class='col-7 mt-5 me-5'>
+                    <div class='row'>
+                        <div class='col justify-content-center'>
+                            <div class='card' style='max-width: 35rem;'>
+                                <div class='card-header'>Yêu cầu tư vấn</div>
+                                <div class='card-body'>
+                                    <div class='card-text'>
                                         Sinh viên:  $studentid <br>
                                         Ngày hẹn tư vấn: ".date("d-m-Y", strtotime($row['DATE']))."
                                         <br>
@@ -88,35 +89,56 @@ $request_timestamp = '2021-11-16 21:20:01'
         echo "<br>
         Nội dung yêu cầu: ". $row['REQUEST_CONTENT']. 
         "</div></div></div>
-                    <div class=\"row mt-5\">
-                        <div class=\"col justify-content-center\">
-                            <div class=\"card\" style=\"max-width: 35rem;\">
-                                <div class=\"card-header\">Chi tiết phản hồi</div>
-                                <div class=\"card-body\">
-                                    <div class=\"card-text\">
+                    <div class='row mt-5'>
+                        <div class='col justify-content-center'>
+                            <div class='card' style='max-width: 35rem;'>
+                                <div class='card-header'>Chi tiết phản hồi</div>
+                                <div class='card-body'>
+                                    <div class='card-text'>
                                         Nhân viên: ". $staffid . " <br>
                                         Thời gian phản hồi: ". date("d-m-Y H:i:s", time())."
                                     </div>
                                 </div>
                             </div>
-                            <form class=\"mt-3\">
-                                <div class=\"form-group\" style=\"max-width: 35rem;\">
-                                    <label for=\"exampleFormControlTextarea1\">Nội dung phản hồi</label>
-                                    <textarea class=\"form-control\" id=\"exampleFormControlTextarea1\" rows=\"3\"></textarea>
+                            <form class='mt-3' method='POST'>
+                                <div class='form-group' style='max-width: 35rem;'>
+                                    <label for='exampleFormControlTextarea1'>Nội dung phản hồi</label>
+                                    <textarea class='form-control' id='exampleFormControlTextarea1' name='content' rows='3' required></textarea>
                                 </div>
-                                <div class=\"d-flex justify-content-center\">
-                                    <button type=\"submit\" class=\"btn mt-4\" onclick=\"validateData('<?= $staffid ?>')\"\>
+                                <div class='d-flex justify-content-center'>
+                                    <button type='submit' class='btn mt-4' name='send'\>
                                     Gửi
-                                    <i class=\"fas fa-paper-plane\"></i>
-                                    </button>
+                                    <i class='fas fa-paper-plane'></i>
+                                    </button>"?>
+                                    <?php
+                                    if (isset($_REQUEST['send'])){
+                                        $time_stamp = date("Y-m-d H:i:s");
+                                        $content = $_POST['content'];
+
+                                        $sql = "UPDATE REQUEST_COUNSELLING 
+                                                SET MEDICAL_STAFFID= ? AND RESPONSE_TIMESTAMP = ? AND RESPONSE_CONTENT = ?
+                                                WHERE STUDENTID =".$studentid." AND REQUEST_TIMESTAMP = '2021-11-16 21:20:01'";
+                                        if ($stmt = $mysqli->prepare($sql)) {
+                                            $stmt->bind_param("sss", $param_id, $param_timestamp, $param_content);
+                                            $param_id = $staffid;
+                                            $param_timestamp = $time_stamp;
+                                            $param_content = $content;
+                                            if ($stmt->execute()) {
+                                                echo "<div class='row mt-3' style='color: red;'><b>Gửi phản hồi thành công!</b></div>";
+                                            } else {
+                                                echo $stmt->error;
+                                            }
+                                    }
+                                    }
+                                ?>
                                 </div>
                             </form>
                         </div>
                     </div>
                 </div>
                 </div></div>
-                <div class=\"col-5 mt-5\">
-                    <img class=\"align-middle\" src=\"../../../assets/images/staff_response.svg\" alt=\"\" width=\"95%\">
+                <div class='col-5 mt-5'>
+                    <img class='align-middle' src='../../../assets/images/staff_response.svg' alt='' width='95%'>
                 </div>
             </div>
         </div>

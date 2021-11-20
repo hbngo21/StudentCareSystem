@@ -64,8 +64,18 @@
       <div class="text-center mt-5">
         <h4>CÁC ĐÁNH GIÁ CỦA SINH VIÊN</h4>
       </div>
+      <?php
+        if (!isset($_GET['action'])) {
+            $item_per_page = !empty($_GET['per_page']) ? $_GET['per_page'] : 10;
+            $current_page = !empty($_GET['page']) ? $_GET['page'] : 1; //Trang hiện tại
+            $offset = ($current_page - 1) * $item_per_page;
+            $totalRecords = $mysqli->query("SELECT * FROM FEEDBACK");
+            $totalRecords = $totalRecords->num_rows;
+            $totalPages = ceil($totalRecords / $item_per_page);
+        }
+        ?>
           <?php
-                $sql = "SELECT * FROM FEEDBACK";
+                $sql = "SELECT * FROM FEEDBACK ORDER BY TIMESTAMP DESC LIMIT ". $offset. ", ".$item_per_page.";";
                 $result = $mysqli->query($sql);
                 $resultCheck = mysqli_num_rows($result);
                 if ($resultCheck > 0){
@@ -112,6 +122,9 @@
                 else echo "<h5 class=\"text-center\" style=\"color: red\">Chưa có đánh giá nào!</h5>";
             ?>
       </table>
+      <?php
+        include '../../staff/pagination.php';
+        ?>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>

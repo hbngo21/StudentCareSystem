@@ -63,18 +63,19 @@
         <div class="col-6">
             <h4 style="margin-bottom: 30px">CÁC YÊU CẦU TƯ VẤN CỦA SINH VIÊN</h4>
         </div>
-        <div class="col-2">
-                <div class="dropdown">
-                    <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                        Hiển thị tất cả
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <li><a class="dropdown-item" href="#">Yêu cầu chờ phản hồi</a></li>
-                        <li><a class="dropdown-item" href="#">Yêu cầu đã giải quyết</a></li>
-                    </ul>
-                </div>
+        <div class="col-xs-3">
+            <form class="form-inline" method="POST">
+            <div class="form-group mx-sm-3 mb-2">
+                <select class="form-control" name="filter">
+                    <option value="all">Hiển thị tất cả</option>
+                    <option value="waiting">Yêu cầu chờ phản hồi</option>
+                    <option value="done">Yêu cầu đã giải quyết</option>
+                </select>
+            </div>
+            <input class="btn mb-2" type="submit" name="ok" value="Lọc">
+            </form>
       </div>
-      <?php
+      <?php 
         if (!isset($_GET['action'])) {
             $item_per_page = !empty($_GET['per_page']) ? $_GET['per_page'] : 10;
             $current_page = !empty($_GET['page']) ? $_GET['page'] : 1; //Trang hiện tại
@@ -82,10 +83,22 @@
             $totalRecords = $mysqli->query("SELECT * FROM REQUEST_COUNSELLING");
             $totalRecords = $totalRecords->num_rows;
             $totalPages = ceil($totalRecords / $item_per_page);
+        }   
+        //$sql = "SELECT * FROM REQUEST_COUNSELLING WHERE MEDICAL_STAFFID IS NULL ORDER BY REQUEST_TIMESTAMP DESC LIMIT ". $offset. ", ".$item_per_page.";";
+        if (empty($filter)) {
+            $sql = "SELECT * FROM REQUEST_COUNSELLING ORDER BY REQUEST_TIMESTAMP DESC LIMIT ". $offset. ", ".$item_per_page.";";
         }
-        ?>
-          <?php
-                $sql = "SELECT * FROM REQUEST_COUNSELLING ORDER BY REQUEST_TIMESTAMP DESC LIMIT ". $offset. ", ".$item_per_page.";";
+        if(isset($_REQUEST['ok'])) {
+            if($_POST['filter']=='all') { 
+              $sql = "SELECT * FROM REQUEST_COUNSELLING ORDER BY REQUEST_TIMESTAMP DESC LIMIT ". $offset. ", ".$item_per_page.";";
+            }
+            elseif($_POST['filter']=='waiting') { 
+              $sql = "SELECT * FROM REQUEST_COUNSELLING WHERE MEDICAL_STAFFID IS NULL ORDER BY REQUEST_TIMESTAMP DESC LIMIT ". $offset. ", ".$item_per_page.";";
+            }
+            else{
+              $sql = "SELECT * FROM REQUEST_COUNSELLING WHERE MEDICAL_STAFFID IS NOT NULL ORDER BY REQUEST_TIMESTAMP DESC LIMIT ". $offset. ", ".$item_per_page.";";
+            }
+          }   
                 $result = $mysqli->query($sql);
                 $resultCheck = mysqli_num_rows($result);
                 if ($resultCheck > 0){

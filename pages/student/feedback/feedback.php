@@ -1,5 +1,6 @@
 <?php
 require_once '../../../connection.php';
+$studentid = 20000;
 ?>
 
 <!DOCTYPE html>
@@ -70,7 +71,7 @@ require_once '../../../connection.php';
           <img src="../../../assets/images/feedback.svg" alt="" width="90%">
         </div>
         <div class="col-6">
-          <form action="../insertFeedback.php" method="post" style="width: 500px; margin: auto;">
+          <form method="POST" style="width: 500px; margin: auto;">
             <div class="form-floating mb-3 mt-5">
                 <label for="floatingInput">Tiêu đề</label>
                 <input type="text" name='title' class="form-control" id="floatingInput" placeholder="Vui lòng nhập tiêu đề phản hồi" required>
@@ -80,26 +81,36 @@ require_once '../../../connection.php';
                 <textarea class="form-control" name='content' placeholder="Vui lòng nhập nội dung phản hồi" id="floatingTextarea" style="height: 150px" required></textarea>
             </div>
             <div class="d-flex justify-content-center">
-                <button type="submit" class="btn mt-4" onclick="validateData('<?= $staffid ?>')" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <div class="col text-center">
+                <button type="submit" class="row btn mt-4" name='send'>
                   Gửi phản hồi
                   <i class="fas fa-paper-plane"></i>
                 </button>
+                <?php
+                    if (isset($_REQUEST['send'])){
+                        date_default_timezone_set("Asia/Ho_Chi_Minh");
+                        $time_stamp = date("Y-m-d H:i:s");
+                        $title = $_POST['title'];
+                        $content = $_POST['content'];
+
+                        $sql = "INSERT INTO FEEDBACK(STUDENTID, TIMESTAMP, TITLE, CONTENT) 
+                                VALUES (?, ?, ?, ?)";
+                        if ($stmt = $mysqli->prepare($sql)) {
+                          $stmt->bind_param("ssss", $param_id, $param_timestamp, $param_title, $param_content);
+                          $param_id = $studentid;
+                          $param_timestamp = $time_stamp;
+                          $param_title = $title;
+                          $param_content = $content;
+                          if ($stmt->execute()) {
+                              echo "<div class='row mt-3' style='color: red;'><b>Gửi phản hồi thành công!</b></div>";
+                          } else {
+                              echo $stmt->error;
+                          }
+                      }
+                    }
+                ?>
+                </div>
             </div>
-            <!-- <div>
-                <button type="submit" class="btn mt-5" data-bs-toggle="modal" data-bs-target="#exampleModal">Gửi phản hồi</button>
-                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered">
-                      <div class="modal-content">
-                        <div class="modal-body">
-                          Gửi phản hồi thành công.<br>
-                        </div>
-                        <div class="modal-footer" style="margin: auto;">
-                          <a href="../index.php"><button type="button" class="btn" data-bs-dismiss="modal">Trở về</button></a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-            </div> -->
           </form>
         </div>
       </div>

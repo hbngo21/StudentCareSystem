@@ -1,6 +1,6 @@
 <?php
     require_once '../../../connection.php';
-    $studentid = '10000'
+    $studentid = 12345
 ?>
 
 <!DOCTYPE html>
@@ -75,7 +75,8 @@
           <button type="button" class="btn main-btn" style="margin-bottom: 20px; margin-top: 70px" >
             Đăng ký tư vấn
           </button></a>
-      </div>
+        </div>
+        </div>
       <?php
         if (!isset($_GET['action'])) {
             $item_per_page = !empty($_GET['per_page']) ? $_GET['per_page'] : 10;
@@ -92,54 +93,52 @@
                 $resultCheck = mysqli_num_rows($result);
                 if ($resultCheck > 0){
                    echo "<table
-                    id=\"lst_xetccnn\"
-                    class=\"table table-bordered table-hover align-middle\"
-                    style=\"margin-left: auto; margin-right: auto;\"
+                    id='lst_xetccnn'
+                    class='table table-bordered table-hover align-middle'
+                    style='margin-left: auto; margin-right: auto;'
                   >
-                    <thead class = \"align-middle\">
+                    <thead class = 'align-middle'>
                       <tr>
-                        <th style=\"text-align: center\">Ngày đăng ký</th>
-                        <th style=\"text-align: center\">Ngày yêu cầu tư vấn</th>
-                        <th style=\"text-align: center\">Thời gian yêu cầu tư vấn</th>
-                        <th style=\"text-align: center\">Nội dung yêu cầu</th>
-                        <th style=\"text-align: center\">Nhân viên phản hồi</th>
-                        <th style=\"text-align: center\">Thời gian phản hồi</th>
-                        <th style=\"text-align: center\">Tình trạng</th>
+                        <th style='text-align: center'>Ngày đăng ký</th>
+                        <th style='text-align: center'>Ngày yêu cầu tư vấn</th>
+                        <th style='text-align: center'>Thời gian yêu cầu tư vấn</th>
+                        <th style='text-align: center'>Nội dung yêu cầu</th>
+                        <th style='text-align: center'>Nhân viên phản hồi</th>
+                        <th style='text-align: center'>Thời gian phản hồi</th>
+                        <th style='text-align: center'>Tình trạng</th>
                       </tr>
                     </thead>";
                     while ($row = mysqli_fetch_assoc($result)){
                         echo "<tbody>
                         <tr>";
-                        echo "<td style=\"text-align: center\">" . date("d-m-Y H:i:s", strtotime($row['REQUEST_TIMESTAMP'])) . "</td>";
-                        echo "<td style=\"text-align: center\">" . date("d-m-Y", strtotime($row['DATE'])) . "</td>";
+                        echo "<td style='text-align: center'>" . date("d-m-Y H:i:s", strtotime($row['REQUEST_TIMESTAMP'])) . "</td>";
+                        echo "<td style='text-align: center'>" . date("d-m-Y", strtotime($row['DATE'])) . "</td>";
                         if ($row['TIME'] == 'AFTERNOON')
-                            echo "<td style=\"text-align: center\">CHIỀU (14:00 - 16:00)</td>";
-                        else echo "<td style=\"text-align: center\">SÁNG (8:00 - 10:00)</td>";
+                            echo "<td style='text-align: center'>CHIỀU (14:00 - 16:00)</td>";
+                        else echo "<td style='text-align: center'>SÁNG (8:00 - 10:00)</td>";
                         if (!empty($row['MEDICAL_STAFFID']))
-                            echo "<td style=\"text-align: center\"><a href=\"./counsellingDetail.php\" class=\"text-decoration-none\">" . $row['REQUEST_CONTENT'] . "</a></td>";
-                        else echo "<td style=\"text-align: center\">" . $row['REQUEST_CONTENT'] . "</td>";
+                            echo "<td style='text-align: center'><a class='text-decoration-none' href='./counsellingDetail.php?timestamp=".$row['REQUEST_TIMESTAMP']."'>" . $row['REQUEST_CONTENT'] . "</a></td>";
+                        else echo "<td style='text-align: center'>" . $row['REQUEST_CONTENT'] . "</td>";
                         if (!empty($row['MEDICAL_STAFFID'])){
                             $sql2 = "SELECT CONCAT(LASTNAME,' ',FIRSTNAME) AS NAME FROM STAFF WHERE ID =". $row['MEDICAL_STAFFID']."";
                             $result2 = $mysqli->query($sql2);
-                            echo "<td style=\"text-align: center\">" . mysqli_fetch_assoc($result2)['NAME'] . "</a></td>";
+                            echo "<td style='text-align: center'>" . mysqli_fetch_assoc($result2)['NAME'] . "</a></td>";
                         }
-                        else echo "<td style=\"text-align: center\"></td>";
+                        else echo "<td style='text-align: center'></td>";
                         if (!empty($row['MEDICAL_STAFFID']))
-                            echo "<td style=\"text-align: center\">" . date("d-m-Y H:i:s", strtotime($row['RESPONSE_TIMESTAMP'])) . "</td>";
-                        else echo "<td style=\"text-align: center\"></td>";
+                            echo "<td style='text-align: center'>" . date("d-m-Y H:i:s", strtotime($row['RESPONSE_TIMESTAMP'])) . "</td>";
+                        else echo "<td style='text-align: center'></td>";
                         if (empty($row['MEDICAL_STAFFID']))
-                            echo "<td style=\"text-align: center; color: red\"><b>Chờ phản hồi</b></td>";
-                        else echo "<td style=\"text-align: center; color: red\"><b>Đã giải quyết</b></td>";
+                            echo "<td style='text-align: center; color: red'><b>Chờ phản hồi</b></td>";
+                        else echo "<td style='text-align: center; color: red'><b>Đã giải quyết</b></td>";
                         echo "</tr>
                         </tbody>";
                     }
+                    echo "</table>";
+                    include '../../staff/pagination.php';
                 }
-                else echo "<h5 class=\"text-center\" style=\"color: red\">Bạn chưa có yêu cầu tư vấn nào!</h5>";
+                else echo "<h5 class='text-center' style='color: red'>Bạn chưa có yêu cầu tư vấn nào!</h5>";
             ?>
-      </table>
-      <?php
-        include '../../staff/pagination.php';
-        ?>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>

@@ -1,6 +1,6 @@
 <?php
   require_once '../../../connection.php';
-  $studentid = '10000';
+  $studentid = 12345;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -70,10 +70,10 @@
           <img src="../../../assets/images/counselling.svg" alt="" width="95%">
         </div>
         <div class="col-6 mt-5">
-          <form method="POST" action="" style="width: 500px; margin: auto;">
+          <form method="POST" style="width: 500px; margin: auto;">
             <div class="form-group mb-3">
                 <label for="floatingDate">Ngày hẹn tư vấn</label>
-                <input type="date" name='date' class="form-control" id="floatingDate" data-date-format="dd/mm/yyyy" required>
+                <input type="date" name="date" class="form-control" id="floatingDate" data-date-format="dd/mm/yyyy" required>
                 <div class="validate" id="validateName"></div>
             </div>
             <div class="form-group mb-3">
@@ -89,24 +89,37 @@
                 <textarea class="form-control" name='content' placeholder="Nội dung tư vấn" id="floatingTextarea" style="height: 100px" required></textarea>
             </div>
             <div class="d-flex justify-content-center">
-                <button type="submit" class="btn mt-4" name="send">
+              <div class="col text-center">
+                <button type="submit" class="row btn mt-4" name="send">
                   Gửi yêu cầu
                   <i class="fas fa-paper-plane"></i>
                 </button>
                 <?php
-                    if (isset($_POST['send'])){
+                    if (isset($_REQUEST['send'])){
+                        date_default_timezone_set("Asia/Ho_Chi_Minh");
                         $time_stamp = date("Y-m-d H:i:s");
                         $date = $_POST['date'];
                         $time = $_POST['time'];
                         $content = $_POST['content'];
+
+                        $sql = "INSERT INTO REQUEST_COUNSELLING(STUDENTID, REQUEST_TIMESTAMP, DATE, TIME, REQUEST_CONTENT) 
+                                VALUES (?, ?, ?, ?, ?)";
+                        if ($stmt = $mysqli->prepare($sql)) {
+                          $stmt->bind_param("sssss", $param_id, $param_timestamp, $param_date, $param_time, $param_content);
+                          $param_id = $studentid;
+                          $param_timestamp = $time_stamp;
+                          $param_date = $date;
+                          $param_time = $time;
+                          $param_content = $content;
+                          if ($stmt->execute()) {
+                              echo "<div class='row mt-3' style='color: red;'><b>Gửi yêu cầu thành công!</b></div>";
+                          } else {
+                              echo $stmt->error;
+                          }
+                      }
                     }
-                    $sql = "INSERT INTO REQUEST_COUNSELLING(STUDENTID, REQUEST_TIMESTAMP, DATE, TIME, REQUEST_CONTENT) 
-                            VALUES ($studentid, '$time_stamp','$date','$time','$content')";
-                    if ($mysqli->query($sql)){
-                        echo "<script>alert('Đăng ký thành công')</script>";
-                    }
-                    else echo "<script>alert('Lỗi')</script>";
                 ?>
+              </div>
             </div>
           </form>
         </div>
