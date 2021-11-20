@@ -1,5 +1,5 @@
 <?php
-require_once '../../connection.php';
+require_once '../../../connection.php';
 $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : "";
 if ($action == 'create-event') { // Create event
     $name = $_GET['name'];
@@ -7,6 +7,7 @@ if ($action == 'create-event') { // Create event
     $content = $_GET['content'];
     $trainingpoint = $_GET['trainingpoint'];
     $semester = $_GET['semester'];
+    date_default_timezone_set("Asia/Ho_Chi_Minh");
     $timestamp = date("Y-m-d H:i:s", time());
     $political_staffid = $_GET['staffid'];
 

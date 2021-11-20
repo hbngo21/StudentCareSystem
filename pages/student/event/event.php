@@ -1,6 +1,6 @@
 <?php
-require_once '../../connection.php';
-$logined = false; // User not login
+require_once '../../../connection.php';
+$logined = true; // User not login
 $studentid = 10000;
 $registerevent = array();
 $sql = "SELECT eventname FROM registerevent WHERE studentid=" . $studentid  . "";
@@ -148,14 +148,18 @@ if ($result->num_rows > 0) {
                         <div class="row event__item">
                             <div class="col-md-3 p-2"><img src="https://media.istockphoto.com/photos/chalkboard-and-colored-balloons-on-a-wooden-background-picture-id1263908025?b=1&k=20&m=1263908025&s=170667a&w=0&h=DDeDvtWSu99Z5yKrbx0X3M26uHGP1SCBV_-zXKS-FSQ=" class="img-fluid rounded b-shadow-a" width="100%" alt=""></div>
                             <div class="col-md-9 p-2 d-flex flex-column justify-content-between">
-                                <div class="event__item__title"><?= $name ?><div class="trainingpoint"><?= $trainingpoint ?> đrl</div>
+                                <div class="event__item__title"><a href="detail.php?name=<?= $name ?>"><?= $name ?></a>
+                                    <div class="trainingpoint"><?= $trainingpoint ?> đrl</div>
                                 </div>
-                                <div class="d-flex flex-wrap justify-content-between" style="width: 90%;">
+                                <div class="d-flex flex-wrap justify-content-between" style="width: 55%;">
                                     <div class="event__item-info"><i class="far fa-calendar-alt"></i><span><?= $timestamp ?></span></div>
                                     <div class="event__item-info"><i class="fas fa-user-edit"></i><span><?= $name_staff ?></span></div>
                                     <div class="event__item-info"><i class="far fa-users"></i><span><?= $num_register ?>/<?= $limited ?></span></div>
                                 </div>
-                                <div><?= $content ?> Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore optio enim possimus tempora. Explicabo atque, perspiciatis reprehenderit aspernatur adipis</div>
+                                <div>
+                                    <?= substr($content . "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Corrupti, modi aut facilis porro, cupiditate harum exercitationem placeat earum quis aspernatur corporis illum, magnam dolores eveniet quisquam asperiores ratione explicabo aliquid veritatis voluptates consequatur doloribus nam quo mollitia. Dicta nostrum consequuntur omnis, quo totam officiis magnam aliquam aliquid veritatis sint sit consequatur vero explicabo sed dolores dolor ipsum. Nesciunt ex eum nobis quibusdam accusantium beatae velit maiores corrupti deleniti nemo quae numquam architecto, saepe et consequuntur maxime repellendus sint esse, totam, voluptatibus blanditiis. Inventore saepe suscipit consectetur est sapiente odio maxime fuga ad vel excepturi, et repudiandae sit. Omnis, iusto nulla?", 0, 150) ?>
+                                    ... <a class="for-more-info" href="detail.php?name=<?= $name ?>">Xem thêm</a>
+                                </div>
                                 <?php
                                 if (in_array($name, $registerevent))
                                     echo "<button type='button' class='btn event__register-btn' style='width: 150px; background-color: #ee9b00;' disabled>Đã đăng ký</button>";
@@ -174,7 +178,7 @@ if ($result->num_rows > 0) {
         reset($registerevent);
         ?>
         <?php
-        include './pagination.php';
+        include '../pagination.php';
         ?>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

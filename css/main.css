@@ -138,9 +138,22 @@ body {
   color: var(--text);
 }
 
+.event__item .for-more-info {
+  color: var(--button);
+  text-decoration: underline;
+  font-weight: 500;
+}
+
 .event__item__title {
   font-size: 1.25rem;
   font-weight: bold;
+  text-transform: uppercase;
+}
+
+.event__item__title a,
+.event__item__title a:hover {
+  color: var(--text);
+  text-decoration: none;
 }
 
 .trainingpoint {
@@ -150,6 +163,9 @@ body {
 
   background-color: #358f80;
   color: white;
+
+  font-size: 1.25rem;
+  font-weight: bold;
 
   border-radius: 0.5em;
 }
@@ -162,11 +178,15 @@ body {
   margin-left: 0.5rem;
 }
 
+.event__item-info i {
+  width: 20px;
+}
+
 .event__register-btn {
   padding: 0.5rem 0.8rem;
 
   font-weight: bold;
-  border-radius: 1rem;
+  border-radius: 0.5rem;
 }
 
 .event__create {
@@ -187,4 +207,21 @@ body {
   margin-left: 0.5rem;
 }
 
+/* ================================================== */
+
+/* =========================Event Detail Page========================= */
+.event__detail {
+  margin: 6rem 2rem;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  background-color: white;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  color: var(--text);
+}
+
+.event__detail__title span {
+  font-size: 2rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
 /* ================================================== */

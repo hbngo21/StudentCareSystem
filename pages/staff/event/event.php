@@ -1,5 +1,5 @@
 <?php
-require_once '../../connection.php';
+require_once '../../../connection.php';
 $logined = false; // User not login
 $staffid = 5670;
 $create_event = array();
@@ -134,20 +134,24 @@ if ($result->num_rows > 0) {
                     <div style="width: 100%;">
                         <form>
                             <div class="row d-flex justify-content-center">
-                                <div class="form-group mb-1" style="width: 100%;">
+                                <div class="form-group" style="width: 100%;">
                                     <input type="text" name="name" class="form-control" id="name" placeholder="Tên sự kiện" data-msg="Tên sự kiện ít nhất 5 kí tự">
                                     <div class="validate" id="validateName"></div>
                                 </div>
-                                <div class="form-group mb-1" style="width: 100%;">
+                                <div class="form-group" style="width: 100%;">
                                     <input type="number" name="limited" class="form-control" id="limited" placeholder="Giới hạn sinh viên tham gia" data-msg="Số lượng sinh viên tham gia không nhỏ hơn 10">
                                     <div class="validate" id="validateLimited"></div>
                                 </div>
-                                <div class="form-group mb-1" style="width: 100%;">
+                                <div class="form-group" style="width: 100%;">
                                     <textarea class="form-control animate__animated my-2" name="content" id="content" rows="5" data-msg="Thiếu nội dung sự kiện" placeholder="Nội dung sự kiện"></textarea>
                                     <div class="validate" id="validateContent"></div>
                                 </div>
-                                <div class="form-group mb-1" style="width: 100%;">
-                                    <input type="number" name="trainingpoint" class="form-control" id="trainingpoint" placeholder="Điểm rèn luyện" data-msg="Điểm rèn luyện 5 hoặc 10">
+                                <div class="form-group" style="width: 100%;">
+                                    <select class="custom-select" id="trainingpoint" data-msg="Điểm rèn luyện 5 hoặc 10">
+                                        <option selected value="">Điểm rèn luyện...</option>
+                                        <option value="5">5 điểm rèn luyện</option>
+                                        <option value="10">10 điểm rèn luyện</option>
+                                    </select>
                                     <div class="validate" id="validateTrainingPoint"></div>
                                 </div>
                             </div>
@@ -185,14 +189,18 @@ if ($result->num_rows > 0) {
                                 <div class="row event__item">
                                     <div class="col-md-3 p-2"><img src="https://media.istockphoto.com/photos/chalkboard-and-colored-balloons-on-a-wooden-background-picture-id1263908025?b=1&k=20&m=1263908025&s=170667a&w=0&h=DDeDvtWSu99Z5yKrbx0X3M26uHGP1SCBV_-zXKS-FSQ=" class="img-fluid rounded b-shadow-a" width="100%" alt=""></div>
                                     <div class="col-md-9 p-2 d-flex flex-column justify-content-between">
-                                        <div class="event__item__title"><?= $name ?><div class="trainingpoint"><?= $trainingpoint ?> đrl</div>
+                                        <div class="event__item__title"><a href="detail.php?name=<?= $name ?>"><?= $name ?></a>
+                                            <div class="trainingpoint"><?= $trainingpoint ?> đrl</div>
                                         </div>
                                         <div class="d-flex flex-wrap justify-content-between" style="width: 90%;">
                                             <div class="event__item-info"><i class="far fa-calendar-alt"></i><span><?= $timestamp ?></span></div>
                                             <div class="event__item-info"><i class="fas fa-user-edit"></i><span><?= $name_staff ?></span></div>
                                             <div class="event__item-info"><i class="far fa-users"></i><span><?= $num_register ?>/<?= $limited ?></span></div>
                                         </div>
-                                        <div><?= $content ?> Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore optio enim possimus tempora. Explicabo atque, perspiciatis reprehenderit aspernatur adipis</div>
+                                        <div>
+                                            <?= substr($content . "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Corrupti, modi aut facilis porro, cupiditate harum exercitationem placeat earum quis aspernatur corporis illum, magnam dolores eveniet quisquam asperiores ratione explicabo aliquid veritatis voluptates consequatur doloribus nam quo mollitia. Dicta nostrum consequuntur omnis, quo totam officiis magnam aliquam aliquid veritatis sint sit consequatur vero explicabo sed dolores dolor ipsum. Nesciunt ex eum nobis quibusdam accusantium beatae velit maiores corrupti deleniti nemo quae numquam architecto, saepe et consequuntur maxime repellendus sint esse, totam, voluptatibus blanditiis. Inventore saepe suscipit consectetur est sapiente odio maxime fuga ad vel excepturi, et repudiandae sit. Omnis, iusto nulla?", 0, 150) ?>
+                                            ... <a class="for-more-info" href="detail.php?name=<?= $name ?>">Xem thêm</a>
+                                        </div>
                                         <button type='button' class='btn btn-danger event__rmv-btn' style='width: 150px;' onclick="removeEvent('<?= $name ?>')">Xoá<i class="fas fa-trash-alt"></i></button>
                                     </div>
                                 </div>
@@ -206,7 +214,7 @@ if ($result->num_rows > 0) {
             </div>
         </div>
         <?php
-        include './pagination.php';
+        include '../pagination.php';
         ?>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

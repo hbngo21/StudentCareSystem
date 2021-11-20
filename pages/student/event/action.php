@@ -1,5 +1,5 @@
 <?php
-require_once '../../connection.php';
+require_once '../../../connection.php';
 $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : "";
 if ($action == 'register-event') { // Register event
     $event_name = $_POST['event_name'];
