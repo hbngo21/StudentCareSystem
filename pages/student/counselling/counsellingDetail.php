@@ -1,6 +1,6 @@
 <?php
     require_once '../../../connection.php';
-    $studentid = 12345;
+    $studentid = 22222;
 ?>
 
 <head>
@@ -55,9 +55,8 @@
 <body style="background-color: #f3f4f6;">
     <?php
         require_once('../navbar.php');
-        //$timestamp = $_GET['request_timestamp'];
-        $timestamp ='2021-09-01 07:53:47';
-        $sql = "SELECT * FROM REQUEST_COUNSELLING WHERE STUDENTID =".$studentid." AND REQUEST_TIMESTAMP = ".$timestamp.";";
+        $timestamp = $_GET['&REQUEST_TIMESTAMP'];
+        $sql = "SELECT * FROM REQUEST_COUNSELLING WHERE STUDENTID = '$studentid' AND REQUEST_TIMESTAMP = '$timestamp'";
         $result = $mysqli->query($sql);
         $row = mysqli_fetch_assoc($result);
         echo 

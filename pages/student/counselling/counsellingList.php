@@ -1,6 +1,6 @@
 <?php
     require_once '../../../connection.php';
-    $studentid = 12345
+    $studentid = 22222
 ?>
 
 <!DOCTYPE html>
@@ -90,7 +90,7 @@
           <?php
                 $sql = "SELECT * FROM REQUEST_COUNSELLING WHERE STUDENTID =".$studentid." ORDER BY REQUEST_TIMESTAMP DESC LIMIT ". $offset. ", ".$item_per_page.";";
                 $result = $mysqli->query($sql);
-                $resultCheck = mysqli_num_rows($result);
+                $resultCheck = $result->num_rows;
                 if ($resultCheck > 0){
                    echo "<table
                     id='lst_xetccnn'
@@ -108,7 +108,7 @@
                         <th style='text-align: center'>Tình trạng</th>
                       </tr>
                     </thead>";
-                    while ($row = mysqli_fetch_assoc($result)){
+                    while ($row = $result->fetch_assoc()){
                         echo "<tbody>
                         <tr>";
                         echo "<td style='text-align: center'>" . date("d-m-Y H:i:s", strtotime($row['REQUEST_TIMESTAMP'])) . "</td>";
@@ -117,7 +117,7 @@
                             echo "<td style='text-align: center'>CHIỀU (14:00 - 16:00)</td>";
                         else echo "<td style='text-align: center'>SÁNG (8:00 - 10:00)</td>";
                         if (!empty($row['MEDICAL_STAFFID']))
-                            echo "<td style='text-align: center'><a class='text-decoration-none' href='./counsellingDetail.php?timestamp=".$row['REQUEST_TIMESTAMP']."'>" . $row['REQUEST_CONTENT'] . "</a></td>";
+                            echo "<td style='text-align: center'><a class='text-decoration-none' href='./counsellingDetail.php?timestamp=".$row['REQUEST_TIMESTAMP']."'>".$row['REQUEST_CONTENT']."</a></td>";
                         else echo "<td style='text-align: center'>" . $row['REQUEST_CONTENT'] . "</td>";
                         if (!empty($row['MEDICAL_STAFFID'])){
                             $sql2 = "SELECT CONCAT(LASTNAME,' ',FIRSTNAME) AS NAME FROM STAFF WHERE ID =". $row['MEDICAL_STAFFID']."";
