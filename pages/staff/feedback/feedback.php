@@ -80,46 +80,48 @@
                 $resultCheck = mysqli_num_rows($result);
                 if ($resultCheck > 0){
                    echo "<table
-                    id=\"lst_xetccnn\"
-                    class=\"table table-bordered table-hover align-middle\"
-                    style=\"margin-left: auto; margin-right: auto; margin-top: 50px;\"
+                    id='lst_xetccnn'
+                    class='table table-bordered table-hover align-middle'
+                    style='margin-left: auto; margin-right: auto; margin-top: 50px;'
                   >
-                    <thead class = \"align-middle\">
+                    <thead class = 'align-middle'>
                       <tr>
-                        <th style=\"text-align: center\">Ngày đánh giá</th>
-                        <th style=\"text-align: center\">Sinh viên</th>
-                        <th style=\"text-align: center\">Tiêu đề đánh giá</th>
+                        <th style='text-align: center'>Ngày đánh giá</th>
+                        <th style='text-align: center'>Sinh viên</th>
+                        <th style='text-align: center'>Tiêu đề đánh giá</th>
                       </tr>
                     </thead>";
+                    $i = 0;
                     while ($row = mysqli_fetch_assoc($result)){
                         echo "<tbody>
                         <tr>";
-                        echo "<td style=\"text-align: center\">" . date("d-m-Y H:i:s", strtotime($row['TIMESTAMP'])) . "</td>";
+                        echo "<td style='text-align: center'>" . date("d-m-Y H:i:s", strtotime($row['TIMESTAMP'])) . "</td>";
                         $sql2 = "SELECT CONCAT(LASTNAME,' ',FIRSTNAME) AS NAME FROM STUDENT WHERE ID =". $row['STUDENTID']."";
                         $result2 = $mysqli->query($sql2);
-                        echo "<td style=\"text-align: center\">" . mysqli_fetch_assoc($result2)['NAME'] . " - " . $row['STUDENTID'] . "</a></td>";
-                        echo "<td style=\"text-align: center\">
-                            <button type=\"button\" class=\"viewFeedback\" data-toggle=\"modal\" data-target=\"#exampleModal\">". $row['TITLE']. 
+                        echo "<td style='text-align: center'>" . mysqli_fetch_assoc($result2)['NAME'] . " - " . $row['STUDENTID'] . "</a></td>";
+                        echo "<td style='text-align: center'>
+                            <button type='button' class='viewFeedback' data-toggle='modal' data-target='#exampleModal".$i."'>". $row['TITLE']. 
                             "</button>
-                            <div class=\"modal fade\" id=\"exampleModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalLabel\" aria-hidden=\"true\">
-                                <div class=\"modal-dialog\" role=\"document\">
-                                <div class=\"modal-content\">
-                                    <div class=\"modal-header\">
-                                        <h5 class=\"modal-title\" id=\"exampleModalLabel\">".$row['TITLE']."</h5>
-                                        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">
-                                        <span aria-hidden=\"true\">&times;</span>
+                            <div class='modal fade' id='exampleModal".$i."' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true'>
+                                <div class='modal-dialog modal-dialog-centered' role='document'>
+                                <div class='modal-content'>
+                                    <div class='modal-header'>
+                                        <h5 class='modal-title' id='exampleModalLabel'>".$row['TITLE']."</h5>
+                                        <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
+                                        <span aria-hidden='true'>&times;</span>
                                     </button>
                                     </div>
-                                    <div class=\"modal-body\">". $row['CONTENT'].
+                                    <div class='modal-body'>". $row['CONTENT'].
                                     "</div>
                                 </div>
                                 </div>
                             </div></button>";
                         echo "</td></tr>
                         </tbody>";
+                        $i++;
                     }
                 }
-                else echo "<h5 class=\"text-center\" style=\"color: red\">Chưa có đánh giá nào!</h5>";
+                else echo "<h5 class='text-center' style='color: red'>Chưa có đánh giá nào!</h5>";
             ?>
       </table>
       <?php

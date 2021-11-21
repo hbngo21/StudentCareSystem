@@ -1,6 +1,6 @@
 <?php
 require_once '../../../connection.php';
-$staffid = 5670;
+$staffid = 2261;
 $studentid = 80000;
 $request_timestamp = '2021-11-16 21:20:01';
 date_default_timezone_set("Asia/Ho_Chi_Minh");
@@ -60,10 +60,10 @@ date_default_timezone_set("Asia/Ho_Chi_Minh");
 <body style="background-color: #f3f4f6;">
     <!-- mainNav -->
     <?php
-        require_once('../navbar.php')
-    ?>
-    <?php
-        $sql = "SELECT * FROM REQUEST_COUNSELLING WHERE STUDENTID =".$studentid." AND REQUEST_TIMESTAMP = '2021-11-16 21:20:01';";
+        require_once('../navbar.php');
+        $studentid = $_GET['studentid'];
+        $timestamp = $_GET['timestamp'];
+        $sql = "SELECT * FROM REQUEST_COUNSELLING WHERE STUDENTID ='$studentid' AND REQUEST_TIMESTAMP = '$timestamp';";
         $result = $mysqli->query($sql);
         $row = mysqli_fetch_assoc($result);
         echo 
@@ -116,7 +116,7 @@ date_default_timezone_set("Asia/Ho_Chi_Minh");
                                         $content = $_POST['content'];
 
                                         $sql = "UPDATE REQUEST_COUNSELLING 
-                                                SET MEDICAL_STAFFID= ? AND RESPONSE_TIMESTAMP = ? AND RESPONSE_CONTENT = ?
+                                                SET MEDICAL_STAFFID= ?, RESPONSE_TIMESTAMP = ?, RESPONSE_CONTENT = ?
                                                 WHERE STUDENTID =".$studentid." AND REQUEST_TIMESTAMP = '2021-11-16 21:20:01'";
                                         if ($stmt = $mysqli->prepare($sql)) {
                                             $stmt->bind_param("sss", $param_id, $param_timestamp, $param_content);
