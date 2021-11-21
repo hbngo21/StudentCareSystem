@@ -1,8 +1,6 @@
 <?php
 require_once '../../../connection.php';
 $staffid = 2261;
-$studentid = 80000;
-$request_timestamp = '2021-11-16 21:20:01';
 date_default_timezone_set("Asia/Ho_Chi_Minh");
 ?>
 
@@ -69,7 +67,7 @@ date_default_timezone_set("Asia/Ho_Chi_Minh");
         echo 
         "<div style='padding: 100px;'>
             <div class='text-center mt-5'>
-                <h4>PHẢN HỒI YÊU CẦU TƯ VẤN - SV ".$studentid." NGÀY ". date("d-m-Y H:i:s", strtotime($request_timestamp)) ."</h4>
+                <h4>PHẢN HỒI YÊU CẦU TƯ VẤN - SV ".$studentid." NGÀY ". date("d-m-Y H:i:s", strtotime($timestamp)) ."</h4>
             </div>
             <div class='row justify-content-between mt-5'>
                 <div class='col-7 mt-5 me-5'>
@@ -117,7 +115,7 @@ date_default_timezone_set("Asia/Ho_Chi_Minh");
 
                                         $sql = "UPDATE REQUEST_COUNSELLING 
                                                 SET MEDICAL_STAFFID= ?, RESPONSE_TIMESTAMP = ?, RESPONSE_CONTENT = ?
-                                                WHERE STUDENTID =".$studentid." AND REQUEST_TIMESTAMP = '2021-11-16 21:20:01'";
+                                                WHERE STUDENTID =".$studentid." AND REQUEST_TIMESTAMP = '$timestamp'";
                                         if ($stmt = $mysqli->prepare($sql)) {
                                             $stmt->bind_param("sss", $param_id, $param_timestamp, $param_content);
                                             $param_id = $staffid;
