@@ -1,6 +1,11 @@
 <?php
-  require_once '../../../connection.php';
-  $studentid = 22222;
+require_once 'connect.php';
+ 
+try {
+    $mysqli = new PDO("mysql:host={$host};port={$port};dbname={$dbname}", $user, $password);
+} catch (PDOException $e) {
+    echo 'Connection failed: ' . $e->getMessage();
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">

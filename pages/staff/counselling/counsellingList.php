@@ -1,6 +1,13 @@
 <?php
-  require_once '../../../connection.php';
+    require_once './connection.php';
+    try {
+      $conn = new PDO("mysql:host={$host};port={$port};dbname={$dbname}", $user, $password);
+  } catch (PDOException $e) {
+      echo 'Connection failed: ' . $e->getMessage();
+  }
+    $studentid = 22222
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -80,10 +87,10 @@
             $item_per_page = !empty($_GET['per_page']) ? $_GET['per_page'] : 10;
             $current_page = !empty($_GET['page']) ? $_GET['page'] : 1; //Trang hiện tại
             $offset = ($current_page - 1) * $item_per_page;
-            $totalRecords = $mysqli->query("SELECT * FROM REQUEST_COUNSELLING");
-            $totalRecords = $totalRecords->num_rows;
+            $totalRecords = $conn->query("SELECT * FROM REQUEST_COUNSELLING");
+            $totalRecords = $totalRecords->rowCount();
             $totalPages = ceil($totalRecords / $item_per_page);
-        }   
+        }  
         //$sql = "SELECT * FROM REQUEST_COUNSELLING WHERE MEDICAL_STAFFID IS NULL ORDER BY REQUEST_TIMESTAMP DESC LIMIT ". $offset. ", ".$item_per_page.";";
         if (empty($filter)) {
             $sql = "SELECT * FROM REQUEST_COUNSELLING ORDER BY REQUEST_TIMESTAMP DESC LIMIT ". $offset. ", ".$item_per_page.";";
@@ -99,8 +106,8 @@
               $sql = "SELECT * FROM REQUEST_COUNSELLING WHERE MEDICAL_STAFFID IS NOT NULL ORDER BY REQUEST_TIMESTAMP DESC LIMIT ". $offset. ", ".$item_per_page.";";
             }
           }   
-                $result = $mysqli->query($sql);
-                $resultCheck = mysqli_num_rows($result);
+                $result = $conn->query($sql);
+                $resultCheck = $result->rowCount();
                 if ($resultCheck > 0){
                    echo "<table
                     id='table1'
@@ -118,7 +125,7 @@
                         <th class = 'align-middle' style='text-align: center'>Tình trạng</th>
                       </tr>
                     </thead>";
-                    while ($row = mysqli_fetch_assoc($result)){
+                    while ($row = $result->fetch()){
                         echo "<tbody>
                         <tr>";
                         echo "<td style='text-align: center'>" . date("d-m-Y H:i:s", strtotime($row['REQUEST_TIMESTAMP'])) . "</td>";
@@ -127,12 +134,12 @@
                             echo "<td style='text-align: center'>CHIỀU (14:00 - 16:00)</td>";
                         else echo "<td style='text-align: center'>SÁNG (8:00 - 10:00)</td>";
                         if (!empty($row['MEDICAL_STAFFID']))
-                            echo "<td style='text-align: center'><a class='text-decoration-none' href='./counsellingDetail.php?studentid=". $row['STUDENTID']. "&timestamp=".$row['REQUEST_TIMESTAMP']. "'>" . $row['REQUEST_CONTENT'] . "</a></td>";
+                            echo "<td style='text-align: center'><a class='nav-link' href='./counsellingDetail.php?studentid=". $row['STUDENTID']. "&timestamp=".$row['REQUEST_TIMESTAMP']. "'>" . $row['REQUEST_CONTENT'] . "</a></td>";
                         else echo "<td style='text-align: center'>" . $row['REQUEST_CONTENT'] . "</td>";
                         if (!empty($row['MEDICAL_STAFFID'])){
                             $sql2 = "SELECT CONCAT(LASTNAME,' ',FIRSTNAME) AS NAME FROM STAFF WHERE ID =". $row['MEDICAL_STAFFID']."";
-                            $result2 = $mysqli->query($sql2);
-                            echo "<td style='text-align: center'>" . mysqli_fetch_assoc($result2)['NAME'] . "</a></td>";
+                            $result2 = $conn->query($sql2);
+                            echo "<td style='text-align: center'>" . $result2->setFetchMode(PDO::FETCH_ASSOC)['NAME'] . "</a></td>";
                         }
                         else echo "<td style='text-align: center'></td>";
                         if (!empty($row['MEDICAL_STAFFID']))
