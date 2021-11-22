@@ -1,5 +1,5 @@
 <?php
-require_once 'connection.php';
+require_once 'connect.php';
  
 try {
     $conn = new PDO("mysql:host={$host};port={$port};dbname={$dbname}", $user, $password);
@@ -18,7 +18,7 @@ try {
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
 
-    <!-- user.css -->
+    <!-- css -->
     <link rel="stylesheet" href="../../../css/main.css">
     <style>
         #pagination {
@@ -55,55 +55,67 @@ try {
             font-size: 13px;
         }
     </style>
-    <title>Danh sách yêu cầu</title>
-    </title>
+
+    <title>Chi tiết câu hỏi | BVMT</title>
+    <link rel="icon" sizes="192x192" href="../../avatarjpg.jpg">
 </head>
 
 <body style="background-color: #f3f4f6;">
     <?php
         require_once('../navbar.php');
-        $studentid = $_GET['studentid'];
-        $timestamp = $_GET['timestamp'];
-        $sql = "SELECT * FROM REQUEST_COUNSELLING WHERE STUDENTID = '$studentid' AND REQUEST_TIMESTAMP = '$timestamp'";
+        $questionid = $_GET['id'];
+        $sql = "SELECT timestamp, CONCAT(S.LASTNAME,' ',S.FIRSTNAME) AS sname, studentid, title, content
+        from question q
+        join student s on studentid = s.id
+        where q.id = '$questionid'";
         $result = $conn->query($sql);
         $row =  $result->setFetchMode(PDO::FETCH_ASSOC);
-        
-        
         echo 
         "<div style=\"padding: 100px;\">
             <div class=\"text-center mt-5\">
-                <h4>YÊU CẦU TƯ VẤN - NGÀY ". $timestamp ."</h4>
+                <h4>CÂU HỎI - MÃ ". $questionid ."</h4>
             </div>
             <div class=\"row justify-content-between mt-5\">
                 <div class=\"col-7 mt-5\">
                     <div class=\"row ms-5\">
                         <div class=\"col justify-content-center\">
                             <div class=\"card\" style=\"max-width: 35rem;\">
-                                <div class=\"card-header\">Yêu cầu tư vấn</div>
+                                <div class=\"card-header\">Câu hỏi</div>
                                 <div class=\"card-body\">
-                                    <div class=\"card-text\">
-                                        Sinh viên:  $studentid <br>
-                                        Ngày hẹn tư vấn: ".date("d-m-Y", strtotime($row['DATE']))."
-                                        <br>
-                                        Thời gian: ";
-                                        if ($row['TIME'] == 'AFTERNOON')
-                                            echo "CHIỀU (14:00 - 16:00)";
-                                        else echo "SÁNG (8:00 - 10:00)";?>
-                                        <br>Nội dung yêu cầu: "<?php echo $row['REQUEST_CONTENT']; ?>
+                                    <div class=\"card-text\">" ?>
+                                        <?php while ($row = $result->fetch()): ?>
+                                        <div class="">Thời gian: <?php echo htmlspecialchars($row['timestamp']) ?></div>
+                                        <div class="">Tên sinh viên: <?php echo htmlspecialchars($row['sname']) ?></div>
+                                        <div class="">MSSV: <?php echo htmlspecialchars($row['studentid']) ?></div>
+                                        <div class="">Chủ đề: <?php echo htmlspecialchars($row['title']) ?></div>
+                                        <div class="">Nội dung: <?php echo htmlspecialchars($row['content']) ?></div>
+                                        <?php endwhile; ?>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="row mt-5">
+                        <?php
+                            $sql = "";
+                            $sql = "SELECT timestamp, CONCAT(S.LASTNAME,' ',S.FIRSTNAME) AS sname, content
+                            FROM answer a
+                            join staff s on STUDENTCARESTAFFID = s.id
+                            where QUESTIONID = '$questionid'
+                            order by timestamp asc";
+                            $q = $conn->query($sql);
+                            $q->setFetchMode(PDO::FETCH_ASSOC);
+                        ?>
                         <div class="col justify-content-center">
                             <div class="card" style="max-width: 35rem;">
-                                <div class="card-header">Chi tiết phản hồi</div>
-                                <div class="card-body">
-                                    <div class="card-text">
-                                        Nhân viên: <?php echo $row['MEDICAL_STAFFID']?><br>
-                                        Thời gian phản hồi: <?php echo date("d-m-Y H:i:s", strtotime($row['RESPONSE_TIMESTAMP']));?>
-                                        <br>Nội dung phản hồi:<br><?php echo $row['RESPONSE_CONTENT'];?><br>
+                                <div class="card-header">Phản hồi</div>
+                                    <div class="card-body">
+                                        <div class="card-text">
+                                        <?php while ($row = $q->fetch()): ?>
+                                        <div class="">Thời gian: <?php echo htmlspecialchars($row['timestamp']) ?></div>
+                                        <div class="">Tên sinh viên: <?php echo htmlspecialchars($row['sname']) ?></div>
+                                        <div class="">Nội dung: <?php echo htmlspecialchars($row['content']) ?></div></br>
+                                        <?php endwhile; ?>
                                     </div>
                                 </div>
                             </div>
@@ -115,9 +127,13 @@ try {
                 </div>
             </div>
         </div>
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-    <script src="/js/admin.js"></script>
-  </body>
+    </div>
+</body>
+
+<?php
+    $conn = null;
+?>
+
+<footer>
+</footer>
 </html>

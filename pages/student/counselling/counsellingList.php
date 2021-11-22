@@ -1,5 +1,10 @@
 <?php
-    require_once '../../../connection.php';
+    require_once './connection.php';
+    try {
+      $conn = new PDO("mysql:host={$host};port={$port};dbname={$dbname}", $user, $password);
+  } catch (PDOException $e) {
+      echo 'Connection failed: ' . $e->getMessage();
+  }
     $studentid = 22222
 ?>
 
@@ -82,15 +87,15 @@
             $item_per_page = !empty($_GET['per_page']) ? $_GET['per_page'] : 10;
             $current_page = !empty($_GET['page']) ? $_GET['page'] : 1; //Trang hiện tại
             $offset = ($current_page - 1) * $item_per_page;
-            $totalRecords = $mysqli->query("SELECT * FROM REQUEST_COUNSELLING WHERE STUDENTID = $studentid");
-            $totalRecords = $totalRecords->num_rows;
+            $totalRecords = $conn->query("SELECT * FROM REQUEST_COUNSELLING WHERE STUDENTID = $studentid");
+            $totalRecords = $totalRecords->rowCount();
             $totalPages = ceil($totalRecords / $item_per_page);
         }
         ?>
           <?php
                 $sql = "SELECT * FROM REQUEST_COUNSELLING WHERE STUDENTID =".$studentid." ORDER BY REQUEST_TIMESTAMP DESC LIMIT ". $offset. ", ".$item_per_page.";";
-                $result = $mysqli->query($sql);
-                $resultCheck = $result->num_rows;
+                $result = $conn->query($sql);
+                $resultCheck = $result->rowCount();
                 if ($resultCheck > 0){
                    echo "<table
                     id='lst_xetccnn'
@@ -108,7 +113,7 @@
                         <th style='text-align: center'>Tình trạng</th>
                       </tr>
                     </thead>";
-                    while ($row = $result->fetch_assoc()){
+                    while ($row = $result->fetch()){
                         echo "<tbody>
                         <tr>";
                         echo "<td style='text-align: center'>" . date("d-m-Y H:i:s", strtotime($row['REQUEST_TIMESTAMP'])) . "</td>";
@@ -121,8 +126,8 @@
                         else echo "<td style='text-align: center'>" . $row['REQUEST_CONTENT'] . "</td>";
                         if (!empty($row['MEDICAL_STAFFID'])){
                             $sql2 = "SELECT CONCAT(LASTNAME,' ',FIRSTNAME) AS NAME FROM STAFF WHERE ID =". $row['MEDICAL_STAFFID']."";
-                            $result2 = $mysqli->query($sql2);
-                            echo "<td style='text-align: center'>" . mysqli_fetch_assoc($result2)['NAME'] . "</a></td>";
+                            $result2 = $conn->query($sql2);
+                            echo "<td style='text-align: center'>" . $result2->setFetchMode(PDO::FETCH_ASSOC)['NAME'] . "</a></td>";
                         }
                         else echo "<td style='text-align: center'></td>";
                         if (!empty($row['MEDICAL_STAFFID']))
