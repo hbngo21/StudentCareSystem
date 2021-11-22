@@ -16,7 +16,18 @@ body {
   background: var(--button);
   color: white;
   border-radius: 5px;
-  font-size: 18px;
+}
+
+.viewFeedback {
+  background: #f3f4f6;
+  border: none;
+  color: red;
+  font-weight: 600;
+}
+
+.card-header{
+  background: var(--button);
+  color: white;
 }
 
 /* =========================mainNav========================= */
@@ -208,7 +219,6 @@ body {
 }
 
 /* ================================================== */
-
 /* =========================Event Detail Page========================= */
 .event__detail {
   margin: 6rem 2rem;
