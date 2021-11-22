@@ -1,8 +1,8 @@
 <?php
 $host="localhost";
-$port=3306;
+$port=3325;
 $socket="";
 $user="root";
-$password="co1chutcute";
+$password="";
 $dbname="studentcare";
 ?>

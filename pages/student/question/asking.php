@@ -87,7 +87,7 @@ try {
             </div>
             <div class="form-group mb-3">
                 <label for="title">Chủ đề:</label>
-                <input style="text" class="form-control" name="title">
+                <input class="form-control" name="title">
             </div>
             <div class="form-group">
                 <label for="content">Nội dung:</label></br>

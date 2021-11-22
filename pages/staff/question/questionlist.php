@@ -1,6 +1,6 @@
 <?php
 require_once 'connect.php';
- 
+
 try {
     $conn = new PDO("mysql:host={$host};port={$port};dbname={$dbname}", $user, $password);
 } catch (PDOException $e) {
@@ -62,35 +62,36 @@ try {
 
 <body style="background-color: #f3f4f6;">
     <?php
-        require_once('../navbar.php')
+    require_once('../navbar.php')
     ?>
     <div style="padding: 100px;">
-      <div class="row mt-5 justify-content-between">
+        <div class="row mt-5 justify-content-between">
             <div class="col-6">
                 <h4 style="margin-bottom: 30px;">HỎI ĐÁP</h4>
             </div>
             <div class="col-xs-3">
-            <form class="form-inline col-12" action="" method="get">
-                <div class="form-group mx-sm-3 mb-2">
-                    <select class="form-control" name="search">
-                        <option value="">Tất cả</option>
-                        <option value="political">Political</option>
-                        <option value="trainingdepartment">Trainingdepartment</option>
-                        <option value="medical">Medical</option>
-                    </select>
-                    <select class="form-control" name="isanswered">
-                        <option value="">Tất cả</option>
-                        <option value="answered">Đã trả lời</option>
-                        <option value="notanswered">Chưa trả lời</option>
-                    </select>
-                </div>
-                <input class="btn mb-2" type="submit" name="ok" value="Lọc">
-            </form>
+                <form class="form-inline col-12" action="" method="get">
+                    <div class="form-group mx-sm-3 mb-2">
+                        <select class="form-control" name="search">
+                            <option selected disabled value="">Loại</option>
+                            <option value="">Tất cả</option>
+                            <option value="political">Công tác - Chính trị Sinh viên</option>
+                            <option value="trainingdepartment">Đào tạo</option>
+                            <option value="medical">Y tế</option>
+                        </select>
+                        <select class="form-control" name="isanswered">
+                            <option value="">Tất cả</option>
+                            <option value="answered">Đã trả lời</option>
+                            <option value="notanswered">Chưa trả lời</option>
+                        </select>
+                    </div>
+                    <input class="btn mb-2" type="submit" name="ok" value="Lọc">
+                </form>
             </div>
         </div>
-    <!--  -->
+        <!--  -->
         <div id="content" class="col-12">
-        <?php
+            <?php
             if (!isset($_GET['action'])) {
                 $item_per_page = !empty($_GET['per_page']) ? $_GET['per_page'] : 5;
                 $current_page = !empty($_GET['page']) ? $_GET['page'] : 1; //Trang hiện tại
@@ -101,64 +102,62 @@ try {
             }
             if (empty($isanswered) && empty($search)) {
                 $sql = "SELECT id, timestamp, title, type from question order by timestamp asc
-                        LIMIT ". $offset. ", ".$item_per_page.";";
+                        LIMIT " . $offset . ", " . $item_per_page . ";";
             }
             if (isset($_REQUEST['ok'])) {
                 $search = addslashes($_GET['search']);
                 $isanswered = addslashes($_GET['isanswered']);
-                if (empty($isanswered)){
+                if (empty($isanswered)) {
                     if (empty($search)) {
                         $sql = "SELECT id, timestamp, title, type from question order by timestamp asc
-                                LIMIT ". $offset. ", ".$item_per_page.";";
+                                LIMIT " . $offset . ", " . $item_per_page . ";";
                     } else {
                         $sql = "SELECT id, timestamp, title, type from question
                         where type = '$search'
                         order by timestamp asc
-                        LIMIT ". $offset. ", ".$item_per_page.";";
+                        LIMIT " . $offset . ", " . $item_per_page . ";";
                     }
-                }
-                else if ($isanswered == "notanswered"){
+                } else if ($isanswered == "notanswered") {
                     if (empty($search)) {
                         $sql = "SELECT id, timestamp, title, type FROM question
                                 WHERE ID NOT IN(
                                 SELECT QUESTIONID FROM ANSWER
                                 )
                         order by timestamp asc
-                        LIMIT ". $offset. ", ".$item_per_page.";";
+                        LIMIT " . $offset . ", " . $item_per_page . ";";
                     } else {
                         $sql = "SELECT id, timestamp, title, type from question
                         where type = '$search' and ID NOT IN(
                                                     SELECT QUESTIONID FROM ANSWER
                                                     )
                         order by timestamp asc
-                        LIMIT ". $offset. ", ".$item_per_page.";";
+                        LIMIT " . $offset . ", " . $item_per_page . ";";
                     }
-                }
-                else{
+                } else {
                     if (empty($search)) {
                         $sql = "SELECT id, timestamp, title, type FROM question
                                 WHERE ID IN(
                                 SELECT QUESTIONID FROM ANSWER
                                 )
                         order by timestamp asc
-                        LIMIT ". $offset. ", ".$item_per_page.";";
+                        LIMIT " . $offset . ", " . $item_per_page . ";";
                     } else {
                         $sql = "SELECT id, timestamp, title, type from question
                         where type = '$search' and ID IN(
                                                     SELECT QUESTIONID FROM ANSWER
                                                     )
                         order by timestamp asc
-                        LIMIT ". $offset. ", ".$item_per_page.";";
+                        LIMIT " . $offset . ", " . $item_per_page . ";";
                     }
                 }
             }
             $q = $conn->query($sql);
             $q->setFetchMode(PDO::FETCH_ASSOC);
             $resultCheck = $q->rowCount();
-        ?>
-        <div class="col-12" style="">
-            <?php
-                if ($resultCheck > 0){
+            ?>
+            <div class="col-12">
+                <?php
+                if ($resultCheck > 0) {
                     echo "<table
                     id='table1'
                     class='table table-bordered table-hover align-middle'
@@ -171,34 +170,35 @@ try {
                         <th class = 'align-middle' style='text-align: center'>Loại</th>
                     </tr>
                     </thead>";
-                    while ($row = $q->fetch()){
+                    while ($row = $q->fetch()) {
                         echo "<tbody>
                         <tr>";
                         echo "<td style='text-align: center'>" . htmlspecialchars($row['timestamp']) . "</td>";
                         echo "<td style='text-align: center'>
-                        <a class='nav-link' href='./moredetailquestion.php?id=". $row['id']. "'>" . $row['title'] . "</a></td>";
+                        <a href='./moredetailquestion.php?id=" . $row['id'] . "'>" . $row['title'] . "</a></td>";
                         echo "<td style='text-align: center'>" . htmlspecialchars($row['type']) . "</td>";
                         echo "</tr>
                         </tbody>";
                     }
                 }
-            ?>
-                    </table>
-        <?php
-            include './pagination.php';
-        ?>
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-    <script src="/js/admin.js"></script>
+                ?>
+                </table>
+                <?php
+                include './pagination.php';
+                ?>
+            </div>
+            <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+            <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+            <script src="/js/admin.js"></script>
 </body>
 
 <?php
-    $conn = null;
+$conn = null;
 ?>
 
 <footer>
 
 </footer>
+
 </html>

@@ -18,7 +18,7 @@
                         Dịch vụ
                     </div>
                     <div class='dropdown-menu' aria-labelledby='serviceDropdown'>
-                        <a class='dropdown-item' href='http://localhost/pages/staff/asking/asking.php'>Hỏi đáp</a>
+                        <a class='dropdown-item' href='http://localhost/pages/staff/question/asking.php'>Hỏi đáp</a>
                         <a class='dropdown-item' href='http://localhost/pages/staff/counselling/counsellingList.php'>Tư vấn tâm lý</a>
                         <a class='dropdown-item' href='http://localhost/pages/staff/services/services.php'>Dịch vụ sinh viên</a>
                         <a class='dropdown-item' href='http://localhost/pages/staff/feedback/feedback.php'>Đánh giá</a>
