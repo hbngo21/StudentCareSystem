@@ -1,10 +1,6 @@
 <?php
     require_once '../../../connection.php';
-    $studentid = '11111'
 ?>
-
-<!DOCTYPE html>
-<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -51,87 +47,67 @@
             font-size: 13px;
         }
     </style>
-    <title>Danh sách đánh giá</title>
+    <title>Danh sách yêu cầu</title>
     </title>
 </head>
 
 <body style="background-color: #f3f4f6;">
-    <!-- mainNav -->
     <?php
-        require_once('../navbar.php')
-    ?>
-    <div style="padding: 100px;">
-      <div class="text-center mt-5">
-        <h4>CÁC ĐÁNH GIÁ CỦA SINH VIÊN</h4>
-      </div>
-      <?php
-        if (!isset($_GET['action'])) {
-            $item_per_page = !empty($_GET['per_page']) ? $_GET['per_page'] : 10;
-            $current_page = !empty($_GET['page']) ? $_GET['page'] : 1; //Trang hiện tại
-            $offset = ($current_page - 1) * $item_per_page;
-            $totalRecords = $mysqli->query("SELECT * FROM FEEDBACK");
-            $totalRecords = $totalRecords->num_rows;
-            $totalPages = ceil($totalRecords / $item_per_page);
-        }
-        ?>
-          <?php
-                $sql = "SELECT * FROM FEEDBACK ORDER BY TIMESTAMP DESC LIMIT ". $offset. ", ".$item_per_page.";";
-                $result = $mysqli->query($sql);
-                $resultCheck = mysqli_num_rows($result);
-                if ($resultCheck > 0){
-                   echo "<table
-                    id='lst_xetccnn'
-                    class='table table-bordered table-hover align-middle'
-                    style='margin-left: auto; margin-right: auto; margin-top: 50px;'
-                  >
-                    <thead class = 'align-middle'>
-                      <tr>
-                        <th style='text-align: center'>Ngày đánh giá</th>
-                        <th style='text-align: center'>Sinh viên</th>
-                        <th style='text-align: center'>Tiêu đề đánh giá</th>
-                      </tr>
-                    </thead>";
-                    $i = 0;
-                    while ($row = mysqli_fetch_assoc($result)){
-                        echo "<tbody>
-                        <tr>";
-                        echo "<td style='text-align: center'>" . date("d-m-Y H:i:s", strtotime($row['TIMESTAMP'])) . "</td>";
-                        $sql2 = "SELECT CONCAT(LASTNAME,' ',FIRSTNAME) AS NAME FROM STUDENT WHERE ID =". $row['STUDENTID']."";
-                        $result2 = $mysqli->query($sql2);
-                        echo "<td style='text-align: center'>" . mysqli_fetch_assoc($result2)['NAME'] . " - " . $row['STUDENTID'] . "</a></td>";
-                        echo "<td style='text-align: center'>
-                            <button type='button' class='viewFeedback' data-toggle='modal' data-target='#exampleModal".$i."'>". $row['TITLE']. 
-                            "</button>
-                            <div class='modal fade' id='exampleModal".$i."' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true'>
-                                <div class='modal-dialog modal-dialog-centered' role='document'>
-                                <div class='modal-content'>
-                                    <div class='modal-header'>
-                                        <h5 class='modal-title' id='exampleModalLabel'>".$row['TITLE']."</h5>
-                                        <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
-                                        <span aria-hidden='true'>&times;</span>
-                                    </button>
+        require_once('../navbar.php');
+        $studentid = $_GET['studentid'];
+        $timestamp = $_GET['timestamp'];
+        $sql = "SELECT * FROM REQUEST_COUNSELLING WHERE STUDENTID = '$studentid' AND REQUEST_TIMESTAMP = '$timestamp'";
+        $result = $mysqli->query($sql);
+        $row = mysqli_fetch_assoc($result);
+        echo 
+        "<div style=\"padding: 100px;\">
+            <div class=\"text-center mt-5\">
+                <h4>YÊU CẦU TƯ VẤN - NGÀY ". $timestamp ."</h4>
+            </div>
+            <div class=\"row justify-content-between mt-5\">
+                <div class=\"col-7 mt-5\">
+                    <div class=\"row ms-5\">
+                        <div class=\"col justify-content-center\">
+                            <div class=\"card\" style=\"max-width: 35rem;\">
+                                <div class=\"card-header\">Yêu cầu tư vấn</div>
+                                <div class=\"card-body\">
+                                    <div class=\"card-text\">
+                                        Sinh viên:  $studentid <br>
+                                        Ngày hẹn tư vấn: ".date("d-m-Y", strtotime($row['DATE']))."
+                                        <br>
+                                        Thời gian: ";
+                                        if ($row['TIME'] == 'AFTERNOON')
+                                            echo "CHIỀU (14:00 - 16:00)";
+                                        else echo "SÁNG (8:00 - 10:00)";?>
+                                        <br>Nội dung yêu cầu: <?php echo $row['REQUEST_CONTENT']; ?>
                                     </div>
-                                    <div class='modal-body'>". $row['CONTENT'].
-                                    "</div>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-5">
+                        <div class="col justify-content-center">
+                            <div class="card" style="max-width: 35rem;">
+                                <div class="card-header">Chi tiết phản hồi</div>
+                                <div class="card-body">
+                                    <div class="card-text">
+                                        Nhân viên: <?php echo $row['MEDICAL_STAFFID']?><br>
+                                        Thời gian phản hồi: <?php echo date("d-m-Y H:i:s", strtotime($row['RESPONSE_TIMESTAMP']));?>
+                                        <br>Nội dung phản hồi:<br><?php echo $row['RESPONSE_CONTENT'];?><br>
+                                    </div>
                                 </div>
-                            </div></button>";
-                        echo "</td></tr>
-                        </tbody>";
-                        $i++;
-                    }
-                }
-                else echo "<h5 class='text-center' style='color: red'>Chưa có đánh giá nào!</h5>";
-            ?>
-      </table>
-      <?php
-        include '../../staff/pagination.php';
-        ?>
-    </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-5 mt-5">
+                    <img class="align-middle img-fluid" src="../../../assets/images/responsed_counselling.svg" alt="" width="95%">
+                </div>
+            </div>
+        </div>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <script src="/js/admin.js"></script>
-</body>
-
+  </body>
 </html>

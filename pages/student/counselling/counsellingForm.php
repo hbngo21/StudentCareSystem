@@ -112,7 +112,10 @@
                           $param_time = $time;
                           $param_content = $content;
                           if ($stmt->execute()) {
-                              echo "<div class='row mt-3' style='color: red;'><b>Gửi yêu cầu thành công!</b></div>";
+                              echo "<script>
+                              alert('Gửi yêu cầu thành công!');
+                              window.location.href = 'counsellingList.php';
+                              </script>";
                           } else {
                               echo $stmt->error;
                           }
