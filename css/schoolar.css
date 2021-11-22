@@ -1,0 +1,53 @@
+body {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  
+  }
+
+main{
+    margin-top: 3rem;
+    margin-left:3rem;
+}
+#breadcrumb a,ol{
+    font-size: 30px;
+    text-decoration: none;
+    color:#ef9273;
+}
+.card{
+    max-width: 100%;
+    /* height:200px; */
+    
+}
+.card h-100{
+    height:500px;
+}
+/* .card img{
+    text-align: center;
+} */
+/* .cart-list card{
+    margin:0 auto;
+
+} */
+.col {
+    text-decoration:none;
+    color:black;
+}
+.col:hover,
+    .col:active,
+    .col:focus,
+    .col.active {
+        text-decoration:none;
+        color:#ef9273;
+    }
+.btn-toolbar{
+    margin-top:10px;
+    justify-content: flex-end;
+}
+
+.btn-outline-secondary:hover,
+    .btn-outline-secondary:active,
+    .btn-outline-secondary:focus,
+    .btn-outline-secondary.active {
+        background-color: #ef9273;
+        color: #fff;}
+

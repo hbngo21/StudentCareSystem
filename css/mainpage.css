@@ -1,0 +1,365 @@
+body {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    
+  }
+
+
+
+/* nav bar */
+  
+  /* CUSTOMIZE THE CAROUSEL
+  -------------------------------------------------- */
+  
+  /* Carousel base class */
+  
+  .carousel {
+    /* margin-bottom: 4rem; */
+  }
+  /* Since positioning the image, we need to help out the caption */
+  .carousel-caption {
+    bottom: 3rem;
+    z-index: 10;
+  }
+  
+  /* Declare heights because of positioning of img element */
+  .carousel-item {
+    height: 32rem;
+    background-color: black;
+  }
+  .carousel-item > img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    height: 32rem;
+  }
+  .overlay-image{
+    position:absolute;
+    bottom:0;
+    left:0;
+    right:0;
+    top:0;
+    background-position:center;
+    background-size:cover;
+    
+}
+    .carousel-caption{
+        
+            padding: 8em 0 0 8em;
+            padding-left: 7vw;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 5rem;
+            width: 35%;
+            z-index: 101;
+            opacity: 1 !important;
+            
+            
+       
+    }
+    .outline-btn-primary{
+        color: #fff;
+        background-color: black;
+        
+        font-weight: bold;
+        letter-spacing: 0.05em;
+    }
+    
+    .outline-btn-primary:hover,
+    .outline-btn-primary:active,
+    .outline-btn-primary:focus,
+    .outline-btn-primary.active {
+        background-color: #fff;
+        color: #ef9273;
+        
+  
+}
+   /* MARKETING CONTENT
+  -------------------------------------------------- */
+  
+  /* Center align the text within the three columns below the carousel */
+
+  .marketing .col-lg-4 {
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+  .marketing h2 {
+    font-weight: 400;
+  }
+  /* rtl:begin:ignore */
+  .marketing .col-lg-4 p {
+    margin-right: .75rem;
+    margin-left: .75rem;
+  }
+  /* rtl:end:ignore */
+  
+   /* Featurettes
+  ------------------------- */
+  
+  .featurette-divider {
+    margin: 5rem 0; /* Space out the Bootstrap <hr> more */
+  }
+  
+  /* Thin out the marketing headings */
+  .featurette-heading {
+    font-weight: 300;
+    line-height: 1;
+    /* rtl:remove */
+    letter-spacing: -.05rem;
+  }
+  .vc_custom_1603374045499 {
+    margin-top: 0px !important;
+    /* margin-bottom: 0px !important; */
+    padding-top: 30px !important;
+    padding-bottom: 40px !important;
+    background-color: #f8f8f8 !important;
+}
+#background{
+  margin-top: 5rem;
+  background-color: #f8f8f8 !important;
+  width: 100%;
+}
+.row{
+  text-align: center;
+
+  width: 100%;
+}
+.btn-secondary{
+  color: #fff;
+  background-color: black;
+  
+  font-weight: bold;
+  letter-spacing: 0.05em;
+}
+
+.btn-secondary:hover,
+.btn-secondary:active,
+.btn-secondary:focus,
+.btn-secondary.active {
+  background-color: #ef9273;
+  border-color:#ef9273;
+  color: #fff;}
+  
+
+#row{
+  margin-top:20rem;
+}
+:root {
+  --button: #ef9273;
+  --background: #fef9f8;
+  --text: #0d0d0d;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins&display=swap');
+
+body {
+  background: var(--background);
+  color: var(--text);
+  box-sizing: border-box;
+}
+
+.btn {
+  background: var(--button);
+  color: white;
+  border-radius: 5px;
+}
+
+.viewFeedback {
+  background: #f3f4f6;
+  border: none;
+  color: red;
+  font-weight: 600;
+}
+
+.card-header{
+  background: var(--button);
+  color: white;
+}
+
+/* =========================mainNav========================= */
+.menu-bar {
+  background-image: linear-gradient(-90deg, #ff9966, #ff5e62);
+}
+
+.nav-link {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #fff !important;
+  margin: 3px 0.5rem;
+  border: 1px solid transparent;
+}
+
+.navbar-nav {
+  text-align: right;
+  margin-right: 20px;
+}
+
+.menu-bar .nav-bar-toggler {
+  padding-right: 20px;
+  outline: none !important;
+  border: none !important;
+}
+
+.navbar-brand {
+  font-family: 'Pacifico', cursive;
+  font-size: 26px;
+  color: #fff;
+}
+
+.navbar-brand:hover {
+  color: #fff;
+}
+
+.navbar .fas {
+  color: #fff !important;
+  font-size: 24px;
+}
+
+.nav-link:hover {
+  font-weight: 600;
+  border-bottom: 1px solid #fff;
+}
+
+@media only screen and (max-width: 540px) {
+  .nav-link:hover {
+    border-bottom: 1px solid transparent;
+  }
+}
+
+.user-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  background-color: transparent;
+  border: 1px solid #fff;
+  border-radius: 10rem;
+}
+
+.user-btn:focus {
+  box-shadow: none;
+}
+
+.login-btn {
+  padding: 5px 5px;
+  background-color: transparent;
+  border: 2px solid #fff;
+  border-radius: 0.8rem;
+  font-weight: bold;
+  font-size: 1rem;
+  transform: translateY(5px);
+}
+
+.login-btn:focus {
+  box-shadow: none;
+}
+
+.login-btn:hover {
+  color: white;
+}
+
+.dropdown-item:focus {
+  background-color: var(--button) !important;
+}
+
+/* ================================================== */
+
+/* =========================Event Page========================= */
+
+.event__banner {
+  height: 200px;
+  margin: 100px 30px 3rem;
+
+  /* Display */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 3rem;
+  font-weight: bold;
+
+  color: var(--text);
+
+  background-color: white;
+  border-radius: 1rem;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.event__item {
+  margin: 1rem;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  background-color: white;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  color: var(--text);
+}
+
+.event__item__title {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.trainingpoint {
+  display: inline-block;
+  margin-left: 2rem;
+  padding: 0.15rem 0.3rem;
+
+  background-color: #358f80;
+  color: white;
+
+  border-radius: 0.5em;
+}
+
+.event__item__title span {
+  margin-left: 1rem;
+}
+
+.event__item-info span {
+  margin-left: 0.5rem;
+}
+
+.event__register-btn {
+  padding: 0.5rem 0.8rem;
+
+  font-weight: bold;
+  border-radius: 1rem;
+}
+
+.event__create {
+  padding: 1rem 3rem;
+  background-color: white;
+  border-radius: 1rem;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.event__rmv-btn {
+  width: 100px !important;
+  font-weight: bold;
+  border-radius: 0.5rem;
+  background-color: #e63946;
+}
+
+.event__rmv-btn i {
+  margin-left: 0.5rem;
+}
+
+/* ================================================== */
+/* =========================Event Detail Page========================= */
+.event__detail {
+  margin: 6rem 2rem;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  background-color: white;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  color: var(--text);
+}
+
+.event__detail__title span {
+  font-size: 2rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+/* ================================================== */
