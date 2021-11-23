@@ -53,6 +53,31 @@ $studentid = 10000;
       font-weight: 400;
       font-size: 13px;
     }
+
+    .banner {
+      height: 200px;
+      margin: 100px 30px 3rem;
+
+      /* Display */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      font-size: 1.8rem;
+      font-weight: 500;
+
+      color: var(--text);
+
+      background-color: white;
+      border-radius: 1rem;
+      box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    }
+
+    @media only screen and (max-width: 540px) {
+      .banner {
+        font-size: 1.1rem;
+      }
+    }
   </style>
   <title>Danh sách yêu cầu</title>
   </title>
@@ -63,13 +88,13 @@ $studentid = 10000;
   <?php
   require_once('../navbar.php')
   ?>
-  <div style="padding-top: 100px; padding-bottom: 100px;" class="px-5">
-    <div class="text-center mt-5">
-      <h4>ĐỂ CHẤT LƯỢNG HỆ THỐNG NGÀY CÀNG ĐƯỢC NÂNG CAO,</h4>
-      <h4>CHÚNG TÔI RẤT CẦN NHỮNG PHẢN HỒI TỪ CÁC BẠN.</h4>
-      <h4>VUI LÒNG ĐIỀN VÀO FORM DƯỚI ĐÂY ĐỂ GỬI PHẢN HỒI.</h4>
-    </div>
-    <div class="row justify-content-between mt-5">
+  <div class="banner text-center">
+        Để chất lượng hệ thống ngày càng được nâng cao<br>
+        Chúng tôi rất cần những phản hồi từ các bạn.<br>
+        Vui lòng điền vào form dưới đây để gửi phản hồi.
+  </div>
+  <div style="padding-bottom: 100px; margin-left: 30px; margin-right: 30px;" class="px-5">
+    <div class="row justify-content-between mt-5" style="margin-left: 30px">
       <div class="col-md-6">
         <img src="../../../assets/images/feedback.svg" alt="" width="90%">
       </div>
@@ -123,22 +148,4 @@ $studentid = 10000;
   <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
   <script src="/js/admin.js"></script>
 </body>
-<script>
-  (function() {
-    'use strict'
-    var forms = document.querySelectorAll('.needs-validation')
-
-    Array.prototype.slice.call(forms)
-      .forEach(function(form) {
-        form.addEventListener('submit', function(event) {
-          if (!form.checkValidity()) {
-            event.preventDefault()
-            event.stopPropagation()
-          }
-          form.classList.add('was-validated')
-        }, false)
-      })
-  })()
-</script>
-
 </html>
