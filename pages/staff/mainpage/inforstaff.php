@@ -1,12 +1,12 @@
 <?php
 require_once '../../../connection.php';
-    $studentid='10000';
-    $sql_student="SELECT concat(lastname,' ',firstname) as name from student where ID ='$studentid'";
+    $staffid='2261';
+    $sql_student="SELECT concat(lastname,' ',firstname) as name from staff where ID ='$staffid'";
     $query_student = mysqli_query($mysqli,$sql_student);
     $result_student = mysqli_fetch_array($query_student);
 
 
-    $sql="SELECT * FROM student WHERE ID='$studentid'";
+    $sql="SELECT * FROM staff WHERE ID='$staffid'";
     $query = mysqli_query($mysqli,$sql);
     $result = mysqli_fetch_array($query);
 ?>
@@ -19,7 +19,7 @@ require_once '../../../connection.php';
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
     <link rel="stylesheet" href="../../../css/main.css">
-    <title>chi tiet</title>
+    <title>Thông tin nhân viên</title>
 <style>
             /* .container-fluid{
         margin-top:5rem;
@@ -99,7 +99,7 @@ require_once '../../../connection.php';
                 <div class="main">
                    
                     <div class="row">
-                        <div class="col-md-4 mt-1" style="height:31rem">
+                        <div class="col-md-4 mt-1">
                             <div class="card text-center sidebar">
                                 <div class="card-body">
                                 <img src="https://cdn2.vectorstock.com/i/1000x1000/20/76/man-avatar-profile-vector-21372076.jpg" class="rounded-circle" width="150"alt="">
@@ -115,7 +115,7 @@ require_once '../../../connection.php';
                             </div>
                             </div>
                         </div>
-                        <div class="col-md-8 mt-1" >
+                        <div class="col-md-8 mt-1">
                             <div class="card mb-3 content">
                                 <h1 class="m-3 pt-3">About</h1>
                                 <div class="card-body">
@@ -135,7 +135,7 @@ require_once '../../../connection.php';
 
                                         </div>
                                         <div class="col-md-9 text-secondary">
-                                        <?php echo $studentid ?>
+                                        <?php echo $staffid?>
                                         </div>
                                     </div>
                                     <hr> 
@@ -164,22 +164,13 @@ require_once '../../../connection.php';
                                         </div>
                                     </div>
                                         <hr>
-                                    <div class="row">
-                                            <div class="col-md-3">
-                                                <h5>Ngày sinh</h5>
-                                            </div>
-                                            <div class="col-md-9 text-secondary"> 
-                                            <!-- <?php echo  $result['DOB']; ?> -->
-                                           <?php echo date("d-m-Y", strtotime($result['DOB']))  ?>;
-                                            </div>
-
-                                    </div>
+                                
                                  
                                   
                                     
                                 </div>
                             </div>
-                        
+                          
                         </div>
                     </div>
                 </div>
