@@ -51,6 +51,31 @@ $staffid = 5670;
             font-weight: 400;
             font-size: 13px;
         }
+
+        .banner {
+            height: 200px;
+            margin: 100px 30px 3rem;
+
+            /* Display */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            font-size: 1.8rem;
+            font-weight: 500;
+
+            color: var(--text);
+
+            background-color: white;
+            border-radius: 1rem;
+            box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+            }
+        
+        @media only screen and (max-width: 540px) {
+            .banner {
+                font-size: 1.5rem;
+            }
+        }
     </style>
     <title>Danh sách yêu cầu</title>
     </title>
@@ -61,16 +86,19 @@ $staffid = 5670;
     <?php
     require_once('../navbar.php')
     ?>
-    <div style="padding-top: 100px; padding-bottom: 100px;" class="px-5">
+    <div class="banner text-center">
+        Các yêu cầu tư vấn của sinh viên
+    </div>
+    <div style="padding-bottom: 100px; margin-left: 30px; margin-right: 30px;" class="px-5">
         <div class="row mt-5 justify-content-between">
             <div class="col-md-6">
-                <h4 style="margin-bottom: 30px">CÁC YÊU CẦU TƯ VẤN CỦA SINH VIÊN</h4>
+                <h4>CHI TIẾT</h4>
             </div>
             <form class="col-md-6 mb-2 d-flex justify-content-end" method="POST">
                 <select class="form-control mx-2" name="filter" style="width: 30%;">
-                    <option value="all">Hiển thị tất cả</option>
-                    <option value="waiting">Yêu cầu chờ phản hồi</option>
-                    <option value="done">Yêu cầu đã giải quyết</option>
+                    <option value="all">Tất cả</option>
+                    <option value="waiting">Chờ phản hồi</option>
+                    <option value="done">Đã giải quyết</option>
                 </select>
                 <input class="btn mb-2" type="submit" name="ok" value="Lọc">
             </form>
@@ -101,10 +129,10 @@ $staffid = 5670;
             $result = $mysqli->query($sql);
             $resultCheck = mysqli_num_rows($result);
             if ($resultCheck > 0) {
-                echo "<div style='overflow-x:auto;'><table
+                echo "<div class='d-flex justify-content-center' style='overflow-x:auto;'><table
                     id='table1'
                     class='table table-bordered table-hover align-middle'
-                    style='width: 100%;''
+                    style='width: 1395px;''
                   >
                     <thead>
                       <tr>
@@ -146,10 +174,10 @@ $staffid = 5670;
             ?>
             </table>
         </div>
-        <?php
+    </div>
+    <?php
         include '../../staff/pagination.php';
         ?>
-    </div>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
