@@ -73,13 +73,14 @@ $staffid = 5670;
                 <h4 style="margin-bottom: 30px;">HỎI ĐÁP</h4>
             </div>
             <form class="col-md-6 mb-2 d-flex justify-content-end" action="" method="get">
-                <select class="form-control" name="search" style="width: 30%;">
-                    <option selected disabled value="">Loại</option>
+                <label for="search" class="align-middle mt-1">Loại: </label>
+                <select class="form-control mx-2" name="search" style="width: 30%;">
                     <option value="">Tất cả</option>
                     <option value="political">Công tác - Chính trị Sinh viên</option>
                     <option value="trainingdepartment">Đào tạo</option>
                     <option value="medical">Y tế</option>
                 </select>
+                <label for="search" class="align-middle mt-1">Trạng thái: </label>
                 <select class="form-control mx-2" name="isanswered" style="width: 30%;">
                     <option value="">Tất cả</option>
                     <option value="answered">Đã trả lời</option>
@@ -171,10 +172,20 @@ $staffid = 5670;
                 while ($row = $q->fetch()) {
                     echo "<tbody>
                         <tr>";
-                    echo "<td style='text-align: center'>" . htmlspecialchars($row['timestamp']) . "</td>";
+                    echo "<td style='text-align: center'>" . date("d-m-Y H:i:s", strtotime($row['timestamp'])) . "</td>";
                     echo "<td style='text-align: center'>
-                        <a href='./moredetailquestion.php?id=" . $row['id'] . "'>" . $row['title'] . "</a></td>";
-                    echo "<td style='text-align: center'>" . htmlspecialchars($row['type']) . "</td>";
+                        <a class='text-decoration-none' href='./moredetailquestion.php?id=" . $row['id'] . "'>" . $row['title'] . "</a></td>";
+                    switch ($row['type']){
+                        case 'medical':
+                            echo "<td class='align-middle' style='text-align: center'> Y tế </td>";
+                            break;
+                        case 'trainingdepartment':
+                            echo "<td class='align-middle' style='text-align: center'> Công tác - Chính trị Sinh viên </td>";
+                            break;
+                        case 'political':
+                            echo "<td class='align-middle' style='text-align: center'> Đào tạo </td>";
+                            break;
+                    }
                     echo "</tr>
                         </tbody>";
                 }
