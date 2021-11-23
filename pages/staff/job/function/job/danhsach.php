@@ -9,11 +9,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
-    <link rel="stylesheet" href="../css/danhsach.css">
+    <link rel="stylesheet" href="../../../../css/main.css">
     <title>Document</title>
+    
 </head>
 <body>
-<div class="container-fluid">
+<?php
+        require_once '../../navbar.php'
+?>
+<div class="container-fluid" style="margin-top:7rem">
     <div class="card">
         <div class="card-header">
             <h2>Các học bổng</h2>
@@ -61,11 +65,12 @@
                
                 </tbody>
             </table>
-            <a class="btn btn-primary "href="index.php?page_layout=them">Thêm mới</a>
+            <a class="btn "href="index.php?page_layout=them">Thêm mới</a>
         </div>
-       
+        
     </div>
 </div>
+<a class="btn" href="../../vieclam/job.php" style="width:10rem;margin-left:1rem;margin-top:1rem">Hoàn thành</a>
 </body>
 <script>
     function Del(name){

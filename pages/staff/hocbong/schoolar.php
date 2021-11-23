@@ -22,7 +22,63 @@
 
 
     <title>Học bổng</title>
-    <link rel="stylesheet" href="../../../css/schoolar.css">
+    <link rel="stylesheet" href="../../../css/main.css">
+    <style>
+      body {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  
+  }
+
+main{
+    margin-top: 3rem;
+    margin-left:3rem;
+}
+#breadcrumb a,ol{
+    font-size: 30px;
+    text-decoration: none;
+    color:#ef9273;
+}
+.card{
+    max-width: 100%;
+    /* height:200px; */
+    
+}
+.card h-100{
+    height:500px;
+}
+/* .card img{
+    text-align: center;
+} */
+/* .cart-list card{
+    margin:0 auto;
+
+} */
+.col {
+    text-decoration:none;
+    color:black;
+}
+.col:hover,
+    .col:active,
+    .col:focus,
+    .col.active {
+        text-decoration:none;
+        color:#ef9273;
+    }
+.btn-toolbar{
+    margin-top:10px;
+    justify-content: flex-end;
+}
+
+.btn-outline-secondary:hover,
+    .btn-outline-secondary:active,
+    .btn-outline-secondary:focus,
+    .btn-outline-secondary.active {
+        background-color: #ef9273;
+        color: #fff;}
+
+
+    </style>
   </head>
 <body>
   <header>
@@ -38,7 +94,7 @@
     </ol>
     </nav>
     <div class="d-flex justify-content-end" style="margin-right:5rem;margin-bottom:2rem;">
-    <a href="../schoolar/function" class="btn btn-primary">Chỉnh sửa</a>
+    <a href="../schoolar/function" class="btn">Chỉnh sửa</a>
     </div>
   <div class="container">
       <div class=" d-flex align-items-stretch"  >
@@ -97,6 +153,10 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
     -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="/js/admin.js"></script>
 </body>
 
 </html>

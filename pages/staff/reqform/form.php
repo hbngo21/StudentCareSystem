@@ -1,34 +1,6 @@
 <?php
   require_once '../../../connection.php';
-  $studentid = 90000;
-  
-  $sql_req="SELECT * FROM request_services";
-  $query_req=mysqli_query($mysqli,$sql_req);
-//   $sql_req1="SELECT * FROM request_services where STUDENTID = '$studentid'";
-//   $query_req1=mysqli_query($mysqli,$sql_req1);
-  if (isset($_POST['submit'])){
-    
-      date_default_timezone_set("Asia/Ho_Chi_Minh");
-      $time_stamp = date("Y-m-d H:i:s");
-      $ID=$_POST['id'];
-      $content = $_POST['content'];
-
-      $sql = "INSERT INTO request_services(STUDENTID, TIMESTAMP, ID,CONTENT) 
-              VALUES (?,?,?,?)";
-      if ($stmt = $mysqli->prepare($sql)) {
-        $stmt->bind_param("ssss", $param_id, $param_timestamp,$param_id, $param_content);
-        $param_id = $studentid;
-        $param_timestamp = $time_stamp;
-        $param_id=$ID;
-        $param_content = $content;
-        if ($stmt->execute()) {
-            echo "<div class='row mt-3' style='color: red;'><b>Gửi yêu cầu thành công!</b></div>";
-        } else {
-            echo $stmt->error;
-        }
-    }
-  }
-
+  $STAFFID='7006';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -43,26 +15,41 @@
 
     <!-- user.css -->
     <link rel="stylesheet" href="../../../css/main.css">
-<style>
-        @import url('https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap');
-       *{
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Montserrat', sans-serif;
+    <style>
+        #pagination {
+            text-align: right;
+            padding: .5rem 1rem 1rem;
         }
-        body{
-        background: #ef9273;
-        padding: 10px;
-        }   
-        .container{
-            margin-top: 7rem;
-            margin-left: 0;
-            
+
+        .page-item {
+            padding: 5px 9px;
+            color: #f94144;
+            background-color: #fff;
+
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+
         }
-    
-    
-</style>
+
+        .page-item:hover {
+            color: black;
+        }
+
+        .current-page {
+            background-color: #f94144;
+            color: #fff;
+        }
+
+        .validate {
+            display: none;
+            color: red;
+            margin: 0 0 15px 0;
+            font-weight: 400;
+            font-size: 13px;
+        }
+    </style>
     <title>Danh sách yêu cầu</title>
     </title>
 </head>
@@ -72,64 +59,143 @@
     <?php
         require_once('../navbar.php')
     ?>
-    
-
-<div class="container" >
-        <div class="card" >
-        <div class="card-header">
-            <h2>Các yêu cầu đã đăng ký</h2>
+    <div style="padding: 100px;">
+      <div class="row mt-5 justify-content-between">
+        <div class="col-6">
+            <h4 style="margin-bottom: 30px">CÁC YÊU CẦU DỊCH VỤ CỦA SINH VIÊN</h4>
         </div>
-        <div class="card-body">
-            <table class="table">
-                <thead class="thead-dark">
-                    <tr>
-                        <th>#</th>
-                        <th>Student ID</th>
-                        <th>TimeStamp</th>
-                        <th>ID</th>
-                        <th>Content</th>
-                        <th>TrainingdepartmentStaffID</th>
-                        <th>Status</th>
-                        <th>Xem chi tiết</th>
-              
-             
-                         
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    $i = 0;
-                        while($row = mysqli_fetch_assoc($query_req)){ ?>
-                            
-                            <tr>
-                            <td><?php echo $i++; ?></td>
-                            <td><?php echo $row['STUDENTID']; ?></td>
-                            <td><?php echo $row['TIMESTAMP']; ?></td>
-                            <td><?php echo $row['ID']; ?></td>
-                            <td><?php echo $row['CONTENT']; ?></td>
-                            <td><?php echo $row['TRAININGDEPARTMENT_STAFFID']; ?></td>
-                            <td><?php echo $row['STATUS']; ?></td>
-                            
-                            <td> 
-                                <a href="chitiet.php?STUDENTID=<?php echo $row['STUDENTID'];?>"> Xem chi tiết</a> 
-                            </td>
-
-
-                            </tr>
+        <div class="col-xs-3">
+            <form class="form-inline" method="POST">
+            <div class="form-group mx-sm-3 mb-2">
+                <select class="form-control" name="filter">
+                    <option value="all">Hiển thị tất cả</option>
+                    <option value="waiting">Yêu cầu chờ phản hồi</option>
+                    <option value="confirm">Yêu cầu đã xác nhận</option>
+                    <option value="done">Yêu cầu đã giải quyết</option>
+                </select>
+            </div>
+            <input class="btn mb-2" type="submit" name="ok" value="Lọc">
+            </form>
+      </div>
+      <?php 
+        if (!isset($_GET['action'])) {
+            $item_per_page = !empty($_GET['per_page']) ? $_GET['per_page'] : 10;
+            $current_page = !empty($_GET['page']) ? $_GET['page'] : 1; //Trang hiện tại
+            $offset = ($current_page - 1) * $item_per_page;
+        }   
+        if (empty($filter)) {
+            $sql = "SELECT * FROM request_services ORDER BY TIMESTAMP DESC LIMIT ". $offset. ", ".$item_per_page.";";
+            $totalRecords = $mysqli->query("SELECT * FROM request_services"); 
+        }
+        if(isset($_REQUEST['ok'])) {
+            if($_POST['filter']=='all') { 
+                $sql = "SELECT * FROM request_services ORDER BY TIMESTAMP DESC ";
+                $totalRecords = $mysqli->query("SELECT * FROM request_services"); 
+            }
+            elseif($_POST['filter']=='waiting') { 
+                $sql = "SELECT * FROM request_services WHERE TRAININGDEPARTMENT_STAFFID IS NULL ORDER BY TIMESTAMP DESC ";
+                $totalRecords = $mysqli->query("SELECT * FROM request_services WHERE TRAININGDEPARTMENT_STAFFID IS NULL"); 
+            }
+            elseif($_POST['filter']=='confirm') { 
+                $sql = "SELECT * FROM request_services WHERE STATUS = 'In Progress' ORDER BY TIMESTAMP DESC";
+                $totalRecords = $mysqli->query("SELECT * FROM request_services WHERE STATUS = 'In Progress'"); 
+            }
+            else{
+                $sql = "SELECT * FROM request_services WHERE STATUS = 'Completed' ORDER BY TIMESTAMP DESC ";
+                $totalRecords = $mysqli->query("SELECT * FROM request_services WHERE  STATUS = 'Completed'");
+            }
+          }   
+          $totalRecords = $totalRecords->num_rows;
+          $totalPages = ceil($totalRecords / $item_per_page);
+                $result = $mysqli->query($sql);
+                $resultCheck = mysqli_num_rows($result);
+                if ($resultCheck > 0){
+                   echo "<table
+                    id='table1'
+                    class='table table-bordered table-hover align-middle'
+                    style='margin-left: auto; margin-right: auto;'
+                  >
+                    <thead>
+                      <tr>
+                      <th class = 'align-middle' style='text-align: center'>#</th>
+                      <th class = 'align-middle' style='text-align: center'>Mã số Sinh viên</th>
+                      <th class = 'align-middle' style='text-align: center'>Thời gian yêu cầu tư vấn</th>
+                      <th class = 'align-middle' style='text-align: center'>Loại yêu cầu</th>
+                      <th class = 'align-middle' style='text-align: center'>Nhân viên thực hiện</th>
+                      <th class = 'align-middle' style='text-align: center'>Tình trạng</th>
+                      </tr>
+                    </thead>";
+                    $i=0;
+                    while ($row = mysqli_fetch_assoc($result)){
+                        echo "<tbody>
+                        <tr>";
+                        echo "<td style='text-align: center'>".$i++."</td>";
+                        echo "<td style='text-align: center'>". $row['STUDENTID']."</td>";
+                        echo "<td style='text-align: center'>" . date("d-m-Y H:i:s", strtotime($row['TIMESTAMP'])) . "</td>";
+                        if ($row['STATUS'] != 'Completed'){
+                            echo "<a class='text-decoration-none' href='./detail.php?studentid=". $row['STUDENTID']. "&timestamp=".$row['TIMESTAMP']."'>";
+                        }
+                       
+                        switch ($row['ID']){
+                            case '1': 
+                             
+                                echo "<td style='text-align: center'> In bảng điểm học tập</td>";
+                                break;
+                            case '2': 
+                                echo "<td style='text-align: center'> Nhận bằng tốt nghiệp</td>";
+                                break;
+                            case '3': 
+                               
+                                echo "<td style='text-align: center'> Giấy xác nhận sinh viên</td>";
+                                break;
+                            case '4': 
+                               
+                                echo "<td style='text-align: center'> Làm lại thẻ sinh viên</td>";
+                                break;
+                            case '6': 
+                               
+                                echo "<td style='text-align: center'> In bảng điểm rèn luyện</td>";
+                                break;
+                        }
+                        if ($row['STATUS'] != 'Completed')
+                                    echo "</a>";
                         
-                  <?php } ?>
-               
-                </tbody>
-            </table>
-           
-        </div>
-        
+                        if (!empty($row['CONTENT'])){
+                            echo "<td style='text-align: center'>". $row['CONTENT']."</td>";
+                        }
+                        else echo "<td style='text-align: center'> </td>";
+                        // if (!empty($row['TRAININGDEPARTMENT_STAFFID'])){
+                        //     echo "<td style='text-align: center'>". $STAFFID."</td>";
+                        // }
+                        if (!empty($row['TRAININGDEPARTMENT_STAFFID'])){
+                            $sql2 = "SELECT CONCAT(LASTNAME,' ',FIRSTNAME) AS NAME FROM STAFF WHERE ID =". $row['TRAININGDEPARTMENT_STAFFID']."";
+                            $result2 = $mysqli->query($sql2);
+                            echo"<td style='text-align: center'>". mysqli_fetch_assoc($result2)['NAME']."</td>";
+                        }
+                        else echo "<td style='text-align: center'> </td>";
+                        
+                        if ($row['STATUS'] == 'Waiting')
+                        echo "<td style='text-align: center; color: rgb(233, 205, 44)'><b>Chờ xác nhận</b></td>";
+                    elseif ($row['STATUS'] == 'In Progress')
+                        echo "<td style='text-align: center; color: green'><b>Trong tiến trình</b></td>";
+                    else
+                        echo "<td style='text-align: center; color: red'><b>Đã giải quyết</b></td>";
+                        
+                       
+                      
+                        echo "</tr>
+                        </tbody>";
+                    }
+                }
+            ?>
+      </table>
+      <?php
+        include '../../staff/pagination.php';
+        ?>
     </div>
-</div>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <script src="/js/admin.js"></script>
-    <script>document.getElementById('floatingDate').min = new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000).toISOString().split("T")[0];</script>
 </body>
 </html>

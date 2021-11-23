@@ -2,7 +2,7 @@
     $logined = false;
     echo "<div class='header'>
     <nav class='navbar menu-bar fixed-top navbar-expand-sm'>
-        <a class='navbar-brand' href='index.php'>
+        <a class='navbar-brand' href='http://localhost/StudentCareSystem/pages/staff/mainpage/mainpage.php'>
             Student Care
         </a>
         <button class='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbar-list-5' aria-controls='navbarNav' aria-expanded='false' aria-label='Toggle navigation'>
@@ -11,7 +11,7 @@
         <div class='collapse navbar-collapse' id='navbar-list-5'>
             <ul class='navbar-nav ml-auto'>
                 <li class='nav-item'>
-                    <a class='nav-link' href='index.php'>Trang chủ</a>
+                    <a class='nav-link' href='http://localhost/StudentCareSystem/pages/staff/mainpage/mainpage.php'>Trang chủ</a>
                 </li>
                 <li class='nav-item dropdown'>
                     <div class='nav-link dropdown-toggle' id='serviceDropdown' role='button' data-toggle='dropdown' aria-expanded='false'>

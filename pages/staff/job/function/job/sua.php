@@ -24,9 +24,11 @@
             header('location: index.php?page_layout=danhsach');
         }
 ?>
-
-
-<div class="container-fluid">
+ <link rel="stylesheet" href="../../../../css/main.css">
+<?php
+        require_once '../../navbar.php'
+?>
+<div class="container-fluid" style="margin-top:7rem">
     <div class="card">
         <div class="card-header">
             <h2> Sửa thông tin việc làm</h2>
@@ -67,9 +69,11 @@
 
                         </select>
                 </div> -->
-                <button name="sbm" class="btn btn-success" type="submit"> Sửa</button>
+                <button name="sbm" class="btn" type="submit"> Sửa</button>
             </form>
-                
+            
         </div>
+       
     </div>
 </div>
+<a class="btn" href="../../job/function" style="width:10rem;margin-left:1rem;margin-top:1rem">Quay lại</a>

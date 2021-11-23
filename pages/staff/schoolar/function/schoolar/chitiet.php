@@ -6,8 +6,12 @@
     $query = mysqli_query($connect,$sql);
     $result = mysqli_fetch_array($query);
 ?>
-    
-<div class="container-fluid">
+<link rel="stylesheet" href="../../../../css/main.css">
+<?php
+        require_once '../../navbar.php'
+?>
+
+<div class="container-fluid" style="margin-top:7rem">
     <div class="card">
         <div class="card-header">
             <h2> <?= $name ?> </h2>

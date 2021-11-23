@@ -2,7 +2,7 @@
   require_once '../../../connection.php';
 
 
- $sql="SELECT * FROM incentivescholarship_result";
+ $sql="SELECT * FROM jobscholarship_infor";
  $query=mysqli_query($mysqli,$sql);
 
 ?> 
@@ -21,65 +21,65 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
 
 
-    <title>Học bổng</title>
+    <title>Việc làm</title>
     <link rel="stylesheet" href="../../../css/main.css">
-<style>
-        body {
-      padding-top: 3rem;
-      padding-bottom: 3rem;
-    
-    }
-
-  main{
-      margin-top: 3rem;
-      margin-left:3rem;
-  }
-  #breadcrumb a,ol{
-      font-size: 30px;
-      text-decoration: none;
-      color:#ef9273;
-  }
-  .card{
-      max-width: 100%;
-      /* height:200px; */
-      
-  }
-  .card h-100{
-      height:500px;
-  }
-  /* .card img{
-      text-align: center;
-  } */
-  /* .cart-list card{
-      margin:0 auto;
-
-  } */
-  .col {
-      text-decoration:none;
-      color:black;
-  }
-  .col:hover,
-      .col:active,
-      .col:focus,
-      .col.active {
-          text-decoration:none;
-          color:#ef9273;
-      }
-  .btn-toolbar{
-      margin-top:10px;
-      justify-content: flex-end;
-  }
-
-  .btn-outline-secondary:hover,
-      .btn-outline-secondary:active,
-      .btn-outline-secondary:focus,
-      .btn-outline-secondary.active {
-          background-color: #ef9273;
-          color: #fff;}
-
-
-</style>
   </head>
+  <style>
+            body {
+            padding-top: 3rem;
+            padding-bottom: 3rem;
+          
+          }
+
+        main{
+            margin-top: 3rem;
+            margin-left:3rem;
+        }
+        #breadcrumb a,ol{
+            font-size: 30px;
+            text-decoration: none;
+            color:#ef9273;
+        }
+        .card{
+            max-width: 100%;
+            /* height:200px; */
+            
+        }
+        .card h-100{
+            height:500px;
+        }
+        /* .card img{
+            text-align: center;
+        } */
+        /* .cart-list card{
+            margin:0 auto;
+
+        } */
+        .col {
+            text-decoration:none;
+            color:black;
+        }
+        .col:hover,
+            .col:active,
+            .col:focus,
+            .col.active {
+                text-decoration:none;
+                color:#ef9273;
+            }
+        .btn-toolbar{
+            margin-top:10px;
+            justify-content: flex-end;
+        }
+
+        .btn-outline-secondary:hover,
+            .btn-outline-secondary:active,
+            .btn-outline-secondary:focus,
+            .btn-outline-secondary.active {
+                background-color: #ef9273;
+                color: #fff;}
+
+
+  </style>
 <body>
   <header>
     <?php require_once'../navbar.php'; ?>    
@@ -90,9 +90,12 @@
     <ol class="breadcrumb" id="breadcrumb">
       
       <li class="breadcrumb-item"><a href="mainpage.php">Home</a></li>
-      <li class="breadcrumb-item active" aria-current="page">Học bổng</li>
+      <li class="breadcrumb-item active" aria-current="page">Việc làm</li>
     </ol>
     </nav>
+    <div class="d-flex justify-content-end" style="margin-right:5rem;margin-bottom:2rem;">
+    <a href="../job/function" class="btn">Chỉnh sửa</a>
+    </div>
   <div class="container">
       <div class=" d-flex align-items-stretch"  >
         
@@ -102,15 +105,15 @@
           while($row = mysqli_fetch_assoc($query)){ ?>
           <?php  $i++?>
         <div class="row">
-          <a href="chitiet.php?NAME=<?php echo $row['NAME'];?>" class="col" >
-         
+          <a href="chitiet.php?id=<?php echo $row['ID'];?>" class="col" >
+        
           <div class="card h-100">
             <img src="../../../assets/images/bk.png" class="card-img-top" alt="...">
             <div class="card-body">
               <div class="card-title">
-                    <h5 class="card-title"><?php echo $row['NAME']; ?> </h5>
+                    <h5 class="card-title"><?php echo $row['TITLE']; ?> </h5>
               </div>
-            <p class="card-text"><?php echo $row['INFORMATION']; ?></p>
+            <p class="card-text"><?php echo $row['CONTENT']; ?></p>
             </div>
           </div>
           </a>

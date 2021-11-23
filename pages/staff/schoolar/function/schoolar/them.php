@@ -12,9 +12,12 @@
             header('location: index.php?page_layout=danhsach');
         }
 ?>
+<link rel="stylesheet" href="../../../../css/main.css">
+<?php
+        require_once '../../navbar.php'
+?>
 
-
-<div class="container-fluid">
+<div class="container-fluid" style="margin-top:7rem">
     <div class="card">
         <div class="card-header">
             <h2> Thêm Học bổng</h2>
