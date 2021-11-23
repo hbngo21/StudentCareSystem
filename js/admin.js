@@ -103,7 +103,7 @@ function checkContent(content, validate) {
 
 // Delete event
 function removeEvent(event_name) {
-  console.log(event_name);
+//   console.log(event_name);
   let action = 'action.php?action=remove-event&event_name=' + event_name;
   $.get(action, function (data, status) {
     alert(data);

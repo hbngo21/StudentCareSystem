@@ -2,6 +2,7 @@
 require_once '../../../connection.php';
 // Login information
 $logined = true;
+
 $staffid = 5670;
 
 $ename = $_GET['name'];
@@ -48,58 +49,9 @@ if ($stmt = $mysqli->prepare($sql)) {
 
 <body style="background-color: #f3f4f6;">
     <!-- mainNav -->
-    <div class="header">
-        <nav class="navbar menu-bar fixed-top navbar-expand-sm">
-            <a class="navbar-brand" href="index.php">
-                Student Care
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-list-5" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <i class="fas fa-bars"></i>
-            </button>
-            <div class="collapse navbar-collapse" id="navbar-list-5">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.php">Trang chủ</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="serviceDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
-                            Dịch vụ
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="serviceDropdown">
-                            <a class="dropdown-item" href="#">Hỏi đáp</a>
-                            <a class="dropdown-item" href="#">Tư vấn tâm lý</a>
-                            <a class="dropdown-item" href="#">Dịch vụ sinh viên</a>
-                            <a class="dropdown-item" href="#">Đánh giá</a>
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="event.php">Sự kiện</a>
-                    </li>
-                    <?php
-                    if (!$logined) {
-                    ?>
-                        <li class="nav-item">
-                            <a class="btn login-btn" href="login.php">Đăng nhập</a>
-                        </li>
-                    <?php
-                    } else {
-                    ?>
-                        <li class="nav-item dropdown d-flex justify-content-center flex-wrap">
-                            <a class='btn user-btn' href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
-                                <i class='fas fa-user-circle'></i>
-                            </a>
-                            <div class="text-center" style="width: 100%; font-weight: bold; font-size: .8rem; color: #fff;">Trần Quốc Việt</div>
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">Thông tin cá nhân</a>
-                                <a class="dropdown-item" href="#">Đăng xuất</a>
-                            </div>
-                        </li>
-                    <?php
-                    } ?>
-                </ul>
-            </div>
-        </nav>
-    </div>
+    <?php
+    require_once("../navbar.php")
+    ?>
     <div class="row event__detail">
         <div class="col-md-4 pt-2"><img src="https://media.istockphoto.com/photos/chalkboard-and-colored-balloons-on-a-wooden-background-picture-id1263908025?b=1&k=20&m=1263908025&s=170667a&w=0&h=DDeDvtWSu99Z5yKrbx0X3M26uHGP1SCBV_-zXKS-FSQ=" class="img-fluid rounded b-shadow-a" width="100%" alt=""></div>
         <div class="col-md-8 pt-2">
