@@ -1,5 +1,8 @@
 <?php
 require_once '../../../connection.php';
+// Login information
+$logined = false; // User not login
+$staffid = 5670;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -58,23 +61,19 @@ require_once '../../../connection.php';
     <?php
     require_once('../navbar.php')
     ?>
-    <div style="padding: 100px;">
+    <div style="padding-top: 100px; padding-bottom: 100px;" class="px-5">
         <div class="row mt-5 justify-content-between">
-            <div class="col-6">
+            <div class="col-md-6">
                 <h4 style="margin-bottom: 30px">CÁC YÊU CẦU TƯ VẤN CỦA SINH VIÊN</h4>
             </div>
-            <div class="col-xs-3">
-                <form class="form-inline" method="POST">
-                    <div class="form-group mx-sm-3 mb-2">
-                        <select class="form-control" name="filter">
-                            <option value="all">Hiển thị tất cả</option>
-                            <option value="waiting">Yêu cầu chờ phản hồi</option>
-                            <option value="done">Yêu cầu đã giải quyết</option>
-                        </select>
-                    </div>
-                    <input class="btn mb-2" type="submit" name="ok" value="Lọc">
-                </form>
-            </div>
+            <form class="col-md-6 mb-2 d-flex justify-content-end" method="POST">
+                <select class="form-control mx-2" name="filter" style="width: 30%;">
+                    <option value="all">Hiển thị tất cả</option>
+                    <option value="waiting">Yêu cầu chờ phản hồi</option>
+                    <option value="done">Yêu cầu đã giải quyết</option>
+                </select>
+                <input class="btn mb-2" type="submit" name="ok" value="Lọc">
+            </form>
             <?php
             if (!isset($_GET['action'])) {
                 $item_per_page = !empty($_GET['per_page']) ? $_GET['per_page'] : 10;
@@ -102,10 +101,10 @@ require_once '../../../connection.php';
             $result = $mysqli->query($sql);
             $resultCheck = mysqli_num_rows($result);
             if ($resultCheck > 0) {
-                echo "<table
+                echo "<div style='overflow-x:auto;'><table
                     id='table1'
                     class='table table-bordered table-hover align-middle'
-                    style='margin-left: auto; margin-right: auto;'
+                    style='width: 100%;''
                   >
                     <thead>
                       <tr>
@@ -146,14 +145,15 @@ require_once '../../../connection.php';
             }
             ?>
             </table>
-            <?php
-            include '../../staff/pagination.php';
-            ?>
         </div>
-        <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
-        <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-        <script src="/js/admin.js"></script>
+        <?php
+        include '../../staff/pagination.php';
+        ?>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="/js/admin.js"></script>
 </body>
 
 </html>

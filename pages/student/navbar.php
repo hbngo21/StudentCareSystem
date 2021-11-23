@@ -1,6 +1,4 @@
-<?php
-    $logined = false;
-    echo "<div class='header'>
+<div class='header'>
     <nav class='navbar menu-bar fixed-top navbar-expand-sm'>
         <a class='navbar-brand' href='index.php'>
             Student Care
@@ -18,7 +16,7 @@
                         Dịch vụ
                     </div>
                     <div class='dropdown-menu' aria-labelledby='serviceDropdown'>
-                        <a class='dropdown-item' href='http://localhost/pages/staff/question/asking.php'>Hỏi đáp</a>
+                        <a class='dropdown-item' href='http://localhost/pages/student/question/questionlist.php'>Hỏi đáp</a>
                         <a class='dropdown-item' href='http://localhost/pages/student/counselling/counsellingList.php'>Tư vấn tâm lý</a>
                         <a class='dropdown-item' href='http://localhost/pages/student/services/services.php'>Dịch vụ sinh viên</a>
                         <a class='dropdown-item' href='http://localhost/pages/student/feedback/feedback.php'>Đánh giá</a>
@@ -26,16 +24,15 @@
                 </li>
                 <li class='nav-item'>
                     <a class='nav-link' href='http://localhost/pages/student/event/event.php'>Sự kiện</a>
-                </li>";
-    if (!$logined) {
-        echo "
+                </li>
+                <?php
+                if (!$logined) {
+                ?>
                     <li class='nav-item'>
                         <a class='btn login-btn' href='login.php'>Đăng nhập</a>
                     </li>
-            ";
-    }
-    else {
-        echo "
+                <?php } else {
+                ?>
                     <li class='nav-item dropdown d-flex justify-content-center flex-wrap'>
                         <a class='btn user-btn' href='#' id='userDropdown' role='button' data-toggle='dropdown' aria-expanded='false'>
                             <i class='fas fa-user-circle'></i>
@@ -45,11 +42,10 @@
                             <a class='dropdown-item' href='#'>Thông tin cá nhân</a>
                             <a class='dropdown-item' href='#'>Đăng xuất</a>
                         </div>
-                    </li>";
-    } 
-    echo "
+                    </li>
+                <?php }
+                ?>
             </ul>
         </div>
     </nav>
-</div>"
-?>
+</div>

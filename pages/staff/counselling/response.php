@@ -1,6 +1,13 @@
 <?php
 require_once '../../../connection.php';
+// Login information
+$logined = false; // User not login
+$staffid = 2261;
+date_default_timezone_set("Asia/Ho_Chi_Minh");
 ?>
+
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -47,65 +54,95 @@ require_once '../../../connection.php';
             font-size: 13px;
         }
     </style>
-    <title>Danh sách yêu cầu</title>
-    </title>
+    <title>Phản hồi yêu cầu tư vấn</title>
 </head>
 
 <body style="background-color: #f3f4f6;">
+    <!-- mainNav -->
     <?php
     require_once('../navbar.php');
     $studentid = $_GET['studentid'];
     $timestamp = $_GET['timestamp'];
-    $sql = "SELECT * FROM REQUEST_COUNSELLING WHERE STUDENTID = '$studentid' AND REQUEST_TIMESTAMP = '$timestamp'";
+    $sql = "SELECT * FROM REQUEST_COUNSELLING WHERE STUDENTID ='$studentid' AND REQUEST_TIMESTAMP = '$timestamp';";
     $result = $mysqli->query($sql);
     $row = mysqli_fetch_assoc($result);
     echo
-    "<div style=\"padding: 100px;\">
-            <div class=\"text-center mt-5\">
-                <h4>YÊU CẦU TƯ VẤN - NGÀY " . $timestamp . "</h4>
+    "<div style='padding-top: 100px; padding-bottom: 100px;' class='px-5'>
+            <div class='text-center mt-5'>
+                <h4>PHẢN HỒI YÊU CẦU TƯ VẤN - SV " . $studentid . " NGÀY " . date("d-m-Y H:i:s", strtotime($timestamp)) . "</h4>
             </div>
-            <div class=\"row justify-content-between mt-5\">
-                <div class=\"col-7 mt-5\">
-                    <div class=\"row ms-5\">
-                        <div class=\"col justify-content-center\">
-                            <div class=\"card\" style=\"max-width: 35rem;\">
-                                <div class=\"card-header\">Yêu cầu tư vấn</div>
-                                <div class=\"card-body\">
-                                    <div class=\"card-text\">
+            <div class='row mt-5'>
+                <div class='col-md-7 mt-5 me-5'>
+                    <div class='row d-flex justify-content-center'>
+                            <div class='card' style='width: 100%;'>
+                                <div class='card-header'>Yêu cầu tư vấn</div>
+                                <div class='card-body'>
+                                    <div class='card-text'>
                                         Sinh viên:  $studentid <br>
                                         Ngày hẹn tư vấn: " . date("d-m-Y", strtotime($row['DATE'])) . "
                                         <br>
                                         Thời gian: ";
     if ($row['TIME'] == 'AFTERNOON')
         echo "CHIỀU (14:00 - 16:00)";
-    else echo "SÁNG (8:00 - 10:00)"; ?>
-    <br>Nội dung yêu cầu: "<?php echo $row['REQUEST_CONTENT']; ?>
-    </div>
-    </div>
-    </div>
-    </div>
-    </div>
-    <div class="row mt-5">
-        <div class="col justify-content-center">
-            <div class="card" style="max-width: 35rem;">
-                <div class="card-header">Chi tiết phản hồi</div>
-                <div class="card-body">
-                    <div class="card-text">
-                        Nhân viên: <?php echo $row['MEDICAL_STAFFID'] ?><br>
-                        Thời gian phản hồi: <?php echo date("d-m-Y H:i:s", strtotime($row['RESPONSE_TIMESTAMP'])); ?>
-                        <br>Nội dung phản hồi:<br><?php echo $row['RESPONSE_CONTENT']; ?><br>
+    else echo "SÁNG (8:00 - 10:00)";
+    echo "<br>
+        Nội dung yêu cầu: " . $row['REQUEST_CONTENT'] .
+        "</div></div></div></div>
+                    <div class='row mt-5 d-flex justify-content-center'>
+                            <div class='card' style='width: 100%;'>
+                                <div class='card-header'>Chi tiết phản hồi</div>
+                                <div class='card-body'>
+                                    <div class='card-text'>
+                                        Nhân viên: " . $staffid . " <br>
+                                        Thời gian phản hồi: " . date("d-m-Y H:i:s", time()) . "
+                                    </div>
+                                </div>
+                            </div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    </div>
-    <div class="col-5 mt-5">
-        <img class="align-middle img-fluid" src="../../../assets/images/responsed_counselling.svg" alt="" width="95%">
-    </div>
-    </div>
-    </div>";
+                    <div class='row mt-3 d-flex justify-content-center'>
+                            <form  method='POST' style='width: 100%;'>
+                                <div class='form-group'>
+                                    <label for='exampleFormControlTextarea1'>Nội dung phản hồi</label>
+                                    <textarea class='form-control' id='exampleFormControlTextarea1' name='content' rows='5' required></textarea>
+                                </div>
+                                <div class='d-flex justify-content-center'>
+                                    <button type='submit' class='btn mt-4' name='send'\>
+                                    Gửi
+                                    <i class='fas fa-paper-plane'></i>
+                                    </button>" ?>
+    <?php
+    if (isset($_REQUEST['send'])) {
+        $time_stamp = date("Y-m-d H:i:s");
+        $content = $_POST['content'];
+
+        $sql = "UPDATE REQUEST_COUNSELLING 
+                                                SET MEDICAL_STAFFID= ?, RESPONSE_TIMESTAMP = ?, RESPONSE_CONTENT = ?
+                                                WHERE STUDENTID =" . $studentid . " AND REQUEST_TIMESTAMP = '$timestamp'";
+        if ($stmt = $mysqli->prepare($sql)) {
+            $stmt->bind_param("sss", $param_id, $param_timestamp, $param_content);
+            $param_id = $staffid;
+            $param_timestamp = $time_stamp;
+            $param_content = $content;
+            if ($stmt->execute()) {
+                echo "<script>
+                                                alert('Gửi yêu cầu thành công!');
+                                                window.location.href = 'counsellingList.php';
+                                                </script>";
+            } else {
+                echo $stmt->error;
+            }
+        }
+    }
     ?>
+    </div>
+    </form>
+    </div>
+    </div>
+    <div class="col-md-5 mt-5 d-none d-md-block">
+        <img class='illustration' src='../../../assets/images/staff_response.svg' alt='' width='95%'>
+    </div>
+    </div>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>

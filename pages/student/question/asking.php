@@ -1,17 +1,20 @@
 <?php
 require_once 'connect.php';
- 
+
 try {
     $conn = new PDO("mysql:host={$host};port={$port};dbname={$dbname}", $user, $password);
 } catch (PDOException $e) {
     echo 'Connection failed: ' . $e->getMessage();
 }
+// Login information
+$logined = true; // User not login
+$studentid = 10000;
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap -->
@@ -62,84 +65,82 @@ try {
 
 <body style="background-color: #f3f4f6;">
     <?php
-        require_once('../navbar.php')
+    require_once('../navbar.php')
     ?>
-    <div style="padding: 100px;">
-      <div class="text-center mt-5">
-        <h4>BẠN ĐANG GẶP KHÓ KHĂN VỀ VẤN ĐỀ SỨC KHỎE, TÂM LÝ?</h4>
-        <h4>HÃY ĐIỀN ĐƠN ĐĂNG KÝ ĐỂ ĐƯỢC GẶP TƯ VẤN VIÊN.</h4>
-        <h4>CHÚNG TÔI LUÔN Ở ĐÂY ĐỂ HỖ TRỢ BẠN.</h4>
-      </div>
-      <div class="row justify-content-between mt-5">
-        <div class="col-6">
-          <img src="../../../assets/images/asking.svg" alt="" width="95%">
+    <div style="padding-top: 100px; padding-bottom: 100px;" class="px-5">
+        <div class="text-center mt-5">
+            <h4>BẠN ĐANG GẶP KHÓ KHĂN VỀ VẤN ĐỀ SỨC KHỎE, TÂM LÝ?</h4>
+            <h4>HÃY ĐIỀN ĐƠN ĐĂNG KÝ ĐỂ ĐƯỢC GẶP TƯ VẤN VIÊN.</h4>
+            <h4>CHÚNG TÔI LUÔN Ở ĐÂY ĐỂ HỖ TRỢ BẠN.</h4>
         </div>
-        <div class="col-6 mt-5">
-          <form method="POST" style="width: 500px; margin: auto;">
-            <div class="form-group mb-3">
-                <label for="type">Loại:</label>
-                <select class="form-control" name="type" aria-label="Floating label select example" required>
-                    <option selected disabled value="">Vui lòng chọn</option>
-                    <option value="political">Công tác - Chính trị Sinh viên</option>
-                    <option value="trainingdepartment">Đào tạo</option>
-                    <option value="medical">Y tế</option>
-                </select>
+        <div class="row mt-5">
+            <div class="col-md-6">
+                <img src="../../../assets/images/asking.svg" alt="" width="95%">
             </div>
-            <div class="form-group mb-3">
-                <label for="title">Chủ đề:</label>
-                <input class="form-control" name="title">
-            </div>
-            <div class="form-group">
-                <label for="content">Nội dung:</label></br>
-                <textarea class="form-control" name="content" style="height: 100px" required></textarea>
-            </div>
-            <div class="d-flex justify-content-center">
-              <div class="col text-center">
-                <button type="submit" class="row btn mt-4" name="send">
-                  Đặt câu hỏi
-                  <i class="fas fa-paper-plane"></i>
-                </button>
-                <?php
-                    // TEST
-                    $studentid = '11111';
-                    // TEST
-                    if (isset($_REQUEST['send'])){
-                        $content  = $_POST['content'];
-                        date_default_timezone_set("Asia/Ho_Chi_Minh");
-                        $timestamp = date('Y-m-d H:i:s');
-                        $type = $_POST['type'];
-                        $title = $_POST['title'];
-                        $sql = "INSERT INTO QUESTION (STUDENTID, TIMESTAMP, TYPE, TITLE, CONTENT) 
+            <div class="col-md-6 mt-5">
+                <form method="POST" style="width: 100%; max-width: 500px; margin: auto;">
+                    <div class="form-group mb-3">
+                        <label for="type">Loại:</label>
+                        <select class="form-control" name="type" aria-label="Floating label select example" required>
+                            <option selected disabled value="">Vui lòng chọn</option>
+                            <option value="political">Công tác - Chính trị Sinh viên</option>
+                            <option value="trainingdepartment">Đào tạo</option>
+                            <option value="medical">Y tế</option>
+                        </select>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="title">Chủ đề:</label>
+                        <input class="form-control" name="title">
+                    </div>
+                    <div class="form-group">
+                        <label for="content">Nội dung:</label></br>
+                        <textarea class="form-control" name="content" style="height: 100px" required></textarea>
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <div class="col text-center">
+                            <button type="submit" class="row btn mt-4" name="send">
+                                Đặt câu hỏi
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                            <?php
+                            if (isset($_REQUEST['send'])) {
+                                $content  = $_POST['content'];
+                                date_default_timezone_set("Asia/Ho_Chi_Minh");
+                                $timestamp = date('Y-m-d H:i:s');
+                                $type = $_POST['type'];
+                                $title = $_POST['title'];
+                                $sql = "INSERT INTO QUESTION (STUDENTID, TIMESTAMP, TYPE, TITLE, CONTENT) 
                         VALUES (:STUDENTID, :TIMESTAMP, :TYPE, :TITLE, :CONTENT)";
-                        $stmt = $conn->prepare($sql);
-                        $stmt->bindParam(':STUDENTID', $studentid);
-                        $stmt->bindParam(':TIMESTAMP', $timestamp);
-                        $stmt->bindParam(':TYPE', $type);
-                        $stmt->bindParam(':TITLE', $title);
-                        $stmt->bindParam(':CONTENT', $content);
-                        if ($stmt->execute()) {
-                            echo "<div class='row mt-3' style='color: red;'><b> <script>
+                                $stmt = $conn->prepare($sql);
+                                $stmt->bindParam(':STUDENTID', $studentid);
+                                $stmt->bindParam(':TIMESTAMP', $timestamp);
+                                $stmt->bindParam(':TYPE', $type);
+                                $stmt->bindParam(':TITLE', $title);
+                                $stmt->bindParam(':CONTENT', $content);
+                                if ($stmt->execute()) {
+                                    echo "<div class='row mt-3' style='color: red;'><b> <script>
                             alert('Gửi yêu cầu thành công!');
                             window.location.href = 'questionList.php';
                             </script>;</b></div>";
-                        } else {
-                            echo $stmt->error;
-                        }
-                    }
-                ?>
-              </div>
+                                } else {
+                                    echo $stmt->error;
+                                }
+                            }
+                            ?>
+                        </div>
+                    </div>
+                </form>
             </div>
-          </form>
         </div>
-      </div>
-    </div> 
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="/js/main.js"></script>
 </body>
 
 <?php
-    $conn = null;
+$conn = null;
 ?>
 
-<footer>
-
-</footer>
 </html>

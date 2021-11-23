@@ -1,5 +1,6 @@
 <?php
 require_once '../../../connection.php';
+// Login information
 $logined = true; // User not login
 $studentid = 10000;
 $registerevent = array();
@@ -31,6 +32,7 @@ if ($result->num_rows > 0) {
     <!-- user.css -->
     <link rel="stylesheet" href="/css/main.css">
     <style>
+        /* Style for pagination */
         #pagination {
             text-align: right;
             padding: .5rem 1rem 1rem;

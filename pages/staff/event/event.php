@@ -1,5 +1,6 @@
 <?php
 require_once '../../../connection.php';
+// Login information
 $logined = false; // User not login
 $staffid = 5670;
 $create_event = array();

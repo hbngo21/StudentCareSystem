@@ -6,6 +6,9 @@ try {
 } catch (PDOException $e) {
     echo 'Connection failed: ' . $e->getMessage();
 }
+// Login information
+$logined = false; // User not login
+$staffid = 5670;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -64,33 +67,29 @@ try {
     <?php
     require_once('../navbar.php')
     ?>
-    <div style="padding: 100px;">
-        <div class="row mt-5 justify-content-between">
-            <div class="col-6">
+    <div style="padding-top: 100px; padding-bottom: 100px;" class="px-5">
+        <div class="row mt-5">
+            <div class="col-md-6">
                 <h4 style="margin-bottom: 30px;">HỎI ĐÁP</h4>
             </div>
-            <div class="col-xs-3">
-                <form class="form-inline col-12" action="" method="get">
-                    <div class="form-group mx-sm-3 mb-2">
-                        <select class="form-control" name="search">
-                            <option selected disabled value="">Loại</option>
-                            <option value="">Tất cả</option>
-                            <option value="political">Công tác - Chính trị Sinh viên</option>
-                            <option value="trainingdepartment">Đào tạo</option>
-                            <option value="medical">Y tế</option>
-                        </select>
-                        <select class="form-control" name="isanswered">
-                            <option value="">Tất cả</option>
-                            <option value="answered">Đã trả lời</option>
-                            <option value="notanswered">Chưa trả lời</option>
-                        </select>
-                    </div>
-                    <input class="btn mb-2" type="submit" name="ok" value="Lọc">
-                </form>
-            </div>
+            <form class="col-md-6 mb-2 d-flex justify-content-end" action="" method="get">
+                <select class="form-control" name="search" style="width: 30%;">
+                    <option selected disabled value="">Loại</option>
+                    <option value="">Tất cả</option>
+                    <option value="political">Công tác - Chính trị Sinh viên</option>
+                    <option value="trainingdepartment">Đào tạo</option>
+                    <option value="medical">Y tế</option>
+                </select>
+                <select class="form-control mx-2" name="isanswered" style="width: 30%;">
+                    <option value="">Tất cả</option>
+                    <option value="answered">Đã trả lời</option>
+                    <option value="notanswered">Chưa trả lời</option>
+                </select>
+                <input class="btn mb-2" type="submit" name="ok" value="Lọc">
+            </form>
         </div>
         <!--  -->
-        <div id="content" class="col-12">
+        <div id="content">
             <?php
             if (!isset($_GET['action'])) {
                 $item_per_page = !empty($_GET['per_page']) ? $_GET['per_page'] : 5;
@@ -155,13 +154,12 @@ try {
             $q->setFetchMode(PDO::FETCH_ASSOC);
             $resultCheck = $q->rowCount();
             ?>
-            <div class="col-12">
-                <?php
-                if ($resultCheck > 0) {
-                    echo "<table
+            <?php
+            if ($resultCheck > 0) {
+                echo "<div style='overflow-x:auto;'><table
                     id='table1'
                     class='table table-bordered table-hover align-middle'
-                    style='margin-left: auto; margin-right: auto;'
+                    style='width: 100%;'
                     >
                     <thead>
                     <tr>
@@ -170,35 +168,31 @@ try {
                         <th class = 'align-middle' style='text-align: center'>Loại</th>
                     </tr>
                     </thead>";
-                    while ($row = $q->fetch()) {
-                        echo "<tbody>
+                while ($row = $q->fetch()) {
+                    echo "<tbody>
                         <tr>";
-                        echo "<td style='text-align: center'>" . htmlspecialchars($row['timestamp']) . "</td>";
-                        echo "<td style='text-align: center'>
+                    echo "<td style='text-align: center'>" . htmlspecialchars($row['timestamp']) . "</td>";
+                    echo "<td style='text-align: center'>
                         <a href='./moredetailquestion.php?id=" . $row['id'] . "'>" . $row['title'] . "</a></td>";
-                        echo "<td style='text-align: center'>" . htmlspecialchars($row['type']) . "</td>";
-                        echo "</tr>
+                    echo "<td style='text-align: center'>" . htmlspecialchars($row['type']) . "</td>";
+                    echo "</tr>
                         </tbody>";
-                    }
                 }
-                ?>
-                </table>
-                <?php
-                include './pagination.php';
-                ?>
-            </div>
-            <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
-            <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-            <script src="/js/admin.js"></script>
+            }
+            ?>
+            </table>
+        </div>
+        <?php
+        include '../pagination.php';
+        ?>
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+        <script src="/js/admin.js"></script>
 </body>
 
 <?php
 $conn = null;
 ?>
-
-<footer>
-
-</footer>
 
 </html>

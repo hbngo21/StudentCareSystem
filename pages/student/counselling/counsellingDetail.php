@@ -1,6 +1,8 @@
 <?php
-    require_once '../../../connection.php';
-    $studentid = 22222;
+require_once '../../../connection.php';
+// Login information
+$logined = true; // User not login
+$studentid = 10000;
 ?>
 
 <head>
@@ -54,61 +56,61 @@
 
 <body style="background-color: #f3f4f6;">
     <?php
-        require_once('../navbar.php');
-        $timestamp = $_GET['timestamp'];
-        $sql = "SELECT * FROM REQUEST_COUNSELLING WHERE STUDENTID = '$studentid' AND REQUEST_TIMESTAMP = '$timestamp'";
-        $result = $mysqli->query($sql);
-        $row = mysqli_fetch_assoc($result);
-        echo 
-        "<div style=\"padding: 100px;\">
+    require_once('../navbar.php');
+    $timestamp = $_GET['timestamp'];
+    $sql = "SELECT * FROM REQUEST_COUNSELLING WHERE STUDENTID = '$studentid' AND REQUEST_TIMESTAMP = '$timestamp'";
+    $result = $mysqli->query($sql);
+    $row = mysqli_fetch_assoc($result);
+    echo
+    "<div style='padding-top: 100px; padding-bottom: 100px;' class='px-5'>
             <div class=\"text-center mt-5\">
-                <h4>YÊU CẦU TƯ VẤN - NGÀY ". $timestamp ."</h4>
+                <h4>YÊU CẦU TƯ VẤN - NGÀY " . $timestamp . "</h4>
             </div>
-            <div class=\"row justify-content-between mt-5\">
-                <div class=\"col-7 mt-5\">
+            <div class=\"row mt-5\">
+                <div class=\"col-md-7 mt-5\">
                     <div class=\"row ms-5\">
-                        <div class=\"col justify-content-center\">
-                            <div class=\"card\" style=\"max-width: 35rem;\">
+                        <div class=\"col d-flex justify-content-center\">
+                            <div class=\"card\" style=\"width: 90%;\">
                                 <div class=\"card-header\">Yêu cầu tư vấn</div>
                                 <div class=\"card-body\">
                                     <div class=\"card-text\">
                                         Sinh viên:  $studentid <br>
-                                        Ngày hẹn tư vấn: ".date("d-m-Y", strtotime($row['DATE']))."
+                                        Ngày hẹn tư vấn: " . date("d-m-Y", strtotime($row['DATE'])) . "
                                         <br>
                                         Thời gian: ";
-                                        if ($row['TIME'] == 'AFTERNOON')
-                                            echo "CHIỀU (14:00 - 16:00)";
-                                        else echo "SÁNG (8:00 - 10:00)";?>
-                                        <br>Nội dung yêu cầu: "<?php echo $row['REQUEST_CONTENT']; ?>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+    if ($row['TIME'] == 'AFTERNOON')
+        echo "CHIỀU (14:00 - 16:00)";
+    else echo "SÁNG (8:00 - 10:00)"; ?>
+    <br>Nội dung yêu cầu: "<?php echo $row['REQUEST_CONTENT']; ?>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col d-flex justify-content-center">
+            <div class="card" style="width: 90%;">
+                <div class="card-header">Chi tiết phản hồi</div>
+                <div class="card-body">
+                    <div class="card-text">
+                        Nhân viên: <?php echo $row['MEDICAL_STAFFID'] ?><br>
+                        Thời gian phản hồi: <?php echo date("d-m-Y H:i:s", strtotime($row['RESPONSE_TIMESTAMP'])); ?>
+                        <br>Nội dung phản hồi:<br><?php echo $row['RESPONSE_CONTENT']; ?><br>
                     </div>
-                    <div class="row mt-5">
-                        <div class="col justify-content-center">
-                            <div class="card" style="max-width: 35rem;">
-                                <div class="card-header">Chi tiết phản hồi</div>
-                                <div class="card-body">
-                                    <div class="card-text">
-                                        Nhân viên: <?php echo $row['MEDICAL_STAFFID']?><br>
-                                        Thời gian phản hồi: <?php echo date("d-m-Y H:i:s", strtotime($row['RESPONSE_TIMESTAMP']));?>
-                                        <br>Nội dung phản hồi:<br><?php echo $row['RESPONSE_CONTENT'];?><br>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-5 mt-5">
-                    <img class="align-middle img-fluid" src="../../../assets/images/responsed_counselling.svg" alt="" width="95%">
                 </div>
             </div>
-        </div>";
-    ?>
+        </div>
+    </div>
+    </div>
+    <div class="col-md-5 mt-5 d-none d-md-block">
+        <img class="align-middle img-fluid" src="../../../assets/images/responsed_counselling.svg" alt="" width="95%">
+    </div>
+    </div>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <script src="/js/admin.js"></script>
-  </body>
+</body>
+
 </html>
