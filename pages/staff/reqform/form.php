@@ -69,8 +69,8 @@
             <div class="form-group mx-sm-3 mb-2">
                 <select class="form-control" name="filter">
                     <option value="all">Hiển thị tất cả</option>
-                    <option value="waiting">Yêu cầu chờ phản hồi</option>
-                    <option value="confirm">Yêu cầu đã xác nhận</option>
+                    <option value="waiting">Yêu cầu chờ xác nhận</option>
+                    <option value="confirm">Yêu cầu trong tiến trình</option>
                     <option value="done">Yêu cầu đã giải quyết</option>
                 </select>
             </div>
@@ -119,51 +119,45 @@
                       <tr>
                       <th class = 'align-middle' style='text-align: center'>#</th>
                       <th class = 'align-middle' style='text-align: center'>Mã số Sinh viên</th>
-                      <th class = 'align-middle' style='text-align: center'>Thời gian yêu cầu tư vấn</th>
+                      <th class = 'align-middle' style='text-align: center'>Thời gian yêu cầu</th>
                       <th class = 'align-middle' style='text-align: center'>Loại yêu cầu</th>
                       <th class = 'align-middle' style='text-align: center'>Nhân viên thực hiện</th>
                       <th class = 'align-middle' style='text-align: center'>Tình trạng</th>
                       </tr>
                     </thead>";
-                    $i=0;
+                    $i=1;
                     while ($row = mysqli_fetch_assoc($result)){
                         echo "<tbody>
                         <tr>";
                         echo "<td style='text-align: center'>".$i++."</td>";
                         echo "<td style='text-align: center'>". $row['STUDENTID']."</td>";
                         echo "<td style='text-align: center'>" . date("d-m-Y H:i:s", strtotime($row['TIMESTAMP'])) . "</td>";
+                        echo "<td style='text-align: center'>";
                         if ($row['STATUS'] != 'Completed'){
                             echo "<a class='text-decoration-none' href='./detail.php?studentid=". $row['STUDENTID']. "&timestamp=".$row['TIMESTAMP']."'>";
                         }
-                       
                         switch ($row['ID']){
                             case '1': 
-                             
-                                echo "<td style='text-align: center'> In bảng điểm học tập</td>";
+                                echo "In bảng điểm học tập";
                                 break;
                             case '2': 
-                                echo "<td style='text-align: center'> Nhận bằng tốt nghiệp</td>";
+                                echo "Nhận bằng tốt nghiệp";
                                 break;
                             case '3': 
-                               
-                                echo "<td style='text-align: center'> Giấy xác nhận sinh viên</td>";
+                                echo "Giấy xác nhận sinh viên";
                                 break;
                             case '4': 
                                
-                                echo "<td style='text-align: center'> Làm lại thẻ sinh viên</td>";
+                                echo "Làm lại thẻ sinh viên";
                                 break;
                             case '6': 
                                
-                                echo "<td style='text-align: center'> In bảng điểm rèn luyện</td>";
+                                echo "In bảng điểm rèn luyện";
                                 break;
                         }
                         if ($row['STATUS'] != 'Completed')
                                     echo "</a>";
-                        
-                        if (!empty($row['CONTENT'])){
-                            echo "<td style='text-align: center'>". $row['CONTENT']."</td>";
-                        }
-                        else echo "<td style='text-align: center'> </td>";
+                        echo "</td>";
                         // if (!empty($row['TRAININGDEPARTMENT_STAFFID'])){
                         //     echo "<td style='text-align: center'>". $STAFFID."</td>";
                         // }
