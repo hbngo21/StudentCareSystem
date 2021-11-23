@@ -87,9 +87,9 @@ $studentid = 10000;
   require_once('../navbar.php')
   ?>
   <div class="banner text-center">
-        Bạn đang gặp khó khăn về vấn đề sức khỏe, tâm lý?<br>
-        Hãy điền đơn đăng ký để gặp được tư vấn viên.<br>
-        Chúng tôi luôn ở đây để hỗ trợ bạn.
+    Bạn đang gặp khó khăn về vấn đề sức khỏe, tâm lý?<br>
+    Hãy điền đơn đăng ký để gặp được tư vấn viên.<br>
+    Chúng tôi luôn ở đây để hỗ trợ bạn.
   </div>
   <div style="padding-bottom: 100px; margin-left: 30px; margin-right: 30px;" class="px-5">
     <div class="row mt-5">

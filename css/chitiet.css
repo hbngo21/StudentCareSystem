@@ -1,0 +1,19 @@
+.container-fluid{
+    margin-top:5rem;
+}
+.card{
+    border-radius:50px;
+  
+}
+/* .card-header{
+    background-color:#blanchedalmond;
+    border:1px solid #ef9273;
+    border-radius:50px;
+} */
+.card-body{
+    background-color:blanchedalmond;
+    border:1px solid #ef9273;
+    border-radius:5px;
+    height: 10rem;
+  
+}

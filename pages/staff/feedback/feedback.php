@@ -52,31 +52,6 @@ $staffid = 5670;
             font-weight: 400;
             font-size: 13px;
         }
-
-        .banner {
-            height: 200px;
-            margin: 100px 30px 3rem;
-
-            /* Display */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            font-size: 1.8rem;
-            font-weight: 500;
-
-            color: var(--text);
-
-            background-color: white;
-            border-radius: 1rem;
-            box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-        }
-
-        @media only screen and (max-width: 540px) {
-            .banner {
-                font-size: 1.5rem;
-            }
-            }
     </style>
     <title>Danh sách đánh giá</title>
     </title>
@@ -87,10 +62,10 @@ $staffid = 5670;
     <?php
     require_once('../navbar.php')
     ?>
-    <div class="banner text-center">
-        Các đánh giá sinh viên
-    </div>
-    <div style="padding-bottom: 100px; margin-left: 30px; margin-right: 30px;" class="px-5">
+    <div style="padding-top: 100px; padding-bottom: 100px;" class="px-5">
+        <div class="text-center mt-5">
+            <h4>CÁC ĐÁNH GIÁ CỦA SINH VIÊN</h4>
+        </div>
         <?php
         if (!isset($_GET['action'])) {
             $item_per_page = !empty($_GET['per_page']) ? $_GET['per_page'] : 10;
