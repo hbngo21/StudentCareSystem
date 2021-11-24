@@ -35,6 +35,7 @@ if (isset($_SESSION['student'])) {
       color: #ef9273
     }
   </style>
+  <title>Trang chủ</title>
 </head>
 
 <body>
@@ -46,21 +47,7 @@ if (isset($_SESSION['student'])) {
 
   <main>
 
-
-    <!-- <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-        <img src="pic.png" class="d-block w-100" alt="...">
-    </div>
-    <div class="carousel-item">
-      <img src="2.png" class="d-block w-100" alt="...">
-    </div>
-    <div class="carousel-item">
-      <img src="..." class="d-block w-100" alt="...">
-    </div>
-  </div>
-</div> -->
-    <div class="banner" style="margin-top:4rem;height:30rem">
+    <div class="banner" style="margin-top:4rem;height:25rem">
       <div class="container">
         <h1>Chào mừng đến với Trang chủ </h1>
         <p>Cung cấp các thông tin cần thiết cho sinh viên.</p>

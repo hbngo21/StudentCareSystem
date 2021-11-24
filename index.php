@@ -14,7 +14,7 @@
     <title>StudentCare</title>
 </head>
 
-<body style="background-color: #f3f4f6;">
+<body>
 
     <div class="container d-flex justify-content-center align-items-center flex-wrap" style="height: 100vh;">
         <div style="
@@ -22,11 +22,11 @@
         border-radius: .5rem; 
         padding: 5%;
         box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">
-            <h3 style="width: 100%; margin: 10px;">Vị trí của bạn: </h3>
-            <button class="btn" style="padding: 20px 35px; margin: 10px; font-size: 1.5rem;" onclick="enterStaff()">
+            <h3 style="width: 100%; margin: 10px;">Bạn muốn đăng nhập với tư cách là: </h3>
+            <button class="btn" style="padding: 10px 20px; margin: 10px; font-size: 1.5rem;" onclick="enterStaff()">
                 Nhân viên
             </button>
-            <button class="btn" style="padding: 20px 35px; margin: 10px; font-size: 1.5rem;" onclick="enterStudent()">
+            <button class="btn" style="padding: 10px 20px; margin: 10px; font-size: 1.5rem;" onclick="enterStudent()">
                 Sinh viên
             </button>
         </div>

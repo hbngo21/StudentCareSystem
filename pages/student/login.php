@@ -112,7 +112,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">
             <div class="form-container">
                 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-                    <h2 class="font-weight-bold">Đăng nhập</h2>
+                    <h3 class="font-weight-bold">Sinh viên đăng nhập</h3>
                     <div class="py-2">
                         <input type="text" name="username" class="form-control" id="username" placeholder="Username" data-rule="minlen:4" data-msg="Please enter at least 4 chars" required value="<?php echo $username; ?>"> <!-- fix -->
                     </div>
@@ -120,7 +120,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <input type="password" name="password" class="form-control" id="password" placeholder="Password" data-rule="minlen:4" required data-msg="Please enter at least 4 chars">
                     </div>
                     <div class="d-flex justify-content-center">
-                        <button type="submit" name="login" class="btn btn-rounded px-4">Đăng nhập</button>
+                        <button type="submit" name="login" class="btn btn-rounded px-4 mt-3">Đăng nhập</button>
                     </div>
                 </form>
             </div>

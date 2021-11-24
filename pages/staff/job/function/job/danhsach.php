@@ -16,9 +16,6 @@ $query = mysqli_query($connect, $sql);
 </head>
 
 <body>
-    <?php
-    require_once '../../navbar.php'
-    ?>
     <div class="container-fluid" style="margin-top:7rem">
         <div class="card">
             <div class="card-header">

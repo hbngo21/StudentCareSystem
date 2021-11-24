@@ -1,10 +1,11 @@
 <?php
-    $sql="SELECT * FROM incentivescholarship_result";
-    $query=mysqli_query($connect,$sql);
-    $staffid='7006';
+$sql = "SELECT * FROM incentivescholarship_result";
+$query = mysqli_query($connect, $sql);
+$staffid = '7006';
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,66 +14,65 @@
     <link rel="stylesheet" href="../../../../css/main.css">
     <title>Document</title>
 </head>
+
 <body>
-    <?php require_once '../../navbar.php'?>
-<div class="container-fluid" style="margin-top:7rem">
-    <div class="card">
-        <div class="card-header">
-            <h2>Các học bổng</h2>
-        </div>
-        <div class="card-body">
-            <table class="table">
-                <thead class="thead-dark">
-                    <tr>
-                        <th>#</th>
-                        <th>Tên học bổng</th>
-                        <th>Thông tin</th>
-                        <th>Học kì</th>
-                        <th>Mã nhân viên phòng đào tạo</th>
-                        <th>Xem chi tiết</th>
-                        <th> Sửa </th>
-                        <th> Xóa</th>
-                         
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    $i = 0;
-                        while($row = mysqli_fetch_assoc($query)){ ?>
-                            
+    <div class="container-fluid" style="margin-top:7rem">
+        <div class="card">
+            <div class="card-header">
+                <h2>Các học bổng</h2>
+            </div>
+            <div class="card-body">
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>#</th>
+                            <th>Tên học bổng</th>
+                            <th>Thông tin</th>
+                            <th>Học kì</th>
+                            <th>Mã nhân viên phòng đào tạo</th>
+                            <th>Xem chi tiết</th>
+                            <th> Sửa </th>
+                            <th> Xóa</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        $i = 0;
+                        while ($row = mysqli_fetch_assoc($query)) { ?>
+
                             <tr>
-                            <td><?php echo $i++; ?></td>
-                            <td><?php echo $row['NAME']; ?></td>
-                            <td><?php echo $row['INFORMATION']; ?></td>
-                            <td><?php echo $row['SEMESTERCODE']; ?></td>
-                            <td><?php echo $row['TRAININGDEPARTMENT_STAFFID']; ?></td>
-                            <td> 
-                                <a href="index.php?page_layout=chitiet&NAME=<?php echo $row['NAME'];?> "> Xem chi tiết</a> 
-                            </td>
-                            <td> 
-                                <a href="index.php?page_layout=sua&NAME=<?php echo $row['NAME'];?> "> Sửa</a> 
-                            </td>
-                            <td> 
-                                <a onclick="return Del('<?php echo $row['NAME'];?>')" 
-                                href="index.php?page_layout=xoa&NAME=<?php echo $row['NAME'];?>"> Xóa </a> 
-                            </td>
+                                <td><?php echo $i++; ?></td>
+                                <td><?php echo $row['NAME']; ?></td>
+                                <td><?php echo $row['INFORMATION']; ?></td>
+                                <td><?php echo $row['SEMESTERCODE']; ?></td>
+                                <td><?php echo $row['TRAININGDEPARTMENT_STAFFID']; ?></td>
+                                <td>
+                                    <a href="index.php?page_layout=chitiet&NAME=<?php echo $row['NAME']; ?> "> Xem chi tiết</a>
+                                </td>
+                                <td>
+                                    <a href="index.php?page_layout=sua&NAME=<?php echo $row['NAME']; ?> "> Sửa</a>
+                                </td>
+                                <td>
+                                    <a onclick="return Del('<?php echo $row['NAME']; ?>')" href="index.php?page_layout=xoa&NAME=<?php echo $row['NAME']; ?>"> Xóa </a>
+                                </td>
 
                             </tr>
-                        
-                  <?php } ?>
-               
-                </tbody>
-            </table>
-            <a class="btn "href="index.php?page_layout=them">Thêm mới</a>
+
+                        <?php } ?>
+
+                    </tbody>
+                </table>
+                <a class="btn " href="index.php?page_layout=them">Thêm mới</a>
+            </div>
+
         </div>
-        
     </div>
-</div>
-<a class="btn" href="../../vieclam/job.php" style="width:10rem;margin-left:1rem;margin-top:1rem">Hoàn thành</a>
+    <a class="btn" href="../../vieclam/job.php" style="width:10rem;margin-left:1rem;margin-top:1rem">Hoàn thành</a>
 </body>
 <script>
-    function Del(name){
-        return confirm("Bạn có chắc muốn xóa: "+ name +" ?");
+    function Del(name) {
+        return confirm("Bạn có chắc muốn xóa: " + name + " ?");
     }
 </script>
 

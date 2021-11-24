@@ -1,8 +1,17 @@
 <?php
-    require_once 'config/db.php';
+require_once 'config/db.php';
+require_once '../../../../connection.php';
+// Login information
+session_start();
+if (isset($_SESSION['staff'])) {
+    $logined = true;
+    $staffid = $_SESSION['staff'];
+} else $logined = false;
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,35 +23,37 @@
 
     </style>
 </head>
+
 <body>
 
-    <?php 
-       
-        if(isset($_GET['page_layout'])){
-            switch($_GET['page_layout']){
+    <?php
+    require_once '../../navbar.php';
+    if (isset($_GET['page_layout'])) {
+        switch ($_GET['page_layout']) {
             case 'danhsach':
                 require_once 'schoolar/danhsach.php';
-            break;
+                break;
             case 'them':
                 require_once 'schoolar/them.php';
-            break; 
+                break;
             case 'chitiet':
                 require_once 'schoolar/chitiet.php';
-            break;
+                break;
             case 'sua':
                 require_once 'schoolar/sua.php';
-            break;
+                break;
             case 'xoa':
                 require_once 'schoolar/xoa.php';
-            break;
+                break;
             default:
                 require_once 'schoolar/danhsach.php';
-            break;
+                break;
         }
-    }
-    else{
+    } else {
         require_once 'schoolar/danhsach.php';
     }
     ?>
+
 </body>
+
 </html>

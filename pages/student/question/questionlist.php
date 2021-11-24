@@ -1,5 +1,7 @@
 <?php
 require_once 'connect.php';
+require_once '../../../connection.php';
+
 try {
     $conn = new PDO("mysql:host={$host};port={$port};dbname={$dbname}", $user, $password);
 } catch (PDOException $e) {

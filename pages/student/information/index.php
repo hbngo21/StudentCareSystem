@@ -2,19 +2,29 @@
 require_once '../../../connection.php';
 // Login information
 session_start();
-if (isset($_SESSION['staff'])) {
+if (isset($_SESSION['student'])) {
     $logined = true;
-    $staffid = $_SESSION['staff'];
+    $studentid = $_SESSION['student'];
 } else $logined = false;
 
-$sql_student = "SELECT concat(lastname,' ',firstname) as name from staff where ID ='$staffid'";
-$query_student = mysqli_query($mysqli, $sql_student);
-$result_student = mysqli_fetch_array($query_student);
 
-
-$sql = "SELECT * FROM staff WHERE ID='$staffid'";
+$sql = "SELECT *, concat(lastname,' ',firstname) as fullname 
+        FROM student WHERE ID='$studentid'";
 $query = mysqli_query($mysqli, $sql);
 $result = mysqli_fetch_array($query);
+
+$sql = "SELECT phonenum, address FROM STUDENT_CONTACTADDRESS WHERE ID='" . $studentid . "'";
+
+if ($stmt = $mysqli->prepare($sql)) {
+    if ($stmt->execute()) {
+        //Store result
+        $stmt->store_result();
+
+        $stmt->bind_result($phonenum, $address);
+        $stmt->fetch();
+    }
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -89,11 +99,7 @@ $result = mysqli_fetch_array($query);
 </head>
 
 <body>
-    <header>
-
-        <?php require_once '../navbar.php'; ?>
-
-    </header>
+    <?php require_once '../navbar.php'; ?>
     <main>
         <div class="container">
             <div class="main">
@@ -104,51 +110,44 @@ $result = mysqli_fetch_array($query);
                             <div class="card-body">
                                 <img src="https://cdn2.vectorstock.com/i/1000x1000/20/76/man-avatar-profile-vector-21372076.jpg" class="rounded-circle" width="150" alt="">
                                 <div class="mt-3">
-                                    <h3> <?php echo  $result_student['name']; ?> </h3>
-                                    <a href="">Trang chủ</a>
-                                    <a href="">Dịch vụ</a>
-                                    <a href="">Sự kiện</a>
-                                    <a href="">Sign out</a>
-
-
+                                    <h3> <?php echo  $result['fullname']; ?> </h3>
+                                    <h3>#<?php echo  $result['ID']; ?> </h3>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-8 mt-1">
                         <div class="card mb-3 content">
-                            <h1 class="m-3 pt-3">About</h1>
+                            <h1 class="m-3 pt-3">Thông tin cá nhân</h1>
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-3">
                                         <h5>Họ và tên</h5>
-
                                     </div>
                                     <div class="col-md-9 text-secondary">
-                                        <?php echo  $result_student['name']; ?>
+                                        <?php echo  $result['fullname']; ?>
                                     </div>
                                 </div>
                                 <hr>
                                 <div class="row">
                                     <div class="col-md-3">
-                                        <h5>Mã số sinh viên</h5>
-
+                                        <h5>Ngày sinh</h5>
                                     </div>
                                     <div class="col-md-9 text-secondary">
-                                        <?php echo $staffid ?>
+                                        <?= date("d/m/Y", strtotime($result['DOB'])) ?>
                                     </div>
                                 </div>
                                 <hr>
                                 <div class="row">
                                     <div class="col-md-3">
                                         <h5>Giới tính</h5>
-
                                     </div>
                                     <div class="col-md-9 text-secondary">
-                                        <?php if ($result['SEX'] = 'M') {
-                                            echo "Male";
-                                        } else
-                                            echo "Female";
+                                        <?php if ($result['SEX'] == 'M') {
+                                            echo "Nam";
+                                        } else if ($result['SEX'] == 'F')
+                                            echo "Nữ";
+                                        else echo 'Không xác định';
                                         ?>
                                     </div>
                                 </div>
@@ -162,6 +161,23 @@ $result = mysqli_fetch_array($query);
                                     </div>
                                 </div>
                                 <hr>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <h5>Số điện thoại</h5>
+                                    </div>
+                                    <div class="col-md-9 text-secondary">
+                                        <?= $phonenum ? $phonenum : 'Chưa cập nhật' ?>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <h5>Địa chỉ</h5>
+                                    </div>
+                                    <div class="col-md-9 text-secondary">
+                                        <?= $address ? $address : 'Chưa cập nhật' ?>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 

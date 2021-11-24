@@ -27,6 +27,7 @@ if ($stmt = $mysqli->prepare($sql)) {
         $timestamp = date("d/m/Y", strtotime($timestamp));
     }
 }
+$stmt->close();
 ?>
 
 <!DOCTYPE html>

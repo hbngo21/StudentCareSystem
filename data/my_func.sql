@@ -20,3 +20,23 @@ BEGIN
     where name=ename;
 END $$
 DELIMITER ;
+
+DELIMITER $$
+DROP FUNCTION IF EXISTS typeOfStaff $$
+CREATE FUNCTION typeOfStaff(staffid CHAR(4))
+RETURNS varchar(100)
+DETERMINISTIC
+BEGIN
+	if exists (select * from manager where id=staffid) 
+    then return 'manager';
+    elseif exists (select * from medical_staff where id=staffid)
+    then return 'medicalstaff'; 
+    elseif exists (select * from political_staff where id=staffid) 
+    then return 'politicalstaff';
+    elseif exists (select * from trainingdepartment_staff where id=staffid)
+    then return 'trainingdepartmentstaff';
+    end if;
+END $$
+DELIMITER ;
+
+-- select typeOfStaff('2261');

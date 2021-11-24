@@ -1,7 +1,23 @@
+<?php
+$sql = "SELECT CONCAT(LASTNAME, ' ', FIRSTNAME ) AS STUDENT_NAME 
+        FROM STUDENT
+        WHERE ID=" . $studentid . "";
+
+if ($stmt = $mysqli->prepare($sql)) {
+    if ($stmt->execute()) {
+        //Store result
+        $stmt->store_result();
+
+        $stmt->bind_result($student_name);
+        $stmt->fetch();
+    }
+}
+?>
+
 <div class='header'>
     <nav class='navbar menu-bar fixed-top navbar-expand-sm'>
-        <a class='navbar-brand' href='http://localhost/StudentCareSystem/pages/student/mainpage/mainpage.php'>
-            Student Care
+        <a class='navbar-brand' href='/pages/student/mainpage/mainpage.php'>
+            StudentCare
         </a>
         <button class='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbar-list-5' aria-controls='navbarNav' aria-expanded='false' aria-label='Toggle navigation'>
             <i class='fas fa-bars'></i>
@@ -37,9 +53,9 @@
                         <a class='btn user-btn' href='#' id='userDropdown' role='button' data-toggle='dropdown' aria-expanded='false'>
                             <i class='fas fa-user-circle'></i>
                         </a>
-                        <div class='text-center' style='width: 100%; font-weight: bold; font-size: .8rem; color: #fff;'><?= $studentid ?></div>
+                        <div class='text-center' style='width: 100%; font-weight: bold; font-size: .8rem; color: #fff;'><?= $student_name ?></div>
                         <div class='dropdown-menu dropdown-menu-right' aria-labelledby='userDropdown'>
-                            <a class='dropdown-item' href='#'>Thông tin cá nhân</a>
+                            <a class='dropdown-item' href='/pages/student/information/index.php'>Thông tin cá nhân</a>
                             <a class='dropdown-item' href='#' onclick="logout()">Đăng xuất</a>
                         </div>
                     </li>

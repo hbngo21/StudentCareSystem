@@ -7,29 +7,36 @@ if (isset($_SESSION['staff'])) {
     $staffid = $_SESSION['staff'];
 } else $logined = false;
 
-$ename = $_GET['name'];
-
-// Check staff 
-$sql = "SELECT name FROM event WHERE political_staffid=" . $staffid  . "";
-$result = $mysqli->query($sql);
-
-// if ($result->num_rows > 0) {
-
-// }
+$event_name = $_GET['name'];
 
 //Get product detail
-$sql = "Call get_detail_event('" . $ename . "')";
+$sql = "Call get_detail_event('" . $event_name . "')";
+
+if ($result = $mysqli->prepare($sql)) {
+    if ($result->execute()) {
+        //Store result
+        $result->store_result();
+
+        $result->bind_result($name, $limited, $trainingpoint, $content, $timestamp, $name_staff, $num_register);
+        $result->fetch();
+        $timestamp = date("d/m/Y", strtotime($timestamp));
+    }
+}
+$result->close();
+
+$sql = "select typeOfStaff('" . $staffid . "')";
+$stmt = $mysqli->query($sql);
 
 if ($stmt = $mysqli->prepare($sql)) {
     if ($stmt->execute()) {
         //Store result
         $stmt->store_result();
 
-        $stmt->bind_result($name, $limited, $trainingpoint, $content, $timestamp, $name_staff, $num_register);
+        $stmt->bind_result($typeOfStaff);
         $stmt->fetch();
-        $timestamp = date("d/m/Y", strtotime($timestamp));
     }
 }
+$stmt->close();
 ?>
 
 <!DOCTYPE html>
@@ -52,7 +59,7 @@ if ($stmt = $mysqli->prepare($sql)) {
 <body style="background-color: #f3f4f6;">
     <!-- mainNav -->
     <?php
-    require_once("../navbar.php")
+    require_once "../navbar.php";
     ?>
     <div class="row event__detail">
         <div class="col-md-4 pt-2"><img src="https://media.istockphoto.com/photos/chalkboard-and-colored-balloons-on-a-wooden-background-picture-id1263908025?b=1&k=20&m=1263908025&s=170667a&w=0&h=DDeDvtWSu99Z5yKrbx0X3M26uHGP1SCBV_-zXKS-FSQ=" class="img-fluid rounded b-shadow-a" width="100%" alt=""></div>
@@ -67,9 +74,9 @@ if ($stmt = $mysqli->prepare($sql)) {
             </div>
             <div class="mt-3">
                 <h4>Nội dung:</h4>
-                <?= $content ?> Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore optio enim possimus tempora. Explicabo atque, perspiciatis reprehenderit aspernatur adipis
+                <?= $content ?>
             </div>
-            <button type='button' class='btn btn-danger event__rmv-btn mt-2' style='width: 150px;' onclick="removeEvent('<?= $name ?>')">Xoá<i class="fas fa-trash-alt"></i></button>
+            <button type='button' class='btn btn-danger event__rmv-btn mt-2' style='width: 150px;' onclick="removeEvent('<?= $name ?>')" <?= $typeOfStaff != 'politicalstaff' ? 'disabled' : '' ?>>Xoá<i class="fas fa-trash-alt"></i></button>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
