@@ -49,4 +49,9 @@ if ($action == 'create-event') { // Create event
             echo $stmt->error;
         }
     }
+} else if ($action == 'logout') {
+    session_start();
+    unset($_SESSION["staff"]);
+    echo "/";
+    session_destroy();
 }

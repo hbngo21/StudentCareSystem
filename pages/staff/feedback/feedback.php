@@ -1,8 +1,11 @@
 <?php
 require_once '../../../connection.php';
 // Login information
-$logined = false; // User not login
-$staffid = 5670;
+session_start();
+if (isset($_SESSION['staff'])) {
+    $logined = true;
+    $staffid = $_SESSION['staff'];
+} else $logined = false;
 ?>
 
 <!DOCTYPE html>

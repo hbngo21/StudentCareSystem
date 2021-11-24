@@ -17,3 +17,19 @@ function registerEvent(event_name, student_id) {
     );
   }
 }
+
+function logout() {
+  console.log('logout');
+  xmlhttp = new XMLHttpRequest();
+  xmlhttp.open(
+    'GET',
+    'http://localhost/pages/student/event/action.php?action=logout',
+    true
+  );
+  xmlhttp.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+      window.location.href = this.responseText;
+    }
+  };
+  xmlhttp.send();
+}

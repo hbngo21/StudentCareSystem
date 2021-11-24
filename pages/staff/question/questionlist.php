@@ -7,8 +7,11 @@ try {
     echo 'Connection failed: ' . $e->getMessage();
 }
 // Login information
-$logined = false; // User not login
-$staffid = 5670;
+session_start();
+if (isset($_SESSION['staff'])) {
+    $logined = true;
+    $staffid = $_SESSION['staff'];
+} else $logined = false;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -175,7 +178,7 @@ $staffid = 5670;
                     echo "<td style='text-align: center'>" . date("d-m-Y H:i:s", strtotime($row['timestamp'])) . "</td>";
                     echo "<td style='text-align: center'>
                         <a class='text-decoration-none' href='./moredetailquestion.php?id=" . $row['id'] . "'>" . $row['title'] . "</a></td>";
-                    switch ($row['type']){
+                    switch ($row['type']) {
                         case 'medical':
                             echo "<td class='align-middle' style='text-align: center'> Y tế </td>";
                             break;

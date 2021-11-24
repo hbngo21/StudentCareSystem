@@ -103,10 +103,21 @@ function checkContent(content, validate) {
 
 // Delete event
 function removeEvent(event_name) {
-//   console.log(event_name);
+  //   console.log(event_name);
   let action = 'action.php?action=remove-event&event_name=' + event_name;
   $.get(action, function (data, status) {
     alert(data);
     window.location.href = 'event.php';
   });
+}
+function logout() {
+  console.log('logout');
+  xmlhttp = new XMLHttpRequest();
+  xmlhttp.open('GET', '/pages/staff/event/action.php?action=logout', true);
+  xmlhttp.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+      window.location.href = this.responseText;
+    }
+  };
+  xmlhttp.send();
 }

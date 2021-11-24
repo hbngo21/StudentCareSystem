@@ -1,8 +1,10 @@
 <?php
 require_once '../../../connection.php';
-// Login information
-$logined = true;
-$studentid = 10000;
+session_start();
+if (isset($_SESSION['student'])) {
+  $logined = true;
+  $studentid = $_SESSION['student'];
+} else $logined = false;
 ?>
 
 <!DOCTYPE html>
@@ -89,9 +91,9 @@ $studentid = 10000;
   require_once('../navbar.php')
   ?>
   <div class="banner text-center">
-        Để chất lượng hệ thống ngày càng được nâng cao<br>
-        Chúng tôi rất cần những phản hồi từ các bạn.<br>
-        Vui lòng điền vào form dưới đây để gửi phản hồi.
+    Để chất lượng hệ thống ngày càng được nâng cao<br>
+    Chúng tôi rất cần những phản hồi từ các bạn.<br>
+    Vui lòng điền vào form dưới đây để gửi phản hồi.
   </div>
   <div style="padding-bottom: 100px; margin-left: 30px; margin-right: 30px;" class="px-5">
     <div class="row justify-content-between mt-5" style="margin-left: 30px">
@@ -148,4 +150,5 @@ $studentid = 10000;
   <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
   <script src="/js/admin.js"></script>
 </body>
+
 </html>

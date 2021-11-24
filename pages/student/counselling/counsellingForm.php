@@ -1,8 +1,10 @@
 <?php
 require_once '../../../connection.php';
-// Login information
-$logined = true; // User not login
-$studentid = 10000;
+session_start();
+if (isset($_SESSION['student'])) {
+  $logined = true;
+  $studentid = $_SESSION['student'];
+} else $logined = false;
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -6,8 +6,11 @@ try {
 } catch (PDOException $e) {
     echo 'Connection failed: ' . $e->getMessage();
 }
-$logined = false; // User not login
-$staffid = 2261;
+session_start();
+if (isset($_SESSION['staff'])) {
+    $logined = true;
+    $staffid = $_SESSION['staff'];
+} else $logined = false;
 date_default_timezone_set("Asia/Ho_Chi_Minh");
 ?>
 <!DOCTYPE html>

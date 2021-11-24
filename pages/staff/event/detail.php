@@ -1,9 +1,11 @@
 <?php
 require_once '../../../connection.php';
 // Login information
-$logined = true;
-
-$staffid = 5670;
+session_start();
+if (isset($_SESSION['staff'])) {
+    $logined = true;
+    $staffid = $_SESSION['staff'];
+} else $logined = false;
 
 $ename = $_GET['name'];
 

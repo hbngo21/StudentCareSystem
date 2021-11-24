@@ -18,4 +18,9 @@ if ($action == 'register-event') { // Register event
             echo "Something went wrong!!!";
         }
     }
+} else if ($action == 'logout') {
+    session_start();
+    unset($_SESSION["student"]);
+    echo "/";
+    session_destroy();
 }

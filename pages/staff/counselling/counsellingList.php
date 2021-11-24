@@ -1,8 +1,11 @@
 <?php
 require_once '../../../connection.php';
 // Login information
-$logined = false; // User not login
-$staffid = 5670;
+session_start();
+if (isset($_SESSION['staff'])) {
+    $logined = true;
+    $staffid = $_SESSION['staff'];
+} else $logined = false;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -69,8 +72,8 @@ $staffid = 5670;
             background-color: white;
             border-radius: 1rem;
             box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-            }
-        
+        }
+
         @media only screen and (max-width: 540px) {
             .banner {
                 font-size: 1.5rem;
@@ -176,8 +179,8 @@ $staffid = 5670;
         </div>
     </div>
     <?php
-        include '../../staff/pagination.php';
-        ?>
+    include '../../staff/pagination.php';
+    ?>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
