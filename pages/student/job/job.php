@@ -19,7 +19,7 @@ if (isset($_SESSION['student'])) {
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
   <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
-  <!-- Style -->
+  <!-- Styles -->
   <link rel="stylesheet" href="../../../css/main.css">
   <style>
     body {
@@ -95,24 +95,18 @@ if (isset($_SESSION['student'])) {
       color: #fff;
     }
   </style>
-
   <title>Việc làm</title>
 </head>
 
 <body>
-  <header>
-    <?php require_once '../navbar.php'; ?>
-  </header>
+  <?php require_once '../navbar.php'; ?>
   <main>
-
     <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
       <ol class="breadcrumb" id="breadcrumb">
-
         <li class="breadcrumb-item"><a href="../mainpage/mainpage.php">Home</a></li>
         <li class="breadcrumb-item active" aria-current="page">Việc làm</li>
       </ol>
     </nav>
-
     <div class="container">
       <div class=" d-flex align-items-stretch">
         <?php
@@ -123,12 +117,11 @@ if (isset($_SESSION['student'])) {
           $totalRecords = $mysqli->query("SELECT * FROM jobscholarship_infor");
           $totalRecords = $totalRecords->num_rows;
           $totalPages = ceil($totalRecords / $item_per_page);
-          $sql = "SELECT id, title, content FROM jobscholarship_infor";
+          $sql = "SELECT id, title, content, political_staffid FROM jobscholarship_infor";
 
           if ($stmt = $mysqli->prepare($sql)) {
             if ($stmt->execute()) {
               $stmt->store_result();
-
               $stmt->bind_result($id, $title, $content, $political_staffid);
               while ($stmt->fetch()) {
         ?>
@@ -157,7 +150,7 @@ if (isset($_SESSION['student'])) {
     </div>
     </div>
   </main>
-
+  <!-- Script -->
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>

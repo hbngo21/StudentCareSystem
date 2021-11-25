@@ -39,7 +39,6 @@ if ($stmt = $mysqli->prepare($sql)) {
     <style>
         body {
             margin-top: 20px;
-            background-color: lightgray;
         }
 
         .container {
@@ -65,10 +64,6 @@ if ($stmt = $mysqli->prepare($sql)) {
             font-size: 26px;
         }
 
-        .rounded-circle {
-            /* margin-left:4rem; */
-        }
-
         .sidebar {
             background-color: #ef9273;
             color: white;
@@ -83,19 +78,16 @@ if ($stmt = $mysqli->prepare($sql)) {
             font-size: 30px;
             text-decoration: none;
         }
-
         .card {
             position: relative;
             display: flex;
             flex-direction: column;
         }
-
         .content {
             background-color: whitesmoke;
         }
     </style>
     <title>Thông tin sinh viên</title>
-
 </head>
 
 <body>

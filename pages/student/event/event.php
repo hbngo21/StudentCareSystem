@@ -1,6 +1,12 @@
 <?php
 require_once '../../../connection.php';
-$studentid = 10000;
+// Login information
+session_start();
+if (isset($_SESSION['student'])) {
+    $logined = true;
+    $studentid = $_SESSION['student'];
+} else $logined = false;
+
 $registerevent = array();
 $sql = "SELECT eventname FROM registerevent WHERE studentid=" . $studentid  . "";
 $result = $mysqli->query($sql);
@@ -71,7 +77,7 @@ if ($result->num_rows > 0) {
 <body style="background-color: #f3f4f6;">
     <!-- mainNav -->
     <?php
-        require_once("../navbar.php")
+    require_once("../navbar.php")
     ?>
     <!--Event banner-->
     <div class="event__banner">Sự kiện</div>
@@ -107,7 +113,7 @@ if ($result->num_rows > 0) {
                                     <div class="event__item-info"><i class="far fa-users"></i><span><?= $num_register ?>/<?= $limited ?></span></div>
                                 </div>
                                 <div>
-                                    <?= substr($content . "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Corrupti, modi aut facilis porro, cupiditate harum exercitationem placeat earum quis aspernatur corporis illum, magnam dolores eveniet quisquam asperiores ratione explicabo aliquid veritatis voluptates consequatur doloribus nam quo mollitia. Dicta nostrum consequuntur omnis, quo totam officiis magnam aliquam aliquid veritatis sint sit consequatur vero explicabo sed dolores dolor ipsum. Nesciunt ex eum nobis quibusdam accusantium beatae velit maiores corrupti deleniti nemo quae numquam architecto, saepe et consequuntur maxime repellendus sint esse, totam, voluptatibus blanditiis. Inventore saepe suscipit consectetur est sapiente odio maxime fuga ad vel excepturi, et repudiandae sit. Omnis, iusto nulla?", 0, 150) ?>
+                                    <?= substr($content, 0, 150) ?>
                                     ... <a class="for-more-info" href="detail.php?name=<?= $name ?>">Xem thêm</a>
                                 </div>
                                 <?php

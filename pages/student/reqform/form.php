@@ -1,5 +1,6 @@
 <?php
 require_once '../../../connection.php';
+// Login information
 session_start();
 if (isset($_SESSION['student'])) {
   $logined = true;
@@ -19,7 +20,7 @@ if (isset($_SESSION['student'])) {
 
   <!-- user.css -->
   <link rel="stylesheet" href="../../../css/main.css">
-<style>
+  <style>
     #pagination {
       text-align: right;
       padding: .5rem 1rem 1rem;
@@ -52,20 +53,6 @@ if (isset($_SESSION['student'])) {
       margin: 0 0 15px 0;
       font-weight: 400;
       font-size: 13px;
-    }
-
-    @import url('https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap');
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Montserrat', sans-serif;
-    }
-
-    body {
-      background: #ef9273;
-      padding: 10px;
     }
 
     .wrapper {
@@ -212,30 +199,23 @@ if (isset($_SESSION['student'])) {
       <div class="form">
         <div class="inputfield">
           <label>Yêu cầu</label>
-
           <select name="id" style="width: 28rem" required>
             <option selected disabled value="">Chọn yêu cầu dịch vụ</option>
             <option value="1">Đăng kí in bảng điểm học tập</option>
             <option value="2">Đăng kí nhận bằng tốt nghiệp</option>
             <option value="3">Đăng kí in giấy xác nhận Sinh viên </option>
             <option value="4">Đăng kí làm lại thẻ sinh viên</option>
-
             <option value="6">Đăng kí in bảng điểm rèn luyện</option>
-
           </select>
-
         </div>
         <div class="inputfield">
           <label>Địa chỉ nhận</label>
           <input type="text" class="input" name="content" required>
-
         </div>
         <div class="inputfield">
-
           <input type="submit" class="btn" name="submit">
           <?php
           if (isset($_POST['submit'])) {
-
             date_default_timezone_set("Asia/Ho_Chi_Minh");
             $time_stamp = date("Y-m-d H:i:s");
             $ID = $_POST['id'];
@@ -334,8 +314,8 @@ if (isset($_SESSION['student'])) {
           echo "<tbody>
                         <tr>";
           echo "<td style='text-align: center'>" . date("d-m-Y H:i:s", strtotime($row['TIMESTAMP'])) . "</td>";
-      
-          switch($row['ID']){
+
+          switch ($row['ID']) {
             case '1':
               echo "<td style='text-align: center'>Đăng kí in bảng điểm học tập</td>";
               break;
@@ -352,12 +332,11 @@ if (isset($_SESSION['student'])) {
               echo "<td style='text-align: center'>Đăng kí in bảng điểm rèn luyện</td>";
               break;
           }
-         // switch
+          // switch
           echo "<td style='text-align: center'>" . $row['CONTENT'] . "</td>";
           if (!empty($row['TRAININGDEPARTMENT_STAFFID'])) {
-            echo "<td style='text-align: center'>" . $STAFFID . "</td>";
+            echo "<td style='text-align: center'>" . $row['TRAININGDEPARTMENT_STAFFID'] . "</td>";
           } else echo "<td style='text-align: center'></td>";
-          
           if ($row['STATUS'] == 'Waiting') {
             echo "<td style='text-align: center'> Chờ xác nhận</td>";
           } elseif ($row['STATUS'] == 'In progress') {
@@ -365,7 +344,6 @@ if (isset($_SESSION['student'])) {
           } elseif ($row['STATUS'] == 'Completed') {
             echo "<td style='text-align: center'> Đã giải quyết</td>";
           }
-
           echo "</tr>
                         </tbody>";
         }
@@ -392,8 +370,8 @@ if (isset($_SESSION['student'])) {
       if ($resultCheck <= 0) {
         echo "<div style='margin-left: 40rem;'><p> Không có dữ liệu </p>"
       ?>
-      <?php } ?>
       <?php
+      }
       include '../../staff/pagination.php';
       ?>
     </div>

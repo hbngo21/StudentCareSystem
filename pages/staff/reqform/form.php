@@ -188,9 +188,6 @@ if (isset($_SESSION['staff'])) {
                     if ($row['STATUS'] != 'Completed')
                         echo "</a>";
                     echo "</td>";
-                    // if (!empty($row['TRAININGDEPARTMENT_STAFFID'])){
-                    //     echo "<td style='text-align: center'>". $STAFFID."</td>";
-                    // }
                     if (!empty($row['TRAININGDEPARTMENT_STAFFID'])) {
                         $sql2 = "SELECT CONCAT(LASTNAME,' ',FIRSTNAME) AS NAME FROM STAFF WHERE ID =" . $row['TRAININGDEPARTMENT_STAFFID'] . "";
                         $result2 = $mysqli->query($sql2);

@@ -144,7 +144,7 @@ $stmt->close();
           $totalRecords = $mysqli->query("SELECT * FROM jobscholarship_infor");
           $totalRecords = $totalRecords->num_rows;
           $totalPages = ceil($totalRecords / $item_per_page);
-          $sql = "SELECT id, title, content FROM jobscholarship_infor";
+          $sql = "SELECT id, title, content, political_staffid FROM jobscholarship_infor";
 
           if ($stmt = $mysqli->prepare($sql)) {
             if ($stmt->execute()) {

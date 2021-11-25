@@ -12,8 +12,8 @@ $sql = "SELECT *, concat(lastname,' ',firstname) as fullname
         FROM staff WHERE ID='$staffid'";
 $query = mysqli_query($mysqli, $sql);
 $result = mysqli_fetch_array($query);
-
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -27,7 +27,6 @@ $result = mysqli_fetch_array($query);
     <style>
         body {
             margin-top: 20px;
-            background-color: lightgray;
         }
 
         .container {
@@ -51,10 +50,6 @@ $result = mysqli_fetch_array($query);
             padding: 20px 26px;
             text-decoration: none;
             font-size: 26px;
-        }
-
-        .rounded-circle {
-            /* margin-left:4rem; */
         }
 
         .sidebar {
@@ -83,7 +78,6 @@ $result = mysqli_fetch_array($query);
         }
     </style>
     <title>Thông tin nhân viên</title>
-
 </head>
 
 <body>
