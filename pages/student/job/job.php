@@ -6,13 +6,7 @@ if (isset($_SESSION['student'])) {
   $studentid = $_SESSION['student'];
 } else $logined = false;
 
-$sql = "SELECT * FROM jobscholarship_infor";
-$query = mysqli_query($mysqli, $sql);
-
 ?>
-
-
-
 
 <!doctype html>
 <html lang="en">
@@ -25,9 +19,7 @@ $query = mysqli_query($mysqli, $sql);
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
   <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
-
-
-  <title>Việc làm</title>
+  <!-- Style -->
   <link rel="stylesheet" href="../../../css/main.css">
   <style>
     body {
@@ -58,13 +50,6 @@ $query = mysqli_query($mysqli, $sql);
       height: 500px;
     }
 
-    /* .card img{
-      text-align: center;
-  } */
-    /* .cart-list card{
-      margin:0 auto;
-
-  } */
     .col {
       text-decoration: none;
       color: black;
@@ -83,14 +68,35 @@ $query = mysqli_query($mysqli, $sql);
       justify-content: flex-end;
     }
 
-    .btn-outline-secondary:hover,
-    .btn-outline-secondary:active,
-    .btn-outline-secondary:focus,
-    .btn-outline-secondary.active {
-      background-color: #ef9273;
+    /* Style for pagination */
+    #pagination {
+      text-align: right;
+      padding: .5rem 1rem 1rem;
+    }
+
+    .page-item {
+      padding: 5px 9px;
+      color: #f94144;
+      background-color: #fff;
+
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: bold;
+      box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+
+    }
+
+    .page-item:hover {
+      color: black;
+    }
+
+    .current-page {
+      background-color: #f94144;
       color: #fff;
     }
   </style>
+
+  <title>Việc làm</title>
 </head>
 
 <body>
@@ -109,60 +115,49 @@ $query = mysqli_query($mysqli, $sql);
 
     <div class="container">
       <div class=" d-flex align-items-stretch">
-
-        <!-- <div class="card-list d-flex flex-wrap" style="width: 18rem"> -->
         <?php
-        $i = 0;
-        while ($row = mysqli_fetch_assoc($query)) { ?>
-          <?php $i++ ?>
-          <div class="row">
-            <a href="chitiet.php?id=<?php echo $row['ID']; ?>" class="col">
+        if (!isset($_GET['action'])) {
+          $item_per_page = !empty($_GET['per_page']) ? $_GET['per_page'] : 4;
+          $current_page = !empty($_GET['page']) ? $_GET['page'] : 1; //Trang hiện tại
+          $offset = ($current_page - 1) * $item_per_page;
+          $totalRecords = $mysqli->query("SELECT * FROM jobscholarship_infor");
+          $totalRecords = $totalRecords->num_rows;
+          $totalPages = ceil($totalRecords / $item_per_page);
+          $sql = "SELECT id, title, content FROM jobscholarship_infor";
 
-              <div class="card h-100">
-                <img src="../../../assets/images/bk.png" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <div class="card-title">
-                    <h5 class="card-title"><?php echo $row['TITLE']; ?> </h5>
-                  </div>
-                  <p class="card-text"><?php echo $row['CONTENT']; ?></p>
+          if ($stmt = $mysqli->prepare($sql)) {
+            if ($stmt->execute()) {
+              $stmt->store_result();
+
+              $stmt->bind_result($id, $title, $content);
+              while ($stmt->fetch()) {
+        ?>
+                <div class="row">
+                  <a href="chitiet.php?id=<?= $id ?>" class="col">
+
+                    <div class="card h-100">
+                      <img src="../../../assets/images/bk.png" class="card-img-top" alt="...">
+                      <div class="card-body">
+                        <div class="card-title">
+                          <h5 class="card-title"><?= $title ?> </h5>
+                        </div>
+                        <p class="card-text"><?= $content ?></p>
+                      </div>
+                    </div>
+                  </a>
                 </div>
-              </div>
-            </a>
-            <!-- <div class="card-footer">
-          <small class="text-muted">Last updated 3 mins ago</small>
-        </div> -->
-          </div>
-
-        <?php } ?>
+        <?php }
+            }
+          }
+        }; ?>
       </div>
-    </div>
-
-
-
-
-
-
-    <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-      <div class="btn-group me-2" role="group" aria-label="First group">
-        <button type="button" class="btn btn-outline-secondary">1</button>
-        <button type="button" class="btn btn-outline-secondary">2</button>
-        <button type="button" class="btn btn-outline-secondary">3</button>
-        <button type="button" class="btn btn-outline-secondary">4</button>
-      </div>
-
+      <?php
+      include '../pagination.php';
+      ?>
     </div>
     </div>
   </main>
 
-  <!-- Optional JavaScript; choose one of the two! -->
-
-  <!-- Option 1: Bootstrap Bundle with Popper -->
-
-  <!-- Option 2: Separate Popper and Bootstrap JS -->
-  <!--
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
-    -->
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
