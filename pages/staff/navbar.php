@@ -12,6 +12,20 @@ if ($stmt = $mysqli->prepare($sql)) {
         $stmt->fetch();
     }
 }
+
+$sql1 = "select typeOfStaff('" . $staffid . "')";
+$stmt1 = $mysqli->query($sql1);
+
+if ($stmt1 = $mysqli->prepare($sql1)) {
+    if ($stmt1->execute()) {
+        //Store result
+        $stmt1->store_result();
+
+        $stmt1->bind_result($typeOfStaff);
+        $stmt1->fetch();
+    }
+}
+$stmt1->close();
 ?>
 
 <div class='header'>
@@ -35,7 +49,7 @@ if ($stmt = $mysqli->prepare($sql)) {
                         <a class='dropdown-item' href='/pages/staff/question/questionlist.php'>Hỏi đáp</a>
                         <a class='dropdown-item' href='/pages/staff/counselling/counsellingList.php'>Tư vấn tâm lý</a>
                         <a class='dropdown-item' href='/pages/staff/reqform/form.php'>Dịch vụ sinh viên</a>
-                        <a class='dropdown-item' href='/pages/staff/feedback/feedback.php'>Đánh giá</a>
+                        <a class='dropdown-item' href='<?php echo ($typeOfStaff == "manager" ? "/pages/staff/feedback/feedback.php": "#")?>'>Đánh giá</a>
                     </div>
                 </li>
                 <li class='nav-item'>

@@ -81,7 +81,7 @@ if (isset($_SESSION['student'])) {
       }
     }
   </style>
-  <title>Danh sách yêu cầu</title>
+  <title>Gửi đánh giá</title>
   </title>
 </head>
 

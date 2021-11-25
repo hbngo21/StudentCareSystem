@@ -7,6 +7,19 @@ if (isset($_SESSION['staff'])) {
     $staffid = $_SESSION['staff'];
 } else $logined = false;
 
+$sql = "select typeOfStaff('" . $staffid . "')";
+$stmt = $mysqli->query($sql);
+
+if ($stmt = $mysqli->prepare($sql)) {
+    if ($stmt->execute()) {
+        //Store result
+        $stmt->store_result();
+
+        $stmt->bind_result($typeOfStaff);
+        $stmt->fetch();
+    }
+}
+$stmt->close();
 ?>
 
 <head>
@@ -53,7 +66,7 @@ if (isset($_SESSION['staff'])) {
             font-size: 13px;
         }
     </style>
-    <title>Danh sách yêu cầu</title>
+    <title>Cập nhật yêu cầu dịch vụ</title>
     </title>
 </head>
 
@@ -118,13 +131,13 @@ if (isset($_SESSION['staff'])) {
                     if ($row['STATUS'] == 'Waiting') {
                         echo "
                     <form method='POST' class='mt-5'>
-                    <button type='submit' class='btn' name='send'>Xác nhận</button>
+                    <button type='submit' class='btn' name='send'". ($typeOfStaff != 'trainingdepartmentstaff'? 'disabled': '#') .">Xác nhận</button>
                     </form>
                     ";
                     } elseif ($row['STATUS'] == 'In Progress') {
                         echo "
                     <form method='POST' class='mt-5'>
-                        <button type='submit' class='btn' name='send'>Hoàn tất</button>
+                    <button type='submit' class='btn' name='send'". ($typeOfStaff != 'trainingdepartmentstaff'? 'disabled': '#') .">Hoàn tất</button>
                     </form>
                     ";
                     }
