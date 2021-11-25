@@ -55,8 +55,33 @@ if (isset($_SESSION['staff'])) {
             font-weight: 400;
             font-size: 13px;
         }
+
+        .banner {
+            height: 200px;
+            margin: 100px 30px 3rem;
+
+            /* Display */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            font-size: 1.8rem;
+            font-weight: 500;
+
+            color: var(--text);
+
+            background-color: white;
+            border-radius: 1rem;
+            box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+        }
+
+        @media only screen and (max-width: 540px) {
+            .banner {
+                font-size: 1.5rem;
+            }
+        }
     </style>
-    <title>Danh sách yêu cầu</title>
+    <title>Danh sách yêu cầu dịch vụ</title>
     </title>
 </head>
 
@@ -65,10 +90,13 @@ if (isset($_SESSION['staff'])) {
     <?php
     require_once('../navbar.php')
     ?>
-    <div style="padding: 100px;">
+    <div class="banner text-center">
+        Các yêu cầu dịch vụ của sinh viên
+    </div>
+    <div style="padding-bottom: 100px; margin-left: 30px; margin-right: 30px;" class="px-5">
         <div class="row mt-5 justify-content-between">
             <div class="col-6">
-                <h4 style="margin-bottom: 30px">CÁC YÊU CẦU DỊCH VỤ CỦA SINH VIÊN</h4>
+                <h4 style="margin-bottom: 30px">CHI TIẾT</h4>
             </div>
             <div class="col-xs-3">
                 <form class="form-inline" method="POST">

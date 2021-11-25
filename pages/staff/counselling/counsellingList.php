@@ -6,6 +6,20 @@ if (isset($_SESSION['staff'])) {
     $logined = true;
     $staffid = $_SESSION['staff'];
 } else $logined = false;
+
+$sql = "select typeOfStaff('" . $staffid . "')";
+$stmt = $mysqli->query($sql);
+
+if ($stmt = $mysqli->prepare($sql)) {
+    if ($stmt->execute()) {
+        //Store result
+        $stmt->store_result();
+
+        $stmt->bind_result($typeOfStaff);
+        $stmt->fetch();
+    }
+}
+$stmt->close();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -80,7 +94,7 @@ if (isset($_SESSION['staff'])) {
             }
         }
     </style>
-    <title>Danh sách yêu cầu</title>
+    <title>Danh sách yêu cầu tư vấn tâm lý</title>
     </title>
 </head>
 
@@ -168,7 +182,7 @@ if (isset($_SESSION['staff'])) {
                         echo "<td style='text-align: center'>" . date("d-m-Y H:i:s", strtotime($row['RESPONSE_TIMESTAMP'])) . "</td>";
                     else echo "<td style='text-align: center'></td>";
                     if (empty($row['MEDICAL_STAFFID']))
-                        echo "<td style='text-align: center'><a href='./response.php?studentid=" . $row['STUDENTID'] . "&timestamp=" . $row['REQUEST_TIMESTAMP'] . "'><button class='btn'>Phản hồi</button></a></td>";
+                        echo "<td style='text-align: center'><a href='./response.php?studentid=" . $row['STUDENTID'] . "&timestamp=" . $row['REQUEST_TIMESTAMP'] . "'><button class='btn'".($typeOfStaff != 'medicalstaff'? 'disabled': '').">Phản hồi</button></a></td>";
                     else echo "<td style='text-align: center; color: red'><b>Đã giải quyết</b></td>";
                     echo "</tr>
                         </tbody>";
