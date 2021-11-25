@@ -13,6 +13,19 @@ if (isset($_SESSION['staff'])) {
     $staffid = $_SESSION['staff'];
 } else $logined = false;
 date_default_timezone_set("Asia/Ho_Chi_Minh");
+$sql = "select typeOfStaff('" . $staffid . "')";
+$stmt = $mysqli->query($sql);
+
+if ($stmt = $mysqli->prepare($sql)) {
+    if ($stmt->execute()) {
+        //Store result
+        $stmt->store_result();
+
+        $stmt->bind_result($typeOfStaff);
+        $stmt->fetch();
+    }
+}
+$stmt->close();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -132,7 +145,8 @@ date_default_timezone_set("Asia/Ho_Chi_Minh");
                         <label for="floatingTextarea">Thêm phản hồi cho câu hỏi</label>
                         <textarea class="form-control" name='answer' placeholder="Nội dung" id="floatingTextarea" style="height: 100px" required></textarea>
                     </div><br>
-                    <div class="d-flex justify-content-center"><button type="submit" class="btn mt-4" name="ok">
+                    <div class="d-flex justify-content-center">
+                        <button type="submit" class="btn mt-4" <?php echo ($typeOfStaff == 'manager'? 'disabled': '') ?> name="ok">
                             Phản hồi
                             <i class="fas fa-paper-plane"></i>
                         </button></div>
