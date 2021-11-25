@@ -19,7 +19,7 @@ if (isset($_SESSION['student'])) {
 
   <!-- user.css -->
   <link rel="stylesheet" href="../../../css/main.css">
-  <style>
+<style>
     #pagination {
       text-align: right;
       padding: .5rem 1rem 1rem;
@@ -334,12 +334,30 @@ if (isset($_SESSION['student'])) {
           echo "<tbody>
                         <tr>";
           echo "<td style='text-align: center'>" . date("d-m-Y H:i:s", strtotime($row['TIMESTAMP'])) . "</td>";
-
-          echo "<td style='text-align: center'>" . $row['ID'] . "</td>"; // switch
+      
+          switch($row['ID']){
+            case '1':
+              echo "<td style='text-align: center'>Đăng kí in bảng điểm học tập</td>";
+              break;
+            case '2':
+              echo "<td style='text-align: center'>Đăng kí nhận bằng tốt nghiệp</td>";
+              break;
+            case '3':
+              echo "<td style='text-align: center'>Đăng kí in giấy xác nhận Sinh viên</td>";
+              break;
+            case '4':
+              echo "<td style='text-align: center'>Đăng kí làm lại thẻ sinh viên</td>";
+              break;
+            case '6':
+              echo "<td style='text-align: center'>Đăng kí in bảng điểm rèn luyện</td>";
+              break;
+          }
+         // switch
           echo "<td style='text-align: center'>" . $row['CONTENT'] . "</td>";
           if (!empty($row['TRAININGDEPARTMENT_STAFFID'])) {
             echo "<td style='text-align: center'>" . $STAFFID . "</td>";
           } else echo "<td style='text-align: center'></td>";
+          
           if ($row['STATUS'] == 'Waiting') {
             echo "<td style='text-align: center'> Chờ xác nhận</td>";
           } elseif ($row['STATUS'] == 'In progress') {
@@ -362,7 +380,7 @@ if (isset($_SESSION['student'])) {
                     <th class = 'align-middle' style='text-align: center'>Ngày đăng ký</th>
                    
                     <th class = 'align-middle' style='text-align: center'>Mã yêu cầu</th>
-                    <th class = 'align-middle' style='text-align: center'>Nội dung yêu cầu</th>
+                    <th class = 'align-middle' style='text-align: center'>Địa chỉ nhận</th>
                     <th class = 'align-middle' style='text-align: center'>Nhân viên phản hồi</th>
                     <th class = 'align-middle' style='text-align: center'>Tình trạng</th>
                   </tr>

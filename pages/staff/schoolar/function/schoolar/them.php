@@ -1,5 +1,9 @@
 <?php
-$staffid = '7006';
+session_start();
+if (isset($_SESSION['staff'])) {
+    $logined = true;
+    $staffid = $_SESSION['staff'];
+} else $logined = false;
 if (isset($_POST['sbm'])) {
     $NAME = $_POST['NAME'];
     $INFORMATION = $_POST['INFORMATION'];
@@ -12,6 +16,7 @@ if (isset($_POST['sbm'])) {
     header('location: index.php?page_layout=danhsach');
 }
 ?>
+<title> Thêm thông tin học bổng</title>
 <link rel="stylesheet" href="../../../../css/main.css">
 
 <div class="container-fluid" style="margin-top:7rem">
@@ -42,9 +47,10 @@ if (isset($_POST['sbm'])) {
 
                         </select>
                 </div> -->
-                <button name="sbm" class="btn btn-success" type="submit"> Thêm</button>
+                <button name="sbm" class="btn" type="submit"> Thêm</button>
             </form>
 
         </div>
     </div>
 </div>
+<a class="btn" href="../../schoolar/function" style="width:10rem;margin-left:1rem;margin-top:1rem">Quay lại</a>

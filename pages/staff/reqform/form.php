@@ -81,8 +81,7 @@ if (isset($_SESSION['staff'])) {
             }
         }
     </style>
-    <title>Danh sách yêu cầu dịch vụ</title>
-    </title>
+    <title>Mẫu yêu cầu dịch vụ</title>
 </head>
 
 <body style="background-color: #f3f4f6;">

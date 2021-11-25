@@ -1,11 +1,6 @@
 <?php
 require_once '../../../connection.php';
-session_start();
-if (isset($_SESSION['student'])) {
-    $logined = true;
-    $studentid = $_SESSION['student'];
-} else $logined = false;
-
+$studentid = 10000;
 $registerevent = array();
 $sql = "SELECT eventname FROM registerevent WHERE studentid=" . $studentid  . "";
 $result = $mysqli->query($sql);
@@ -35,7 +30,6 @@ if ($result->num_rows > 0) {
     <!-- user.css -->
     <link rel="stylesheet" href="/css/main.css">
     <style>
-        /* Style for pagination */
         #pagination {
             text-align: right;
             padding: .5rem 1rem 1rem;
@@ -77,7 +71,7 @@ if ($result->num_rows > 0) {
 <body style="background-color: #f3f4f6;">
     <!-- mainNav -->
     <?php
-    require_once("../navbar.php")
+        require_once("../navbar.php")
     ?>
     <!--Event banner-->
     <div class="event__banner">Sự kiện</div>

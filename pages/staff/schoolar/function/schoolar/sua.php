@@ -1,23 +1,28 @@
 <?php
+     session_start();
+     if (isset($_SESSION['staff'])) {
+         $logined = true;
+         $staffid = $_SESSION['staff'];
+     } else $logined = false;
     $name=$_GET['NAME'];
     $sql_update="SELECT * FROM incentivescholarship_result where NAME='$name' ";
     $query_update=mysqli_query($connect, $sql_update);
     $row_update=mysqli_fetch_assoc($query_update);
  
     // lấy thông tin staff ID ở bảng trainingdepartment_staff
-    $TRAININGDEPARTMENT_STAFFID='7006';
+   
     
     if(isset($_POST['sbm'])){
             $NAME=$_POST['NAME'];
             $INFORMATION=$_POST['INFORMATION'];
             $SEMESTERCODE=$_POST['SEMESTERCODE'];
-            $TRAININGDEPARTMENT_STAFFID=$_POST['TRAININGDEPARTMENT_STAFFID'];
+            $TRAININGDEPARTMENT_STAFFID=$staffid;
             // if($NAME = ""){
 
             // }
             $sql = "UPDATE incentivescholarship_result 
-            SET INFORMATION= '$INFORMATION', SEMESTERCODE=$SEMESTERCODE
-            where NAME ='$NAME' "; 
+            SET NAME='$NAME',INFORMATION= '$INFORMATION', SEMESTERCODE=$SEMESTERCODE
+            where NAME ='$name' "; 
 
             $query = mysqli_query($connect, $sql);
             header('location: index.php?page_layout=danhsach');
@@ -62,4 +67,4 @@
         </div>
     </div>
 </div>
-<a class="btn" href="../../job/function" style="width:10rem;margin-left:1rem;margin-top:1rem">Quay lại</a>
+<a class="btn" href="../../schoolar/function" style="width:10rem;margin-left:1rem;margin-top:1rem">Quay lại</a>

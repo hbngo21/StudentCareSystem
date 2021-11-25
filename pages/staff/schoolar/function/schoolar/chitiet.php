@@ -1,4 +1,9 @@
 <?php
+session_start();
+if (isset($_SESSION['staff'])) {
+    $logined = true;
+    $staffid = $_SESSION['staff'];
+} else $logined = false;
 $name = $_GET['NAME'];
 
 $sql = "SELECT* FROM incentivescholarship_result WHERE NAME= '$name'";
@@ -6,6 +11,7 @@ $sql = "SELECT* FROM incentivescholarship_result WHERE NAME= '$name'";
 $query = mysqli_query($connect, $sql);
 $result = mysqli_fetch_array($query);
 ?>
+<title> Sửa thông tin học bổng</title>
 <link rel="stylesheet" href="../../../../css/main.css">
 
 <div class="container-fluid" style="margin-top:7rem">
@@ -19,3 +25,4 @@ $result = mysqli_fetch_array($query);
     </div>
 
 </div>
+<a class="btn" href="../../schoolar/function" style="width:10rem;margin-left:1rem;margin-top:1rem">Quay lại</a>

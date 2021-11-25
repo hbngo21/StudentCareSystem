@@ -7,6 +7,26 @@ if (isset($_SESSION['staff'])) {
   $staffid = $_SESSION['staff'];
 } else $logined = false;
 
+$sql = "SELECT * FROM incentivescholarship_result";
+$query = mysqli_query($mysqli, $sql);
+
+$sql1 = "select typeOfStaff('" . $staffid . "')";
+$stmt = $mysqli->query($sql1);
+
+if ($stmt = $mysqli->prepare($sql1)) {
+  if ($stmt->execute()) {
+    //Store result
+    $stmt->store_result();
+
+    $stmt->bind_result($typeOfStaff);
+    $stmt->fetch();
+  }
+}
+$stmt->close();
+
+?>
+
+
 ?>
 
 <!doctype html>
@@ -44,8 +64,6 @@ if (isset($_SESSION['staff'])) {
 
     .card {
       max-width: 100%;
-      /* height:200px; */
-
     }
 
     .card h-100 {
@@ -70,7 +88,15 @@ if (isset($_SESSION['staff'])) {
       justify-content: flex-end;
     }
 
-    /* Style for pagination */
+    .btn-outline-secondary:hover,
+    .btn-outline-secondary:active,
+    .btn-outline-secondary:focus,
+    .btn-outline-secondary.active {
+      background-color: #ef9273;
+      color: #fff;
+
+    }
+
     #pagination {
       text-align: right;
       padding: .5rem 1rem 1rem;
@@ -94,7 +120,6 @@ if (isset($_SESSION['staff'])) {
 
     .current-page {
       background-color: #f94144;
-      color: #fff;
     }
   </style>
   <title>Học bổng</title>
@@ -111,7 +136,14 @@ if (isset($_SESSION['staff'])) {
       </ol>
     </nav>
     <div class="d-flex justify-content-end" style="margin-right:5rem;margin-bottom:2rem;">
-      <a href="../schoolar/function" class="btn">Chỉnh sửa</a>
+      <?php
+      if ($typeOfStaff == 'trainingdepartmentstaff')
+        echo "<a href=\"../schoolar/function\" class=\"btn\"> Chỉnh sửa </a> ";
+
+      else {
+        echo "<a href=\"#\" class=\"btn\" style=\"pointer-events:none;background:grey\"> Chỉnh sửa </a>";
+      }
+      ?>
     </div>
     <div class="container">
       <div class=" d-flex align-items-stretch">

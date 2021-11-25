@@ -94,7 +94,7 @@ if ($stmt = $mysqli->prepare($sql)) {
             background-color: whitesmoke;
         }
     </style>
-    <title>Thông tin nhân viên</title>
+    <title>Thông tin sinh viên</title>
 
 </head>
 

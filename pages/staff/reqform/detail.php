@@ -66,8 +66,7 @@ $stmt->close();
             font-size: 13px;
         }
     </style>
-    <title>Cập nhật yêu cầu dịch vụ</title>
-    </title>
+    <title>Chi tiết yêu cầu</title>
 </head>
 
 <body style="background-color: #f3f4f6;">
@@ -131,13 +130,13 @@ $stmt->close();
                     if ($row['STATUS'] == 'Waiting') {
                         echo "
                     <form method='POST' class='mt-5'>
-                    <button type='submit' class='btn' name='send'". ($typeOfStaff != 'trainingdepartmentstaff'? 'disabled': '#') .">Xác nhận</button>
+                    <button type='submit' class='btn' name='send'" . ($typeOfStaff != 'trainingdepartmentstaff' ? 'disabled' : '#') . ">Xác nhận</button>
                     </form>
                     ";
                     } elseif ($row['STATUS'] == 'In Progress') {
                         echo "
                     <form method='POST' class='mt-5'>
-                    <button type='submit' class='btn' name='send'". ($typeOfStaff != 'trainingdepartmentstaff'? 'disabled': '#') .">Hoàn tất</button>
+                    <button type='submit' class='btn' name='send'" . ($typeOfStaff != 'trainingdepartmentstaff' ? 'disabled' : '#') . ">Hoàn tất</button>
                     </form>
                     ";
                     }

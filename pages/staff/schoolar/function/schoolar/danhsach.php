@@ -1,7 +1,11 @@
 <?php
 $sql = "SELECT * FROM incentivescholarship_result";
 $query = mysqli_query($connect, $sql);
-$staffid = '7006';
+session_start();
+if (isset($_SESSION['staff'])) {
+    $logined = true;
+    $staffid = $_SESSION['staff'];
+} else $logined = false;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,7 +16,7 @@ $staffid = '7006';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
     <link rel="stylesheet" href="../../../../css/main.css">
-    <title>Document</title>
+    <title>Danh sách học bổng</title>
 </head>
 
 <body>
@@ -68,7 +72,7 @@ $staffid = '7006';
 
         </div>
     </div>
-    <a class="btn" href="../../vieclam/job.php" style="width:10rem;margin-left:1rem;margin-top:1rem">Hoàn thành</a>
+    <a class="btn" href="../../hocbong/schoolar.php" style="width:10rem;margin-left:1rem;margin-top:1rem">Hoàn thành</a>
 </body>
 <script>
     function Del(name) {
