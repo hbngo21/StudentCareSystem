@@ -27,6 +27,7 @@
 <?php
         require_once '../../navbar.php'
 ?>
+<title> Sửa thông tin việc làm</title>
 <div class="container-fluid" style="margin-top:7rem">
     <div class="card">
         <div class="card-header">

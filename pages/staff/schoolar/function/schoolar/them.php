@@ -12,6 +12,7 @@ if (isset($_POST['sbm'])) {
     header('location: index.php?page_layout=danhsach');
 }
 ?>
+<title> Thêm thông tin học bổng</title>
 <link rel="stylesheet" href="../../../../css/main.css">
 
 <div class="container-fluid" style="margin-top:7rem">

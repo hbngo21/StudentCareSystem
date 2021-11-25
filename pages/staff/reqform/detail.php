@@ -53,7 +53,7 @@ if (isset($_SESSION['staff'])) {
             font-size: 13px;
         }
     </style>
-    <title>Danh sách yêu cầu</title>
+    <title>Chi tiết yêu cầu</title>
     </title>
 </head>
 

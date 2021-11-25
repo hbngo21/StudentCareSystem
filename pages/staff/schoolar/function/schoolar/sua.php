@@ -23,6 +23,7 @@
             header('location: index.php?page_layout=danhsach');
         }
 ?>
+<title> Sửa thông tin học bổng</title>
 <link rel="stylesheet" href="../../../../css/main.css">
 <?php
         require_once '../../navbar.php'

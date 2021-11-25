@@ -6,6 +6,7 @@ $sql = "SELECT* FROM incentivescholarship_result WHERE NAME= '$name'";
 $query = mysqli_query($connect, $sql);
 $result = mysqli_fetch_array($query);
 ?>
+<title> Sửa thông tin học bổng</title>
 <link rel="stylesheet" href="../../../../css/main.css">
 
 <div class="container-fluid" style="margin-top:7rem">

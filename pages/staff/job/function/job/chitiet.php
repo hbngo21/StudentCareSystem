@@ -6,7 +6,7 @@
     $query = mysqli_query($connect,$sql);
     $result = mysqli_fetch_array($query);
 ?>
-
+<title> Xem chi tiết</title>
 <div class="container-fluid" style="margin-top:7rem">
     <div class="card">
         <div class="card-header">
