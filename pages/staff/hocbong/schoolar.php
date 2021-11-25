@@ -10,6 +10,27 @@ if (isset($_SESSION['staff'])) {
 $sql = "SELECT * FROM incentivescholarship_result";
 $query = mysqli_query($mysqli, $sql);
 
+// $sql1 = "select typeOfStaff('$staffid')";
+// $query1 = mysqli_query($mysqli, $sql1);
+// $result = mysqli_fetch_assoc($query1);
+
+$sql1 = "select typeOfStaff('" . $staffid . "')";
+$stmt = $mysqli->query($sql1);
+
+if ($stmt = $mysqli->prepare($sql1)) {
+    if ($stmt->execute()) {
+        //Store result
+        $stmt->store_result();
+
+        $stmt->bind_result($typeOfStaff);
+        $stmt->fetch();
+    }
+}
+$stmt->close();
+
+?>
+
+
 ?>
 
 
@@ -30,7 +51,7 @@ $query = mysqli_query($mysqli, $sql);
 
   <title>Học bổng</title>
   <link rel="stylesheet" href="../../../css/main.css">
-  <style>
+<style>
     body {
       padding-top: 3rem;
       padding-bottom: 3rem;
@@ -59,39 +80,41 @@ $query = mysqli_query($mysqli, $sql);
       height: 500px;
     }
 
-    /* .card img{
-    text-align: center;
-} */
-    /* .cart-list card{
-    margin:0 auto;
+      /* .card img{
+      text-align: center;
+  } */
+      /* .cart-list card{
+      margin:0 auto;
 
-} */
-    .col {
-      text-decoration: none;
-      color: black;
-    }
+  } */
+      .col {
+        text-decoration: none;
+        color: black;
+      }
 
-    .col:hover,
-    .col:active,
-    .col:focus,
-    .col.active {
-      text-decoration: none;
-      color: #ef9273;
-    }
+      .col:hover,
+      .col:active,
+      .col:focus,
+      .col.active {
+        text-decoration: none;
+        color: #ef9273;
+      }
 
-    .btn-toolbar {
-      margin-top: 10px;
-      justify-content: flex-end;
-    }
+      .btn-toolbar {
+        margin-top: 10px;
+        justify-content: flex-end;
+      }
 
-    .btn-outline-secondary:hover,
-    .btn-outline-secondary:active,
-    .btn-outline-secondary:focus,
-    .btn-outline-secondary.active {
+      .btn-outline-secondary:hover,
+      .btn-outline-secondary:active,
+      .btn-outline-secondary:focus,
+      .btn-outline-secondary.active {
       background-color: #ef9273;
       color: #fff;
+     
     }
-  </style>
+     
+</style>
 </head>
 
 <body>
@@ -108,7 +131,14 @@ $query = mysqli_query($mysqli, $sql);
       </ol>
     </nav>
     <div class="d-flex justify-content-end" style="margin-right:5rem;margin-bottom:2rem;">
-      <a href="../schoolar/function" class="btn">Chỉnh sửa</a>
+    <?php
+      if($typeOfStaff == 'trainingdepartmentstaff')
+          echo "<a href=\"../schoolar/function\" class=\"btn\"> Chỉnh sửa </a> ";
+       
+      else{
+          echo "<a href=\"#\" class=\"btn\" style=\"pointer-events:none;background:grey\"> Chỉnh sửa </a>";
+      }
+      ?>
     </div>
     <div class="container">
       <div class=" d-flex align-items-stretch">

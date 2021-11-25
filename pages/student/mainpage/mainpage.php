@@ -55,7 +55,7 @@ if (isset($_SESSION['student'])) {
     </div>
 
     <div class="container pt-3 text-center" id="service" style="margin-top:3rem">
-      <h1>Services</h1>
+     
       <div class="row">
         <a href="../schoolar/schoolar.php">
           <div class="col-md-4 col-sm-4">

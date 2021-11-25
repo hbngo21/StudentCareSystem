@@ -29,7 +29,7 @@ $query = mysqli_query($mysqli, $sql);
 
   <title>Việc làm</title>
   <link rel="stylesheet" href="../../../css/main.css">
-  <style>
+<style>
     body {
       padding-top: 3rem;
       padding-bottom: 3rem;
@@ -102,7 +102,7 @@ $query = mysqli_query($mysqli, $sql);
     <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
       <ol class="breadcrumb" id="breadcrumb">
 
-        <li class="breadcrumb-item"><a href="mainpage.php">Home</a></li>
+        <li class="breadcrumb-item"><a href="../mainpage/mainpage.php">Home</a></li>
         <li class="breadcrumb-item active" aria-current="page">Việc làm</li>
       </ol>
     </nav>
@@ -116,8 +116,8 @@ $query = mysqli_query($mysqli, $sql);
         while ($row = mysqli_fetch_assoc($query)) { ?>
           <?php $i++ ?>
           <div class="row">
-            <a href="chitiet.php?id=<?php echo $row['ID']; ?>" class="col">
-
+            <a href="chitiet.php?id=<?php echo $row['ID']; ?>&staffid=<?php echo $row['POLITICAL_STAFFID']; ?>" class="col">
+                                  
               <div class="card h-100">
                 <img src="../../../assets/images/bk.png" class="card-img-top" alt="...">
                 <div class="card-body">

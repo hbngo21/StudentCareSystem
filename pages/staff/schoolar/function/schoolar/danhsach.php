@@ -68,7 +68,7 @@ $staffid = '7006';
 
         </div>
     </div>
-    <a class="btn" href="../../vieclam/job.php" style="width:10rem;margin-left:1rem;margin-top:1rem">Hoàn thành</a>
+    <a class="btn" href="../../hocbong/schoolar.php" style="width:10rem;margin-left:1rem;margin-top:1rem">Hoàn thành</a>
 </body>
 <script>
     function Del(name) {

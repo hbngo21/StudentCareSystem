@@ -115,6 +115,7 @@ $stmt->close();
                             </div>
                         </form>
                         <div class="d-flex justify-content-center">
+                            
                             <button class="btn btn-lg btn-rounded" onclick="validateData('<?= $staffid ?>')" <?= $typeOfStaff != 'politicalstaff' ? 'disabled' : '' ?>>
                                 Tạo
                                 <i class="fas fa-paper-plane"></i>

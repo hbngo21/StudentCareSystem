@@ -19,3 +19,4 @@ $result = mysqli_fetch_array($query);
     </div>
 
 </div>
+<a class="btn" href="../../schoolar/function" style="width:10rem;margin-left:1rem;margin-top:1rem">Quay lại</a>

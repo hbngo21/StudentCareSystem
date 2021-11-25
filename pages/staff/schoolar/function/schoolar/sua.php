@@ -37,7 +37,7 @@
             <form action="" method="POST" enctype="multipart/form-data">
                 <div class="form-group">  
                     <label for="">Tên học bổng</label>
-                    <input type="text" name="NAME" class="form-control"  value = "<?php echo $row_update['NAME']; ?>">
+                    <input type="text" name="NAME" class="form-control"  value = "<?php echo $row_update['NAME']; ?>" >
                 </div>
                 <div class="form-group">
                     <label for="">Thông tin</label>
@@ -62,4 +62,4 @@
         </div>
     </div>
 </div>
-<a class="btn" href="../../job/function" style="width:10rem;margin-left:1rem;margin-top:1rem">Quay lại</a>
+<a class="btn" href="../../schoolar/function" style="width:10rem;margin-left:1rem;margin-top:1rem">Quay lại</a>

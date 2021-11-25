@@ -19,7 +19,7 @@ $query = mysqli_query($connect, $sql);
     <div class="container-fluid" style="margin-top:7rem">
         <div class="card">
             <div class="card-header">
-                <h2>Các học bổng</h2>
+                <h2>Các việc làm</h2>
             </div>
             <div class="card-body">
                 <table class="table">
