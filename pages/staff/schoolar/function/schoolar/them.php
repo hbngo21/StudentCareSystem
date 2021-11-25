@@ -1,5 +1,9 @@
 <?php
-$staffid = '7006';
+session_start();
+if (isset($_SESSION['staff'])) {
+    $logined = true;
+    $staffid = $_SESSION['staff'];
+} else $logined = false;
 if (isset($_POST['sbm'])) {
     $NAME = $_POST['NAME'];
     $INFORMATION = $_POST['INFORMATION'];

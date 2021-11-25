@@ -1,7 +1,11 @@
 <?php
 $sql = "SELECT * FROM incentivescholarship_result";
 $query = mysqli_query($connect, $sql);
-$staffid = '7006';
+session_start();
+if (isset($_SESSION['staff'])) {
+    $logined = true;
+    $staffid = $_SESSION['staff'];
+} else $logined = false;
 ?>
 <!DOCTYPE html>
 <html lang="en">

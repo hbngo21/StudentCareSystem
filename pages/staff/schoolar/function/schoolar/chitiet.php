@@ -1,4 +1,9 @@
 <?php
+session_start();
+if (isset($_SESSION['staff'])) {
+    $logined = true;
+    $staffid = $_SESSION['staff'];
+} else $logined = false;
 $name = $_GET['NAME'];
 
 $sql = "SELECT* FROM incentivescholarship_result WHERE NAME= '$name'";

@@ -1,11 +1,16 @@
 <?php
+session_start();
+if (isset($_SESSION['staff'])) {
+    $logined = true;
+    $staffid = $_SESSION['staff'];
+} else $logined = false;
     $ID=$_GET['ID'];
     $sql_update="SELECT * FROM jobscholarship_infor where ID='$ID' ";
     $query_update=mysqli_query($connect, $sql_update);
     $row_update=mysqli_fetch_assoc($query_update);
  
     // lấy thông tin staff ID ở bảng trainingdepartment_staff
-    $staffid='5670';
+  
     
     if(isset($_POST['sbm'])){
             $TITLE=$_POST['TITLE'];
