@@ -239,9 +239,6 @@ if (isset($_SESSION['student'])) {
 
           ?>
         </div>
-
-
-
       </div>
     </form>
 
@@ -339,7 +336,7 @@ if (isset($_SESSION['student'])) {
           } else echo "<td style='text-align: center'></td>";
           if ($row['STATUS'] == 'Waiting') {
             echo "<td style='text-align: center'> Chờ xác nhận</td>";
-          } elseif ($row['STATUS'] == 'In progress') {
+          } elseif ($row['STATUS'] == 'In Progress') {
             echo "<td style='text-align: center'> Trong tiến trình </td>";
           } elseif ($row['STATUS'] == 'Completed') {
             echo "<td style='text-align: center'> Đã giải quyết</td>";
@@ -375,6 +372,11 @@ if (isset($_SESSION['student'])) {
       include '../../staff/pagination.php';
       ?>
     </div>
+    <script>
+      if (window.history.replaceState) {
+        window.history.replaceState(null, null, window.location.href);
+      }
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>

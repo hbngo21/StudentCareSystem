@@ -148,18 +148,18 @@ DELIMITER $$
  -- 4.8. Nhân viên Phòng đào tạo cập nhật trạng thái của các yêu cầu từ sinh viên.
 delimiter //
 drop procedure if exists update_status //
-create procedure update_status(staffiD char (4), SID char(5),timestamp datetime)
+create procedure update_status(staffiD char (4), SID char(5),time datetime)
 BEGIN 
-	if exists (select * from request_services where status ='In Progress' and studentID=SID and timestamp= timestamp)
+	if exists (select * from request_services where status ='In Progress' and studentID=SID and timestamp= time)
     then
 			Update request_services
             set trainingdepartment_staffid = staffID, status='Completed'
-            where studentID=SID and timestamp= timestamp;
-	elseif exists (select * from request_services where status ='Waiting'and studentID=SID and timestamp= timestamp)
+            where studentID=SID and timestamp= time;
+	elseif exists (select * from request_services where status ='Waiting'and studentID=SID and timestamp= time)
     then
 			Update request_services
             set trainingdepartment_staffid = staffID, status='In Progress'
-            where studentID=SID and timestamp= timestamp;
+            where studentID=SID and timestamp= time;
 	end if;
 end //
 delimiter ;

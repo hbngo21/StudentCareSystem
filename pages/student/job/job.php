@@ -108,33 +108,32 @@ if (isset($_SESSION['student'])) {
       </ol>
     </nav>
     <div class="container">
-      <div class=" d-flex align-items-stretch">
+      <div class="row">
         <?php
         if (!isset($_GET['action'])) {
-          $item_per_page = !empty($_GET['per_page']) ? $_GET['per_page'] : 4;
+          $item_per_page = !empty($_GET['per_page']) ? $_GET['per_page'] : 3;
           $current_page = !empty($_GET['page']) ? $_GET['page'] : 1; //Trang hiện tại
           $offset = ($current_page - 1) * $item_per_page;
           $totalRecords = $mysqli->query("SELECT * FROM jobscholarship_infor");
           $totalRecords = $totalRecords->num_rows;
           $totalPages = ceil($totalRecords / $item_per_page);
-          $sql = "SELECT id, title, content, political_staffid FROM jobscholarship_infor";
+          $sql = "SELECT id, title, content, political_staffid FROM jobscholarship_infor limit " . $offset . "," . $item_per_page . " ";
 
           if ($stmt = $mysqli->prepare($sql)) {
             if ($stmt->execute()) {
               $stmt->store_result();
+
               $stmt->bind_result($id, $title, $content, $political_staffid);
               while ($stmt->fetch()) {
         ?>
-                <div class="row">
+                <div class="col-4">
                   <a href="chitiet.php?id=<?= $id ?>&staff_id=<?= $political_staffid ?>" class="col">
-
-                    <div class="card h-100">
-                      <img src="../../../assets/images/bk.png" class="card-img-top" alt="...">
+                    <div class="card">
+                      <img src="https://blog.realjobshawaii.com/wp-content/uploads/2017/02/JobFair-01.png" class="card-img-top" alt="...">
                       <div class="card-body">
                         <div class="card-title">
                           <h5 class="card-title"><?= $title ?> </h5>
                         </div>
-                        <p class="card-text"><?= $content ?></p>
                       </div>
                     </div>
                   </a>

@@ -1,5 +1,5 @@
 <?php
-$connect = mysqli_connect('localhost:3325','root','','studentcare');
+$connect = mysqli_connect('localhost:3306','root','viet26072001','studentcare');
 
 // Check connection
 if ($connect) {

@@ -93,41 +93,50 @@ if (isset($_SESSION['student'])) {
                 $item_per_page = !empty($_GET['per_page']) ? $_GET['per_page'] : 10;
                 $current_page = !empty($_GET['page']) ? $_GET['page'] : 1; //Trang hiện tại
                 $offset = ($current_page - 1) * $item_per_page;
-                $totalRecords = $conn->query("SELECT * FROM question");
-                $totalRecords = $totalRecords->rowCount();
-                $totalPages = ceil($totalRecords / $item_per_page);
             }
             if (empty($isanswered)) {
+                $totalRecords = $conn->query("SELECT * FROM question where studentid = '$studentid'");
                 $sql = "SELECT id, timestamp, title, type FROM question
                 where studentid = '$studentid' 
-                order by timestamp asc
+                order by timestamp desc
                 LIMIT " . $offset . ", " . $item_per_page . ";";
             }
             if (isset($_REQUEST['ok'])) {
                 $isanswered = addslashes($_GET['isanswered']);
                 if (empty($isanswered)) {
+                    $totalRecords = $conn->query("SELECT * FROM question where studentid = '$studentid'");
                     $sql = "SELECT id, timestamp, title, type FROM question
                     where studentid = '$studentid' 
-                    order by timestamp asc
+                    order by timestamp desc
                     LIMIT " . $offset . ", " . $item_per_page . ";";
                 } else if ($isanswered == "notanswered") {
+                    $totalRecords = $conn->query("SELECT * FROM question where studentid = '$studentid' 
+                    and ID NOT IN(
+                        SELECT QUESTIONID FROM ANSWER
+                        )");
                     $sql = "SELECT id, timestamp, title, type FROM question
                     where studentid = '$studentid' 
                     and ID NOT IN(
                         SELECT QUESTIONID FROM ANSWER
                         )
-                    order by timestamp asc
+                    order by timestamp desc
                     LIMIT " . $offset . ", " . $item_per_page . ";";
                 } else {
+                    $totalRecords = $conn->query("SELECT * FROM question where studentid = '$studentid' 
+                    and ID IN(
+                        SELECT QUESTIONID FROM ANSWER
+                        )");
                     $sql = "SELECT id, timestamp, title, type FROM question
                     where studentid = '$studentid' 
                     and ID IN(
                         SELECT QUESTIONID FROM ANSWER
                         )
-                    order by timestamp asc
+                    order by timestamp desc
                     LIMIT " . $offset . ", " . $item_per_page . ";";
                 }
             }
+            $totalRecords = $totalRecords->rowCount();
+            $totalPages = ceil($totalRecords / $item_per_page);
             $q = $conn->query($sql);
             $q->setFetchMode(PDO::FETCH_ASSOC);
             $resultCheck = $q->rowCount();

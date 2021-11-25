@@ -109,16 +109,16 @@ if (isset($_SESSION['student'])) {
       </ol>
     </nav>
     <div class="container">
-      <div class=" d-flex align-items-stretch">
+      <div class="row">
         <?php
         if (!isset($_GET['action'])) {
-          $item_per_page = !empty($_GET['per_page']) ? $_GET['per_page'] : 4;
+          $item_per_page = !empty($_GET['per_page']) ? $_GET['per_page'] : 3;
           $current_page = !empty($_GET['page']) ? $_GET['page'] : 1; //Trang hiện tại
           $offset = ($current_page - 1) * $item_per_page;
           $totalRecords = $mysqli->query("SELECT * FROM incentivescholarship_result");
           $totalRecords = $totalRecords->num_rows;
           $totalPages = ceil($totalRecords / $item_per_page);
-          $sql = "SELECT name, information FROM incentivescholarship_result";
+          $sql = "SELECT name, information FROM incentivescholarship_result limit " . $offset . "," . $item_per_page . " ";
 
           if ($stmt = $mysqli->prepare($sql)) {
             if ($stmt->execute()) {
@@ -127,15 +127,14 @@ if (isset($_SESSION['student'])) {
               $stmt->bind_result($name, $information);
               while ($stmt->fetch()) {
         ?>
-                <div class="row">
+                <div class="col-4">
                   <a href="chitiet.php?NAME=<?= $name ?>" class="col">
-                    <div class="card h-100">
-                      <img src="../../../assets/images/bk.png" class="card-img-top" alt="...">
+                    <div class="card">
+                      <img src="http://bestbengal.info/wp-content/uploads/2020/06/scholarships-647_010217052513.jpg" class="card-img-top" alt="...">
                       <div class="card-body">
                         <div class="card-title">
                           <h5 class="card-title"><?= $name ?> </h5>
                         </div>
-                        <p class="card-text"><?= $information ?></p>
                       </div>
                     </div>
                   </a>
