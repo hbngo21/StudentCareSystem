@@ -135,7 +135,7 @@ $result_staff = mysqli_fetch_array($query_staff);
                 </div>
                 <div class="mt-3">
                     <h4>Nội dung:</h4>
-                    <?php echo $result['INFORMATION']; ?> Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore optio enim possimus tempora. Explicabo atque, perspiciatis reprehenderit aspernatur adipis
+                    <?php echo $result['INFORMATION']; ?> 
                 </div>
                 <a href="../hocbong/schoolar.php" type='button' class='btn' style='width: 100px;margin-top:5rem'>Quay lại</a>
             </div>

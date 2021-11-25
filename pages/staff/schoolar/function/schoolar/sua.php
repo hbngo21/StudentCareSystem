@@ -16,14 +16,13 @@
 
             // }
             $sql = "UPDATE incentivescholarship_result 
-            SET INFORMATION= '$INFORMATION', SEMESTERCODE=$SEMESTERCODE
-            where NAME ='$NAME' "; 
+            SET NAME='$NAME',INFORMATION= '$INFORMATION', SEMESTERCODE=$SEMESTERCODE
+            where NAME ='$name' "; 
 
             $query = mysqli_query($connect, $sql);
             header('location: index.php?page_layout=danhsach');
         }
 ?>
-<title> Sửa thông tin học bổng</title>
 <link rel="stylesheet" href="../../../../css/main.css">
 <?php
         require_once '../../navbar.php'
@@ -38,7 +37,7 @@
             <form action="" method="POST" enctype="multipart/form-data">
                 <div class="form-group">  
                     <label for="">Tên học bổng</label>
-                    <input type="text" name="NAME" class="form-control"  value = "<?php echo $row_update['NAME']; ?>" >
+                    <input type="text" name="NAME" class="form-control"  value = "<?php echo $row_update['NAME']; ?>">
                 </div>
                 <div class="form-group">
                     <label for="">Thông tin</label>
