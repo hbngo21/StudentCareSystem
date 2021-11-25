@@ -156,7 +156,7 @@ $stmt->close();
                                             <div class="event__item-info"><i class="far fa-users"></i><span><?= $num_register ?>/<?= $limited ?></span></div>
                                         </div>
                                         <div>
-                                            <?= substr($content . "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Corrupti, modi aut facilis porro, cupiditate harum exercitationem placeat earum quis aspernatur corporis illum, magnam dolores eveniet quisquam asperiores ratione explicabo aliquid veritatis voluptates consequatur doloribus nam quo mollitia. Dicta nostrum consequuntur omnis, quo totam officiis magnam aliquam aliquid veritatis sint sit consequatur vero explicabo sed dolores dolor ipsum. Nesciunt ex eum nobis quibusdam accusantium beatae velit maiores corrupti deleniti nemo quae numquam architecto, saepe et consequuntur maxime repellendus sint esse, totam, voluptatibus blanditiis. Inventore saepe suscipit consectetur est sapiente odio maxime fuga ad vel excepturi, et repudiandae sit. Omnis, iusto nulla?", 0, 150) ?>
+                                            <?= substr($content, 0, 150) ?>
                                             ... <a class="for-more-info" href="detail.php?name=<?= $name ?>">Xem thêm</a>
                                         </div>
                                         <button type='button' class='btn btn-danger event__rmv-btn' style='width: 150px;' onclick="removeEvent('<?= $name ?>')" <?= $typeOfStaff != 'politicalstaff' ? 'disabled' : '' ?>>Xoá<i class="fas fa-trash-alt"></i></button>

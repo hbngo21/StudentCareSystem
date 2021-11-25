@@ -32,7 +32,7 @@ function validateData(sid) {
       trainingpoint +
       '&semester=203' +
       staffid;
-
+    console.log(action);
     $.get(action, function (data, status) {
       alert(data);
       window.location.href = 'event.php';
@@ -56,7 +56,7 @@ function checkName(name, validate) {
 }
 
 function checkLimited(limited, validate) {
-  if (limited.value < 10) {
+  if (limited.value < 5) {
     limited.style.border = '2px solid red';
     limited.classList.add('animate__shakeX');
     validate.innerHTML = limited.getAttribute('data-msg');

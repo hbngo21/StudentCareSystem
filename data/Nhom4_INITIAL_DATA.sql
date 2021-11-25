@@ -1,3 +1,4 @@
+use studentcare;
 -- STAFF
 INSERT INTO `studentcare`.`staff` (`ID`, `FIRSTNAME`, `LASTNAME`, `SEX`, `EMAIL`) VALUES ('6938', 'Đức Anh', 'Bùi', 'M', 'ducanh@gmail.com');
 INSERT INTO `studentcare`.`staff` (`ID`, `FIRSTNAME`, `LASTNAME`, `SEX`, `EMAIL`) VALUES ('9193', 'Ngọc Bảo', 'Nguyễn ', 'M', 'ngocbao@gmail.com');
@@ -54,10 +55,16 @@ INSERT INTO `studentcare`.`general_information` (`TITLE`, `TYPE`, `CONTENT`, `TI
 INSERT INTO `studentcare`.`general_information` (`TITLE`, `TYPE`, `CONTENT`, `TIMESTAMP`, `STUDENTCARE_STAFFID`) VALUES ('trainingdepartment1', 'trainingdepartment', 'content trainingdepartment', '2020-08-14 14:31:14', '7383');
 
 -- event
-INSERT INTO `studentcare`.`event` (`NAME`, `LIMITED`, `CONTENT`, `TRAININGPOINT`, `SEMESTERCODE`, `TIMESTAMP`, `POLITICAL_STAFFID`) VALUES ('event1', '50', 'content1', '5', '203', '2021-07-15 07:04:24', '9193');
-INSERT INTO `studentcare`.`event` (`NAME`, `LIMITED`, `CONTENT`, `TRAININGPOINT`, `SEMESTERCODE`, `TIMESTAMP`, `POLITICAL_STAFFID`) VALUES ('event2', '100', 'content2', '10', '203', '2021-05-30 08:05:24', '9866');
-INSERT INTO `studentcare`.`event` (`NAME`, `LIMITED`, `CONTENT`, `TRAININGPOINT`, `SEMESTERCODE`, `TIMESTAMP`, `POLITICAL_STAFFID`) VALUES ('event3', '150', 'content3', '10', '202', '2020-01-21 09:45:24', '5670');
-INSERT INTO `studentcare`.`event` (`NAME`, `LIMITED`, `CONTENT`, `TRAININGPOINT`, `SEMESTERCODE`, `TIMESTAMP`, `POLITICAL_STAFFID`) VALUES ('event4', '75', 'content4', '5', '202', '2021-03-26 14:15:26', '9866');
+INSERT INTO `event` (`NAME`, `LIMITED`, `CONTENT`, `TRAININGPOINT`, `SEMESTERCODE`, `TIMESTAMP`, `POLITICAL_STAFFID`) VALUES
+('event1', 50, 'content1', 5, '203', '2021-07-15 07:04:24', '9193'),
+('event2', 100, 'content2', 10, '203', '2021-05-30 08:05:24', '9866'),
+('event3', 150, 'content3', 10, '202', '2020-01-21 09:45:24', '5670'),
+('event4', 75, 'content4', 5, '202', '2021-03-26 14:15:26', '9866'),
+('🚘 BOSCH DEEP DIVE TO DRIVE 2 | STANDARDIZE SOFTWARE FRAMEWORK IN AUTOMOTIVE INDUSTRY 🚘', 5, 'Các bạn sinh viên trường Đại học Bách khoa – ĐHQG TP.HCM ơi, các bạn đã sẵn sàng chưa? Vì Bosch đã chọn Bách khoa là điểm dừng chân tiếp theo cho chuyến hành trình TechTour “Deep Dive to Drive” với những nội dung “cực chất ngất” ✨CHỦ ĐỀ “STANDARDIZE SOFTWARE FRAMEWORK IN AUTOMOTIVE INDUSTRY” CÓ GÌ?👉 Những thách thức cũng như cách thích ứng với sự phát triển của công nghệ kỹ thuật ô tô👉 Khám phá về tầm quan trọng và đóng góp của AUTOSAR trong ngành công nghiệp ô tô👉 Chia sẻ từ “người trong nghề” và những định hướng chuẩn bị cho công việc tương lai👉 Cơ hội làm việc tại một trong những tập đoàn công nghệ hàng đầu thế giới------------------------DIỄN GIẢ KHÁCH MỜI:🔹 Anh Trần Lâm - Engineering Manager🔹 Anh Phạm Võ Tuấn Anh - Senior Specialist SW Engineer------------------------THÔNG TIN VỀ SỰ KIỆN:📌 Đăng ký tham gia ngay: https://bit.ly/BoschDeepDiveToDrive_Day2➤ Sau khi đăng ký 1 - 2 ngày, bạn sẽ nhận được email xác nhận từ Ban tổ chức📌Thời gian diễn ra: 14:00 - 16:00 chiều thứ 6, ngày 19/11/2021📌 Địa điểm: Microsoft TeamsHãy nhanh chóng @ tag ngay đồng đội của mình vào để cùng vi vu đến sự kiện nào!', 5, '203', '2021-11-25 16:14:32', '9193'),
+('🚀[ELCA’s JAVA ONLINE WORKSHOP] EURO 2021 và hành trình của những chiếc vé🤩', 30, '🎯Nối tiếp sự thành công của các online workshop dành cho cộng đồng công nghệ, ELCA mang đến một câu chuyện về Java. Với hầu hết anh em nhà dev yêu bóng đá đều khó bỏ qua những trận cầu rực lửa trong kỳ Euro vừa rồi, nhưng ít ai biết đằng sau sự thành công của Euro 2021 có sự đóng góp không hề nhỏ của đội ngũ Java developer ngay tại Việt Nam, trong việc đảm bảo từng tấm vé Euro được phân phối đến người hâm mộ làng túc cầu.😍Thân mời các bạn yêu thích Java tham dự buổi workshop lần này để biết được cách Java được ứng dụng như thế nào trong SecuTix app – phần mềm bán vé lớn và uy tín nhất tại Châu  u trong kì Euro 2021 vừa rồi. Buổi workshop sẽ chia sẻ:🎯 EURO 2021 và Câu chuyện hậu trường;🎯 Tối ưu doanh thu qua các kênh bán vé điện tử với Widget;🎯 Cuộc chiến với thị trường chợ đen;🎯 Cách PeakProtect bảo vệ kênh bán vé khỏi bị “sập”;🎯 SecuTix một nền tảng mở.Workshop: 📅 Thứ sáu 26/11/2021, 8:00PM – 9:00PM🙋‍♂️ Đối tượng: Lập trình viên yêu thích Java💻 Online, ngôn ngữ: Tiếng Việt🎫 Đăng ký tham gia: https://forms.gle/ZcnXaZZjyedjMxKL8 🎁 Sẽ có 30 phần quà ELCA cực chất tặng cho các bạn đăng ký sớm workshop.🎁 Và 1 phần quà may mắn dành cho người tham dự: Adidas Running Fluidflow 2.0 trị giá 2 triệu đồng!Còn chờ gì nữa mà không đăng ký ngay! ', 5, '203', '2021-11-25 15:34:55', '9866'),
+('🤔[Làm thế nào để xây dựng các giải pháp nhanh và đáng tin cậy với Docker và Kubernetes]💯', 50, 'Bạn có tò mò về cách chúng tôi có thể xây dựng các giải pháp nhanh và đáng tin cậy với Docker và Kubernetes không? Tham gia cùng chúng tôi vào Thứ Hai, ngày 29 tháng 11 lúc 6:30 tối (GMT 7), chúng tôi sẽ cho bạn biết cách làm 😉Trong buổi tọa đàm công nghệ này, Bùi Văn Hào - Quản lý dự án, và Nguyễn Hữu Toàn - Tư vấn cấp cao, sẽ cho bạn biết thêm về:🟢 Docker và Kubernetes – Đây là gì?🟢 Tại sao chúng ta cần sử dụng Docker và Kubernetes?🟢 Kinh nghiệm trao tay trong việc áp dụng chúng trong các dự án quy mô lớn của chúng tôiĐăng ký để giữ chỗ cho sự kiện này.Đăng ký tại đây: 👉👉👉 https://app.livestorm.co/.../how-to-build-fast-and...Bạn sẽ nhận được link phát trực tiếp trước sự kiện vài ngày. Xin lưu ý rằng bài thuyết trình sẽ bằng tiếng Anh.Chúng tôi mong được đi chơi ảo và chia sẻ kiến thức!', 10, '203', '2021-11-25 15:32:21', '5670'),
+('🚌KMS VIRTUAL OFFICE TOUR 25/11✈️', 50, '🤩KMS TOUR - chương trình tham quan văn phòng và gặp gỡ con người KMS, một trong những nơi làm việc tốt nhất Việt Nam và Châu Á - luôn là cơ hội đáng mong chờ của rất nhiều bạn sinh viên CNTT. 😎⏰Thời gian: 9h00 - 12h00, Thứ 5, ngày 25/11/2021🌐Hình thức diễn ra: Online qua nền tảng Gather.Town 👩‍🎓Đối tượng sinh viên đăng ký: Sinh viên ngành CNTT, năm 3 trở lên🔗Link đăng ký: https://tinyurl.com/kms-hcmut-virtual-tour💯Các bạn sinh viên Khoa KHKT Máy tính khi đăng ký và tham gia sẽ được cộng 5 ĐRL vào tổng ĐRL của năm học đó nha ^^😙Thời hạn đăng ký: đến hết ngày 18/11P/s: Sự kiện chỉ dành cho 50 bạn sinh viên Bách Khoa đầu tiên đăng ký thành công và hợp lệ. KMS sẽ gửi email xác nhận kèm thư mời sau khi các bạn đăng ký thành công. Các bạn nhớ theo dõi thông tin từ KMS qua email nhé!', 5, '203', '2021-11-25 15:56:10', '5670'),
+('🧑‍🏫[Engineering Webinar: Behind the Scenes of Shopee Shopping App]🧑‍💻', 25, '⭐ Gặp người xịn không khó, đã có Shopee lo cùng Engineering ⭐🥳Đến ngay với buổi chia sẻ Engineering Webinar với chủ đề: “𝐁𝐞𝐡𝐢𝐧𝐝 𝐭𝐡𝐞 𝐒𝐜𝐞𝐧𝐞𝐬 𝐨𝐟 𝐒𝐡𝐨𝐩𝐞𝐞 𝐒𝐡𝐨𝐩𝐩𝐢𝐧𝐠 𝐀𝐩𝐩” để được gặp gỡ với những chuyên gia và kỹ sư cần mẫn đứng sau sự thành công của App Shopee - Ứng dụng Thương Mại Điện Tử (TMĐT) hàng đầu Đông Nam Á.➡️ Link đăng ký tham dự: https://bit.ly/Shopee_Weninar(Các bạn sinh viên Khoa KHKT Máy tính khi đăng ký và tham gia sẽ nhận được 5 ĐRL)Đồng hành cùng bạn:👦 Anh Cường Bùi - Engineering Team📙 Là Tiến sĩ Computer Science, đại học Iowa, Hoa kỳ. Anh Cường góp mặt trong nhiều công ty/ start-ups Công nghệ, anh từng đảm nhiệm vai trò Chief Solution Architect of AWS Consultant team tại FPT, sau đó là Director of Architecture and Infrastructure tại VinID. Bén duyên cùng e-commerce, anh tham gia vào đội ngũ thiết kế lại hệ thống Xử lý đơn hàng cốt lõi của Shopee để phục vụ lượng đơn hàng khủng trong các chiến dịch mua sắm  lớn 9.9, 11.11 của Shopee vào năm 2020 và 2021.👧 Chị Luận La - People Team📙 Với kinh nghiệm “chinh chiến” lâu năm cùng ngành e-Commerce và IT, chị Luận là gương mặt quen thuộc trong mảng tuyển dụng kỹ sư, phát triển sản phẩm. Hơn 6 năm gắn bó với SeaGroup, chị đã thành công tuyển dụng hàng trăm ứng viên cho Shopee, ShopeeFood, ShopeePay và Garena.❤️ Engineering Webinar hứa hẹn sẽ mang đến cho các bạn những chia sẻ thú vị đằng sau sự thành công của Shopee Shopping App và các cơ hội nghề nghiệp ở Shopee. Còn chần chừ gì mà không đặt ngay một lịch hẹn với anh Cường và chị Luận vào thứ Năm tuần sau nào!👉 Chọn “Tham gia” để cập nhật thông tin mới nhất từ sự kiện: https://fb.me/e/1Vkvvm99o', 10, '203', '2021-11-25 15:39:01', '9193');
 
 -- JobScholarshipInfo
 INSERT INTO `studentcare`.`jobscholarship_infor` (`ID`, `TITLE`, `CONTENT`, `ENTERPRISE`, `POLITICAL_STAFFID`) VALUES ('s1', 'scholarship 1', 'content s1', 'honda', '9193');
@@ -237,39 +244,137 @@ INSERT INTO REQUEST_COUNSELLING (`STUDENTID`,`REQUEST_TIMESTAMP`,`DATE`,`TIME`,`
 INSERT INTO REQUEST_COUNSELLING (`STUDENTID`,`REQUEST_TIMESTAMP`,`DATE`,`TIME`,`REQUEST_CONTENT`,`MEDICAL_STAFFID`,`RESPONSE_TIMESTAMP`,`RESPONSE_CONTENT`) VALUES ('99999','2021-09-24 08:51:01','2021-10-01','AFTERNOON','Quá chán nản','6938','2021-09-27 15:41:26','https://www.example.com/#brake');
 
 -- RegisterEvent
-INSERT INTO `studentcare`.`registerevent` (`STUDENTID`, `EVENTNAME`) VALUES ('12345', 'event1');
-INSERT INTO `studentcare`.`registerevent` (`STUDENTID`, `EVENTNAME`) VALUES ('22222', 'event1');
-INSERT INTO `studentcare`.`registerevent` (`STUDENTID`, `EVENTNAME`) VALUES ('10000', 'event1');
-INSERT INTO `studentcare`.`registerevent` (`STUDENTID`, `EVENTNAME`) VALUES ('88888', 'event1');
-INSERT INTO `studentcare`.`registerevent` (`STUDENTID`, `EVENTNAME`) VALUES ('33333', 'event1');
-INSERT INTO `studentcare`.`registerevent` (`STUDENTID`, `EVENTNAME`) VALUES ('24680', 'event1');
-INSERT INTO `studentcare`.`registerevent` (`STUDENTID`, `EVENTNAME`) VALUES ('13759', 'event1');
-INSERT INTO `studentcare`.`registerevent` (`STUDENTID`, `EVENTNAME`) VALUES ('50000', 'event1');
-INSERT INTO `studentcare`.`registerevent` (`STUDENTID`, `EVENTNAME`) VALUES ('77777', 'event1');
-INSERT INTO `studentcare`.`registerevent` (`STUDENTID`, `EVENTNAME`) VALUES ('50000', 'event2');
-INSERT INTO `studentcare`.`registerevent` (`STUDENTID`, `EVENTNAME`) VALUES ('24680', 'event2');
-INSERT INTO `studentcare`.`registerevent` (`STUDENTID`, `EVENTNAME`) VALUES ('99999', 'event2');
-INSERT INTO `studentcare`.`registerevent` (`STUDENTID`, `EVENTNAME`) VALUES ('30000', 'event2');
-INSERT INTO `studentcare`.`registerevent` (`STUDENTID`, `EVENTNAME`) VALUES ('40000', 'event2');
-INSERT INTO `studentcare`.`registerevent` (`STUDENTID`, `EVENTNAME`) VALUES ('66666', 'event2');
-INSERT INTO `studentcare`.`registerevent` (`STUDENTID`, `EVENTNAME`) VALUES ('12345', 'event2');
-INSERT INTO `studentcare`.`registerevent` (`STUDENTID`, `EVENTNAME`) VALUES ('11111', 'event3');
-INSERT INTO `studentcare`.`registerevent` (`STUDENTID`, `EVENTNAME`) VALUES ('70000', 'event3');
-INSERT INTO `studentcare`.`registerevent` (`STUDENTID`, `EVENTNAME`) VALUES ('24680', 'event3');
-INSERT INTO `studentcare`.`registerevent` (`STUDENTID`, `EVENTNAME`) VALUES ('44444', 'event3');
-INSERT INTO `studentcare`.`registerevent` (`STUDENTID`, `EVENTNAME`) VALUES ('67890', 'event3');
-INSERT INTO `studentcare`.`registerevent` (`STUDENTID`, `EVENTNAME`) VALUES ('22222', 'event3');
-INSERT INTO `studentcare`.`registerevent` (`STUDENTID`, `EVENTNAME`) VALUES ('80000', 'event3');
-INSERT INTO `studentcare`.`registerevent` (`STUDENTID`, `EVENTNAME`) VALUES ('66666', 'event3');
-INSERT INTO `studentcare`.`registerevent` (`STUDENTID`, `EVENTNAME`) VALUES ('55555', 'event4');
-INSERT INTO `studentcare`.`registerevent` (`STUDENTID`, `EVENTNAME`) VALUES ('22222', 'event4');
-INSERT INTO `studentcare`.`registerevent` (`STUDENTID`, `EVENTNAME`) VALUES ('80000', 'event4');
-INSERT INTO `studentcare`.`registerevent` (`STUDENTID`, `EVENTNAME`) VALUES ('99999', 'event4');
-INSERT INTO `studentcare`.`registerevent` (`STUDENTID`, `EVENTNAME`) VALUES ('77777', 'event4');
-INSERT INTO `studentcare`.`registerevent` (`STUDENTID`, `EVENTNAME`) VALUES ('10000', 'event4');
-INSERT INTO `studentcare`.`registerevent` (`STUDENTID`, `EVENTNAME`) VALUES ('11111', 'event4');
-INSERT INTO `studentcare`.`registerevent` (`STUDENTID`, `EVENTNAME`) VALUES ('13759', 'event4');
-INSERT INTO `studentcare`.`registerevent` (`STUDENTID`, `EVENTNAME`) VALUES ('50000', 'event4');
+INSERT INTO `registerevent` (`STUDENTID`, `EVENTNAME`) VALUES
+('10000', 'event1'),
+('10000', 'event3'),
+('10000', 'event4'),
+('10000', '🚘 BOSCH DEEP DIVE TO DRIVE 2 | STANDARDIZE SOFTWARE FRAMEWORK IN AUTOMOTIVE INDUSTRY 🚘'),
+('10000', '🚀[ELCA’s JAVA ONLINE WORKSHOP] EURO 2021 và hành trình của những chiếc vé🤩'),
+('10000', '🚌KMS VIRTUAL OFFICE TOUR 25/11✈️'),
+('11111', 'event3'),
+('11111', 'event4'),
+('11111', '🚀[ELCA’s JAVA ONLINE WORKSHOP] EURO 2021 và hành trình của những chiếc vé🤩'),
+('11111', '🤔[Làm thế nào để xây dựng các giải pháp nhanh và đáng tin cậy với Docker và Kubernetes]💯'),
+('11111', '🧑‍🏫[Engineering Webinar: Behind the Scenes of Shopee Shopping App]🧑‍💻'),
+('12345', 'event1'),
+('12345', 'event2'),
+('12345', 'event3'),
+('12345', '🚘 BOSCH DEEP DIVE TO DRIVE 2 | STANDARDIZE SOFTWARE FRAMEWORK IN AUTOMOTIVE INDUSTRY 🚘'),
+('12345', '🚀[ELCA’s JAVA ONLINE WORKSHOP] EURO 2021 và hành trình của những chiếc vé🤩'),
+('12345', '🚌KMS VIRTUAL OFFICE TOUR 25/11✈️'),
+('12345', '🧑‍🏫[Engineering Webinar: Behind the Scenes of Shopee Shopping App]🧑‍💻'),
+('13759', 'event1'),
+('13759', 'event2'),
+('13759', 'event4'),
+('13759', '🚀[ELCA’s JAVA ONLINE WORKSHOP] EURO 2021 và hành trình của những chiếc vé🤩'),
+('13759', '🤔[Làm thế nào để xây dựng các giải pháp nhanh và đáng tin cậy với Docker và Kubernetes]💯'),
+('13759', '🧑‍🏫[Engineering Webinar: Behind the Scenes of Shopee Shopping App]🧑‍💻'),
+('20000', 'event1'),
+('20000', 'event4'),
+('20000', '🚘 BOSCH DEEP DIVE TO DRIVE 2 | STANDARDIZE SOFTWARE FRAMEWORK IN AUTOMOTIVE INDUSTRY 🚘'),
+('20000', '🚀[ELCA’s JAVA ONLINE WORKSHOP] EURO 2021 và hành trình của những chiếc vé🤩'),
+('20000', '🤔[Làm thế nào để xây dựng các giải pháp nhanh và đáng tin cậy với Docker và Kubernetes]💯'),
+('20000', '🚌KMS VIRTUAL OFFICE TOUR 25/11✈️'),
+('22222', 'event1'),
+('22222', 'event3'),
+('22222', 'event4'),
+('22222', '🚀[ELCA’s JAVA ONLINE WORKSHOP] EURO 2021 và hành trình của những chiếc vé🤩'),
+('22222', '🤔[Làm thế nào để xây dựng các giải pháp nhanh và đáng tin cậy với Docker và Kubernetes]💯'),
+('22222', '🚌KMS VIRTUAL OFFICE TOUR 25/11✈️'),
+('22222', '🧑‍🏫[Engineering Webinar: Behind the Scenes of Shopee Shopping App]🧑‍💻'),
+('24680', 'event1'),
+('24680', 'event2'),
+('24680', 'event3'),
+('24680', '🚀[ELCA’s JAVA ONLINE WORKSHOP] EURO 2021 và hành trình của những chiếc vé🤩'),
+('24680', '🤔[Làm thế nào để xây dựng các giải pháp nhanh và đáng tin cậy với Docker và Kubernetes]💯'),
+('24680', '🚌KMS VIRTUAL OFFICE TOUR 25/11✈️'),
+('30000', 'event2'),
+('30000', 'event4'),
+('30000', '🤔[Làm thế nào để xây dựng các giải pháp nhanh và đáng tin cậy với Docker và Kubernetes]💯'),
+('30000', '🚌KMS VIRTUAL OFFICE TOUR 25/11✈️'),
+('30000', '🧑‍🏫[Engineering Webinar: Behind the Scenes of Shopee Shopping App]🧑‍💻'),
+('33333', 'event1'),
+('33333', 'event4'),
+('33333', '🚀[ELCA’s JAVA ONLINE WORKSHOP] EURO 2021 và hành trình của những chiếc vé🤩'),
+('33333', '🤔[Làm thế nào để xây dựng các giải pháp nhanh và đáng tin cậy với Docker và Kubernetes]💯'),
+('33333', '🚌KMS VIRTUAL OFFICE TOUR 25/11✈️'),
+('40000', 'event2'),
+('40000', 'event4'),
+('40000', '🚀[ELCA’s JAVA ONLINE WORKSHOP] EURO 2021 và hành trình của những chiếc vé🤩'),
+('40000', '🤔[Làm thế nào để xây dựng các giải pháp nhanh và đáng tin cậy với Docker và Kubernetes]💯'),
+('40000', '🚌KMS VIRTUAL OFFICE TOUR 25/11✈️'),
+('40000', '🧑‍🏫[Engineering Webinar: Behind the Scenes of Shopee Shopping App]🧑‍💻'),
+('44444', 'event3'),
+('44444', '🚘 BOSCH DEEP DIVE TO DRIVE 2 | STANDARDIZE SOFTWARE FRAMEWORK IN AUTOMOTIVE INDUSTRY 🚘'),
+('50000', 'event1'),
+('50000', 'event2'),
+('50000', 'event3'),
+('50000', 'event4'),
+('50000', '🚀[ELCA’s JAVA ONLINE WORKSHOP] EURO 2021 và hành trình của những chiếc vé🤩'),
+('50000', '🤔[Làm thế nào để xây dựng các giải pháp nhanh và đáng tin cậy với Docker và Kubernetes]💯'),
+('50000', '🚌KMS VIRTUAL OFFICE TOUR 25/11✈️'),
+('50000', '🧑‍🏫[Engineering Webinar: Behind the Scenes of Shopee Shopping App]🧑‍💻'),
+('55555', 'event1'),
+('55555', 'event4'),
+('55555', '🚀[ELCA’s JAVA ONLINE WORKSHOP] EURO 2021 và hành trình của những chiếc vé🤩'),
+('55555', '🤔[Làm thế nào để xây dựng các giải pháp nhanh và đáng tin cậy với Docker và Kubernetes]💯'),
+('55555', '🚌KMS VIRTUAL OFFICE TOUR 25/11✈️'),
+('55555', '🧑‍🏫[Engineering Webinar: Behind the Scenes of Shopee Shopping App]🧑‍💻'),
+('60000', 'event1'),
+('60000', 'event4'),
+('60000', '🚀[ELCA’s JAVA ONLINE WORKSHOP] EURO 2021 và hành trình của những chiếc vé🤩'),
+('60000', '🤔[Làm thế nào để xây dựng các giải pháp nhanh và đáng tin cậy với Docker và Kubernetes]💯'),
+('60000', '🚌KMS VIRTUAL OFFICE TOUR 25/11✈️'),
+('60000', '🧑‍🏫[Engineering Webinar: Behind the Scenes of Shopee Shopping App]🧑‍💻'),
+('66666', 'event2'),
+('66666', 'event3'),
+('66666', 'event4'),
+('66666', '🚀[ELCA’s JAVA ONLINE WORKSHOP] EURO 2021 và hành trình của những chiếc vé🤩'),
+('66666', '🤔[Làm thế nào để xây dựng các giải pháp nhanh và đáng tin cậy với Docker và Kubernetes]💯'),
+('66666', '🚌KMS VIRTUAL OFFICE TOUR 25/11✈️'),
+('66666', '🧑‍🏫[Engineering Webinar: Behind the Scenes of Shopee Shopping App]🧑‍💻'),
+('67890', 'event3'),
+('67890', 'event4'),
+('67890', '🚀[ELCA’s JAVA ONLINE WORKSHOP] EURO 2021 và hành trình của những chiếc vé🤩'),
+('67890', '🤔[Làm thế nào để xây dựng các giải pháp nhanh và đáng tin cậy với Docker và Kubernetes]💯'),
+('67890', '🚌KMS VIRTUAL OFFICE TOUR 25/11✈️'),
+('67890', '🧑‍🏫[Engineering Webinar: Behind the Scenes of Shopee Shopping App]🧑‍💻'),
+('70000', 'event1'),
+('70000', 'event3'),
+('70000', '🚀[ELCA’s JAVA ONLINE WORKSHOP] EURO 2021 và hành trình của những chiếc vé🤩'),
+('70000', '🤔[Làm thế nào để xây dựng các giải pháp nhanh và đáng tin cậy với Docker và Kubernetes]💯'),
+('70000', '🚌KMS VIRTUAL OFFICE TOUR 25/11✈️'),
+('70000', '🧑‍🏫[Engineering Webinar: Behind the Scenes of Shopee Shopping App]🧑‍💻'),
+('77777', 'event1'),
+('77777', 'event4'),
+('80000', 'event2'),
+('80000', 'event3'),
+('80000', 'event4'),
+('80000', '🚀[ELCA’s JAVA ONLINE WORKSHOP] EURO 2021 và hành trình của những chiếc vé🤩'),
+('80000', '🤔[Làm thế nào để xây dựng các giải pháp nhanh và đáng tin cậy với Docker và Kubernetes]💯'),
+('80000', '🚌KMS VIRTUAL OFFICE TOUR 25/11✈️'),
+('80000', '🧑‍🏫[Engineering Webinar: Behind the Scenes of Shopee Shopping App]🧑‍💻'),
+('88888', 'event1'),
+('88888', 'event2'),
+('88888', '🚀[ELCA’s JAVA ONLINE WORKSHOP] EURO 2021 và hành trình của những chiếc vé🤩'),
+('88888', '🤔[Làm thế nào để xây dựng các giải pháp nhanh và đáng tin cậy với Docker và Kubernetes]💯'),
+('88888', '🚌KMS VIRTUAL OFFICE TOUR 25/11✈️'),
+('88888', '🧑‍🏫[Engineering Webinar: Behind the Scenes of Shopee Shopping App]🧑‍💻'),
+('90000', 'event1'),
+('90000', 'event3'),
+('90000', 'event4'),
+('90000', '🚀[ELCA’s JAVA ONLINE WORKSHOP] EURO 2021 và hành trình của những chiếc vé🤩'),
+('90000', '🤔[Làm thế nào để xây dựng các giải pháp nhanh và đáng tin cậy với Docker và Kubernetes]💯'),
+('90000', '🚌KMS VIRTUAL OFFICE TOUR 25/11✈️'),
+('90000', '🧑‍🏫[Engineering Webinar: Behind the Scenes of Shopee Shopping App]🧑‍💻'),
+('99999', 'event1'),
+('99999', 'event2'),
+('99999', 'event4'),
+('99999', '🚀[ELCA’s JAVA ONLINE WORKSHOP] EURO 2021 và hành trình của những chiếc vé🤩'),
+('99999', '🤔[Làm thế nào để xây dựng các giải pháp nhanh và đáng tin cậy với Docker và Kubernetes]💯'),
+('99999', '🚌KMS VIRTUAL OFFICE TOUR 25/11✈️'),
+('99999', '🧑‍🏫[Engineering Webinar: Behind the Scenes of Shopee Shopping App]🧑‍💻');
+
 
 -- Provide_IncentiveScholarship_Result
 INSERT INTO `studentcare`.`provide_incentivescholarship_result` (`STUDENTID`, `NAME`) VALUES ('11111', 'scholarship201');

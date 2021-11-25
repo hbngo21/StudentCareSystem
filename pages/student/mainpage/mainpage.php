@@ -39,23 +39,15 @@ if (isset($_SESSION['student'])) {
 </head>
 
 <body>
-
-  <header>
-    <?php require_once '../navbar.php'; ?>
-  </header>
-
-
+  <?php require_once '../navbar.php'; ?>
   <main>
-
     <div class="banner" style="margin-top:4rem;height:25rem">
       <div class="container">
-        <h1>Chào mừng đến với Trang chủ </h1>
-        <p>Cung cấp các thông tin cần thiết cho sinh viên.</p>
+        <h1>Chào mừng bạn đến với hệ thống StudentCare</h1>
+        <div style="font-size: 1.5rem;">Cung cấp các dịch vụ cần thiết cho sinh viên</div>
       </div>
     </div>
-
     <div class="container pt-3 text-center" id="service" style="margin-top:3rem">
-      <h1>Services</h1>
       <div class="row">
         <a href="../schoolar/schoolar.php">
           <div class="col-md-4 col-sm-4">
