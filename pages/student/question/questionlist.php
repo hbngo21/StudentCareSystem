@@ -152,7 +152,17 @@ if (isset($_SESSION['student'])) {
                     echo "<td style='text-align: center'>" . htmlspecialchars($row['timestamp']) . "</td>";
                     echo "<td style='text-align: center'>
                         <a href='./moredetailquestion.php?id=" . $row['id'] . "'>" . $row['title'] . "</a></td>";
-                    echo "<td style='text-align: center'>" . htmlspecialchars($row['type']) . "</td>";
+                    switch ($row['type']) {
+                        case 'medical':
+                            echo "<td class='align-middle' style='text-align: center'> Y tế </td>";
+                            break;
+                        case 'trainingdepartment':
+                            echo "<td class='align-middle' style='text-align: center'> Công tác - Chính trị Sinh viên </td>";
+                            break;
+                        case 'political':
+                            echo "<td class='align-middle' style='text-align: center'> Đào tạo </td>";
+                            break;
+                    }
                     echo "</tr>
                         </tbody>";
                 }
