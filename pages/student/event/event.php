@@ -55,6 +55,7 @@ if ($result->num_rows > 0) {
 
         .page-item:hover {
             color: black;
+            text-decoration: none;
         }
 
         .current-page {

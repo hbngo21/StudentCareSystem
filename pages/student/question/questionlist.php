@@ -12,6 +12,13 @@ if (isset($_SESSION['student'])) {
     $logined = true;
     $studentid = $_SESSION['student'];
 } else $logined = false;
+
+if (isset($_REQUEST['ok'])) {
+    $filter_isanswered = addslashes($_GET['isanswered']);
+    if (empty($filter_isanswered)) $filter_isanswered = '';
+} else {
+    $filter_isanswered = '';
+};
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -62,7 +69,7 @@ if (isset($_SESSION['student'])) {
         }
     </style>
 
-    <title>Danh sách câu hỏi | BVMT</title>
+    <title>Danh sách câu hỏi</title>
 </head>
 
 <body style="background-color: #f3f4f6;">
@@ -79,9 +86,9 @@ if (isset($_SESSION['student'])) {
                     Đặt câu hỏi
                 </a>
                 <select class="form-control mx-2" name="isanswered" style="width: 30%;">
-                    <option value="">Tất cả</option>
-                    <option value="answered">Đã trả lời</option>
-                    <option value="notanswered">Chưa trả lời</option>
+                    <option value="" <?= $filter_isanswered == '' ? 'selected' : '' ?>>Tất cả</option>
+                    <option value="answered" <?= $filter_isanswered == 'answered' ? 'selected' : '' ?>>Đã trả lời</option>
+                    <option value="notanswered" <?= $filter_isanswered == 'notanswered' ? 'selected' : '' ?>>Chưa trả lời</option>
                 </select>
                 <input class="btn mb-2" type="submit" name="ok" value="Lọc">
             </form>
@@ -165,10 +172,10 @@ if (isset($_SESSION['student'])) {
                         case 'medical':
                             echo "<td class='align-middle' style='text-align: center'> Y tế </td>";
                             break;
-                        case 'trainingdepartment':
+                        case 'political':
                             echo "<td class='align-middle' style='text-align: center'> Công tác - Chính trị Sinh viên </td>";
                             break;
-                        case 'political':
+                        case 'trainingdepartment':
                             echo "<td class='align-middle' style='text-align: center'> Đào tạo </td>";
                             break;
                     }

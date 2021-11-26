@@ -6,6 +6,12 @@ if (isset($_SESSION['student'])) {
   $logined = true;
   $studentid = $_SESSION['student'];
 } else $logined = false;
+
+if (isset($_REQUEST['ok'])) {
+  $filter_status = $_POST['filter'];
+} else {
+  $filter_status = '';
+};
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -191,7 +197,7 @@ if (isset($_SESSION['student'])) {
   <?php
   require_once('../navbar.php')
   ?>
-  <div class="wrapper" style="margin-left: 30rem;">
+  <div class="wrapper pt-1" style="margin-left: 30rem; border-radius: .5rem;">
     <div class="title">
       Đơn yêu cầu dịch vụ
     </div>
@@ -199,7 +205,7 @@ if (isset($_SESSION['student'])) {
       <div class="form">
         <div class="inputfield">
           <label>Yêu cầu</label>
-          <select name="id" style="width: 28rem" required>
+          <select class='custom-select' name="id" style="width: 28rem" required>
             <option selected disabled value="">Chọn yêu cầu dịch vụ</option>
             <option value="1">Đăng kí in bảng điểm học tập</option>
             <option value="2">Đăng kí nhận bằng tốt nghiệp</option>
@@ -252,10 +258,10 @@ if (isset($_SESSION['student'])) {
         <form class="form-inline" method="POST">
           <div class="form-group mx-sm-3 mb-2">
             <select class="form-control" name="filter">
-              <option value="all">Hiển thị tất cả</option>
-              <option value="waiting">Yêu cầu chờ phản hồi</option>
-              <option value="confirm">Yêu cầu đã xác nhận</option>
-              <option value="done">Yêu cầu đã giải quyết</option>
+              <option value="all" <?= $filter_status == '' ? 'selected' : '' ?>>Hiển thị tất cả</option>
+              <option value="waiting" <?= $filter_status == 'waiting' ? 'selected' : '' ?>>Yêu cầu chờ xác nhận</option>
+              <option value="confirm" <?= $filter_status == 'confirm' ? 'selected' : '' ?>>Yêu cầu trong tiến trình</option>
+              <option value="done" <?= $filter_status == 'done' ? 'selected' : '' ?>>Yêu cầu đã giải quyết</option>
             </select>
           </div>
           <input class="btn mb-2" type="submit" name="ok" value="Lọc">

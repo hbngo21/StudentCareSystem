@@ -5,6 +5,7 @@ if (isset($_SESSION['student'])) {
   $logined = true;
   $studentid = $_SESSION['student'];
 } else $logined = false;
+
 ?>
 
 <!DOCTYPE html>
@@ -39,6 +40,7 @@ if (isset($_SESSION['student'])) {
 
     .page-item:hover {
       color: black;
+      text-decoration: none;
     }
 
     .current-page {

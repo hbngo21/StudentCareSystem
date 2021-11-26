@@ -20,6 +20,11 @@ if ($stmt = $mysqli->prepare($sql)) {
     }
 }
 $stmt->close();
+
+if (isset($_REQUEST['ok'])) {
+    $filter_status = $_POST['filter'];
+} else $filter_status = 'all';
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -54,6 +59,7 @@ $stmt->close();
 
         .page-item:hover {
             color: black;
+            text-decoration: none;
         }
 
         .current-page {
@@ -95,7 +101,6 @@ $stmt->close();
         }
     </style>
     <title>Danh sách yêu cầu tư vấn tâm lý</title>
-    </title>
 </head>
 
 <body style="background-color: #f3f4f6;">
@@ -113,9 +118,9 @@ $stmt->close();
             </div>
             <form class="col-md-6 mb-2 d-flex justify-content-end" method="POST">
                 <select class="form-control mx-2" name="filter" style="width: 30%;">
-                    <option value="all">Tất cả</option>
-                    <option value="waiting">Chờ phản hồi</option>
-                    <option value="done">Đã giải quyết</option>
+                    <option value="all" <?= $filter_status == 'all' ? 'selected' : '' ?>>Tất cả</option>
+                    <option value="waiting" <?= $filter_status == 'waiting' ? 'selected' : '' ?>>Chờ phản hồi</option>
+                    <option value="done" <?= $filter_status == 'done' ? 'selected' : '' ?>>Đã giải quyết</option>
                 </select>
                 <input class="btn mb-2" type="submit" name="ok" value="Lọc">
             </form>
@@ -182,7 +187,7 @@ $stmt->close();
                         echo "<td style='text-align: center'>" . date("d-m-Y H:i:s", strtotime($row['RESPONSE_TIMESTAMP'])) . "</td>";
                     else echo "<td style='text-align: center'></td>";
                     if (empty($row['MEDICAL_STAFFID']))
-                        echo "<td style='text-align: center'><a href='./response.php?studentid=" . $row['STUDENTID'] . "&timestamp=" . $row['REQUEST_TIMESTAMP'] . "'><button class='btn'".($typeOfStaff != 'medicalstaff'? 'disabled': '').">Phản hồi</button></a></td>";
+                        echo "<td style='text-align: center'><a href='./response.php?studentid=" . $row['STUDENTID'] . "&timestamp=" . $row['REQUEST_TIMESTAMP'] . "'><button class='btn'" . ($typeOfStaff != 'medicalstaff' ? 'disabled' : '') . ">Phản hồi</button></a></td>";
                     else echo "<td style='text-align: center; color: red'><b>Đã giải quyết</b></td>";
                     echo "</tr>
                         </tbody>";

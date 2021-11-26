@@ -13,6 +13,16 @@ if (isset($_SESSION['staff'])) {
     $logined = true;
     $staffid = $_SESSION['staff'];
 } else $logined = false;
+
+if (isset($_REQUEST['ok'])) {
+    $filter_search = addslashes($_GET['search']);
+    $filter_isanswered = addslashes($_GET['isanswered']);
+    if (empty($filter_search)) $filter_search = '';
+    if (empty($filter_isanswered)) $filter_isanswered = '';
+} else {
+    $filter_search = '';
+    $filter_isanswered = '';
+};
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -47,6 +57,7 @@ if (isset($_SESSION['staff'])) {
 
         .page-item:hover {
             color: black;
+            text-decoration: none;
         }
 
         .current-page {
@@ -63,8 +74,7 @@ if (isset($_SESSION['staff'])) {
         }
     </style>
 
-    <title>Danh sách câu hỏi | BVMT</title>
-    <link rel="icon" sizes="192x192" href="../../avatarjpg.jpg">
+    <title>Danh sách câu hỏi</title>
 </head>
 
 <body style="background-color: #f3f4f6;">
@@ -79,16 +89,16 @@ if (isset($_SESSION['staff'])) {
             <form class="col-md-6 mb-2 d-flex justify-content-end" action="" method="get">
                 <label for="search" class="align-middle mt-1">Loại: </label>
                 <select class="form-control mx-2" name="search" style="width: 30%;">
-                    <option value="">Tất cả</option>
-                    <option value="political">Công tác - Chính trị Sinh viên</option>
-                    <option value="trainingdepartment">Đào tạo</option>
-                    <option value="medical">Y tế</option>
+                    <option value="" <?= $filter_search == '' ? 'selected' : '' ?>>Tất cả</option>
+                    <option value="political" <?= $filter_search == 'political' ? 'selected' : '' ?>>Công tác - Chính trị Sinh viên</option>
+                    <option value="trainingdepartment" <?= $filter_search == 'trainingdepartment' ? 'selected' : '' ?>>Đào tạo</option>
+                    <option value="medical" <?= $filter_search == 'medical' ? 'selected' : '' ?>>Y tế</option>
                 </select>
                 <label for="search" class="align-middle mt-1">Trạng thái: </label>
                 <select class="form-control mx-2" name="isanswered" style="width: 30%;">
-                    <option value="">Tất cả</option>
-                    <option value="answered">Đã trả lời</option>
-                    <option value="notanswered">Chưa trả lời</option>
+                    <option value="" <?= $filter_isanswered == '' ? 'selected' : '' ?>>Tất cả</option>
+                    <option value="answered" <?= $filter_isanswered == 'answered' ? 'selected' : '' ?>>Đã trả lời</option>
+                    <option value="notanswered" <?= $filter_isanswered == 'notanswered' ? 'selected' : '' ?>>Chưa trả lời</option>
                 </select>
                 <input class="btn mb-2" type="submit" name="ok" value="Lọc">
             </form>
@@ -197,10 +207,10 @@ if (isset($_SESSION['staff'])) {
                         case 'medical':
                             echo "<td class='align-middle' style='text-align: center'> Y tế </td>";
                             break;
-                        case 'trainingdepartment':
+                        case 'political':
                             echo "<td class='align-middle' style='text-align: center'> Công tác - Chính trị Sinh viên </td>";
                             break;
-                        case 'political':
+                        case 'trainingdepartment':
                             echo "<td class='align-middle' style='text-align: center'> Đào tạo </td>";
                             break;
                     }

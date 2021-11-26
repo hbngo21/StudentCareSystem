@@ -119,7 +119,7 @@ if (isset($_SESSION['student'])) {
                     <div class="card-text">
                         <?php while ($row = $q->fetch()) : ?>
                             <div class="">Thời gian: <?php echo htmlspecialchars($row['timestamp']) ?></div>
-                            <div class="">Tên sinh viên: <?php echo htmlspecialchars($row['sname']) ?></div>
+                            <div class="">Nhân viên phản hồi: <?php echo htmlspecialchars($row['sname']) ?></div>
                             <div class="">Nội dung: <?php echo htmlspecialchars($row['content']) ?></div></br>
                         <?php endwhile; ?>
                     </div>
