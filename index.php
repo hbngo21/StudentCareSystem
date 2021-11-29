@@ -23,12 +23,18 @@
         padding: 5%;
         box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">
             <h3 style="width: 100%; margin: 10px;">Bạn muốn đăng nhập với tư cách là: </h3>
-            <button class="btn" style="padding: 10px 20px; margin: 10px; font-size: 1.5rem;" onclick="enterStaff()">
-                Nhân viên
-            </button>
-            <button class="btn" style="padding: 10px 20px; margin: 10px; font-size: 1.5rem;" onclick="enterStudent()">
-                Sinh viên
-            </button>
+            <div class="row">
+                <div class="col-sm-6 text-center">
+                    <button class="btn" style="margin: 10px; font-size: 1.5rem;" onclick="enterStaff()">
+                    Nhân viên
+                    </button>
+                </div>
+                <div class="col-sm-6 text-center">
+                    <button class="btn" style="margin: 10px; font-size: 1.5rem;" onclick="enterStudent()">
+                    Sinh viên
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
     <script>

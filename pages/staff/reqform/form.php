@@ -166,7 +166,9 @@ if (isset($_REQUEST['ok'])) {
                     echo "<tbody>
                         <tr>";
                     echo "<td style='text-align: center'>" . $i++ . "</td>";
-                    echo "<td style='text-align: center'>" . $row['STUDENTID'] . "</td>";
+                    $sql3 = "SELECT CONCAT(LASTNAME,' ',FIRSTNAME) AS NAME FROM STUDENT WHERE ID =" . $row['STUDENTID'] . "";
+                    $result3 = $mysqli->query($sql3);
+                    echo "<td style='text-align: center'>" . mysqli_fetch_assoc($result3)['NAME'] . "</td>";
                     echo "<td style='text-align: center'>" . date("d-m-Y H:i:s", strtotime($row['TIMESTAMP'])) . "</td>";
                     echo "<td style='text-align: center'>";
                     if ($row['STATUS'] != 'Completed') {
@@ -201,11 +203,11 @@ if (isset($_REQUEST['ok'])) {
                     } else echo "<td style='text-align: center'> </td>";
 
                     if ($row['STATUS'] == 'Waiting')
-                        echo "<td style='text-align: center; color: rgb(233, 205, 44)'><b>Chờ xác nhận</b></td>";
+                        echo "<td style='text-align: center; color: red'><b>Chờ xác nhận</b></td>";
                     elseif ($row['STATUS'] == 'In Progress')
-                        echo "<td style='text-align: center; color: green'><b>Trong tiến trình</b></td>";
+                        echo "<td style='text-align: center; color: rgb(233, 205, 44)'><b>Trong tiến trình</b></td>";
                     else
-                        echo "<td style='text-align: center; color: red'><b>Đã giải quyết</b></td>";
+                        echo "<td style='text-align: center; color: green'><b>Đã giải quyết</b></td>";
 
 
 

@@ -235,3 +235,14 @@ body {
   text-transform: uppercase;
 }
 /* ================================================== */
+
+table thead{
+  background: #ef9273; 
+  color: white;
+  text-align: center;
+}
+
+table tbody{
+  background: white;
+  text-align: center;
+}

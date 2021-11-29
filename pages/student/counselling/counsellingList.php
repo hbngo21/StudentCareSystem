@@ -97,7 +97,7 @@ if (isset($_SESSION['student'])) {
     Chúng tôi luôn ở đây để hỗ trợ bạn.
   </div>
   <div style="padding-bottom: 100px; margin-left: 30px; margin-right: 30px;" class="px-5">
-    <div class="row">
+    <div class="row" style="padding-bottom: 10px">
       <div class="col-md-6">
         <h4 style="margin-bottom: 20px; margin-top: 70px;">Các yêu cầu tư vấn của bạn</h4>
       </div>
@@ -128,39 +128,39 @@ if (isset($_SESSION['student'])) {
                     class='table table-bordered table-hover align-middle'
                     style='width: 100%;'
                   >
-                    <thead class = 'align-middle'>
+                    <thead>
                       <tr>
-                        <th style='text-align: center'>Ngày đăng ký</th>
-                        <th style='text-align: center'>Ngày yêu cầu tư vấn</th>
-                        <th style='text-align: center'>Thời gian yêu cầu tư vấn</th>
-                        <th style='text-align: center'>Nội dung yêu cầu</th>
-                        <th style='text-align: center'>Nhân viên phản hồi</th>
-                        <th style='text-align: center'>Thời gian phản hồi</th>
-                        <th style='text-align: center'>Tình trạng</th>
+                        <th class = 'align-middle' >Ngày đăng ký</th>
+                        <th class = 'align-middle' >Ngày yêu cầu tư vấn</th>
+                        <th class = 'align-middle' >Thời gian yêu cầu tư vấn</th>
+                        <th class = 'align-middle' >Nội dung yêu cầu</th>
+                        <th class = 'align-middle' >Nhân viên phản hồi</th>
+                        <th class = 'align-middle' >Thời gian phản hồi</th>
+                        <th class = 'align-middle' >Tình trạng</th>
                       </tr>
                     </thead>";
       while ($row = $result->fetch_assoc()) {
         echo "<tbody>
                         <tr>";
-        echo "<td style='text-align: center'>" . date("d-m-Y H:i:s", strtotime($row['REQUEST_TIMESTAMP'])) . "</td>";
-        echo "<td style='text-align: center'>" . date("d-m-Y", strtotime($row['DATE'])) . "</td>";
+        echo "<td class = 'align-middle'>" . date("d-m-Y H:i:s", strtotime($row['REQUEST_TIMESTAMP'])) . "</td>";
+        echo "<td class = 'align-middle' >" . date("d-m-Y", strtotime($row['DATE'])) . "</td>";
         if ($row['TIME'] == 'AFTERNOON')
-          echo "<td style='text-align: center'>CHIỀU (14:00 - 16:00)</td>";
-        else echo "<td style='text-align: center'>SÁNG (8:00 - 10:00)</td>";
+          echo "<td class = 'align-middle'>CHIỀU (14:00 - 16:00)</td>";
+        else echo "<td class = 'align-middle' >SÁNG (8:00 - 10:00)</td>";
         if (!empty($row['MEDICAL_STAFFID']))
-          echo "<td style='text-align: center'><a class='text-decoration-none' href='./counsellingDetail.php?timestamp=" . $row['REQUEST_TIMESTAMP'] . "'>" . $row['REQUEST_CONTENT'] . "</a></td>";
-        else echo "<td style='text-align: center'>" . $row['REQUEST_CONTENT'] . "</td>";
+          echo "<td class = 'align-middle' ><a class='text-decoration-none' href='./counsellingDetail.php?timestamp=" . $row['REQUEST_TIMESTAMP'] . "'>" . $row['REQUEST_CONTENT'] . "</a></td>";
+        else echo "<td class = 'align-middle' >" . $row['REQUEST_CONTENT'] . "</td>";
         if (!empty($row['MEDICAL_STAFFID'])) {
           $sql2 = "SELECT CONCAT(LASTNAME,' ',FIRSTNAME) AS NAME FROM STAFF WHERE ID =" . $row['MEDICAL_STAFFID'] . "";
           $result2 = $mysqli->query($sql2);
-          echo "<td style='text-align: center'>" . mysqli_fetch_assoc($result2)['NAME'] . "</a></td>";
-        } else echo "<td style='text-align: center'></td>";
+          echo "<td class = 'align-middle' >" . mysqli_fetch_assoc($result2)['NAME'] . "</a></td>";
+        } else echo "<td class = 'align-middle' ></td>";
         if (!empty($row['MEDICAL_STAFFID']))
-          echo "<td style='text-align: center'>" . date("d-m-Y H:i:s", strtotime($row['RESPONSE_TIMESTAMP'])) . "</td>";
-        else echo "<td style='text-align: center'></td>";
+          echo "<td class = 'align-middle' >" . date("d-m-Y H:i:s", strtotime($row['RESPONSE_TIMESTAMP'])) . "</td>";
+        else echo "<td class = 'align-middle' ></td>";
         if (empty($row['MEDICAL_STAFFID']))
-          echo "<td style='text-align: center; color: red'><b>Chờ phản hồi</b></td>";
-        else echo "<td style='text-align: center; color: red'><b>Đã giải quyết</b></td>";
+          echo "<td class = 'align-middle' style='text-align: center; color: red'><b>Chờ phản hồi</b></td>";
+        else echo "<td class = 'align-middle' ><b>Đã giải quyết</b></td>";
         echo "</tr>
                         </tbody>";
       }

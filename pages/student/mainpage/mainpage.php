@@ -23,11 +23,11 @@ if (isset($_SESSION['student'])) {
   <link rel="stylesheet" href="../../../css/main.css">
   <style>
     .banner {
-      background: #FFBC97;
       text-align: center;
       color: white;
       padding-top: 140px;
       padding-bottom: 140px;
+      background-image: url("https://i.pinimg.com/736x/e0/41/f6/e041f6273953dd89092ad8ce15702350.jpg");
     }
 
     .row a {
@@ -41,7 +41,7 @@ if (isset($_SESSION['student'])) {
 <body>
   <?php require_once '../navbar.php'; ?>
   <main>
-    <div class="banner" style="margin-top:4rem;height:25rem">
+    <div class="banner" style="margin-top:4rem;height: 25rem">
       <div class="container">
         <h1>Chào mừng bạn đến với hệ thống StudentCare</h1>
         <div style="font-size: 1.5rem;">Cung cấp các dịch vụ cần thiết cho sinh viên</div>

@@ -25,11 +25,11 @@ if (isset($_SESSION['staff'])) {
   <link rel="stylesheet" href="../../../css/main.css">
   <style>
     .banner {
-      background: #FFBC97;
       text-align: center;
       color: white;
       padding-top: 140px;
       padding-bottom: 140px;
+      background-image: url("https://i.pinimg.com/736x/e0/41/f6/e041f6273953dd89092ad8ce15702350.jpg");
     }
 
     .row a {
