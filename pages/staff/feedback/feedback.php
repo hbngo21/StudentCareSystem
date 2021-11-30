@@ -55,6 +55,31 @@ if (isset($_SESSION['staff'])) {
             font-weight: 400;
             font-size: 13px;
         }
+
+        .banner {
+            height: 200px;
+            margin: 100px 30px 3rem;
+
+            /* Display */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            font-size: 1.8rem;
+            font-weight: 500;
+
+            color: var(--text);
+
+            background-color: white;
+            border-radius: 1rem;
+            box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+        }
+
+        @media only screen and (max-width: 540px) {
+            .banner {
+                font-size: 1.5rem;
+            }
+        }
     </style>
     <title>Danh sách đánh giá</title>
     </title>
@@ -65,10 +90,10 @@ if (isset($_SESSION['staff'])) {
     <?php
     require_once('../navbar.php')
     ?>
-    <div style="padding-top: 100px; padding-bottom: 100px;" class="px-5">
-        <div class="text-center mt-5">
-            <h4>CÁC ĐÁNH GIÁ CỦA SINH VIÊN</h4>
-        </div>
+    <div class="banner text-center">
+        Các đánh giá của sinh viên
+    </div>
+    <div style="padding-bottom: 100px;" class="px-5">
         <?php
         if (!isset($_GET['action'])) {
             $item_per_page = !empty($_GET['per_page']) ? $_GET['per_page'] : 10;
@@ -104,7 +129,7 @@ if (isset($_SESSION['staff'])) {
                 echo "<td style='text-align: center'>" . date("d-m-Y H:i:s", strtotime($row['TIMESTAMP'])) . "</td>";
                 $sql2 = "SELECT CONCAT(LASTNAME,' ',FIRSTNAME) AS NAME FROM STUDENT WHERE ID =" . $row['STUDENTID'] . "";
                 $result2 = $mysqli->query($sql2);
-                echo "<td style='text-align: center'>" . mysqli_fetch_assoc($result2)['NAME'] . " - " . $row['STUDENTID'] . "</a></td>";
+                echo "<td style='text-align: center'>" . mysqli_fetch_assoc($result2)['NAME'] ."</a></td>";
                 echo "<td style='text-align: center'>
                             <button type='button' class='viewFeedback' data-toggle='modal' data-target='#exampleModal" . $i . "'>" . $row['TITLE'] .
                     "</button>
