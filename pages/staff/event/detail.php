@@ -50,10 +50,12 @@ $stmt->close();
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
 
+    <!--Animation.css-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+
     <!-- user.css -->
     <link rel="stylesheet" href="/css/main.css">
     <title>Sự kiện</title>
-    </title>
 </head>
 
 <body style="background-color: #f3f4f6;">
@@ -61,16 +63,17 @@ $stmt->close();
     <?php
     require_once "../navbar.php";
     ?>
-    <div class="row event__detail">
+    <!-- Event detail -->
+    <div class="row event__detail animate__animated animate__fadeIn">
         <div class="col-md-4 pt-2"><img src="https://media.istockphoto.com/photos/chalkboard-and-colored-balloons-on-a-wooden-background-picture-id1263908025?b=1&k=20&m=1263908025&s=170667a&w=0&h=DDeDvtWSu99Z5yKrbx0X3M26uHGP1SCBV_-zXKS-FSQ=" class="img-fluid rounded b-shadow-a" width="100%" alt=""></div>
         <div class="col-md-8 pt-2">
-            <div class="event__detail__title mt-2"><span><?= $name ?></span>
-                <div class="trainingpoint"><?= $trainingpoint ?> đrl</div>
+            <div class="event__detail__title mt-2"><?= $name ?></div>
+            <div><span style="font-weight: bold;">Điểm rèn luyện: </span><div class="trainingpoint d-inline-block"><?= $trainingpoint ?></div>
             </div>
             <div class="mt-2">
-                <div class="event__item-info mt-1"><i class="far fa-calendar-alt"></i><span>Ngày tạo: <?= $timestamp ?></span></div>
-                <div class="event__item-info mt-1"><i class="fas fa-user-edit"></i><span>Nhân viên tạo: <?= $name_staff ?></span></div>
-                <div class="event__item-info mt-1"><i class="far fa-users"></i><span>Số người tham gia: <?= $num_register ?>/<?= $limited ?></span></div>
+                <div class="event__item-info mt-1"><i class="far fa-calendar-alt"></i><span style="font-weight: bold;">Ngày tạo: </span><span><?= $timestamp ?></span></div>
+                <div class="event__item-info mt-1"><i class="fas fa-user-edit"></i><span style="font-weight: bold;">Ngày viên tạo: </span><span><?= $name_staff ?></span></div>
+                <div class="event__item-info mt-1"><i class="far fa-users"></i><span style="font-weight: bold;">Số sinh viên tham gia: </span><span><?= $num_register ?>/<?= $limited ?></span></div>
             </div>
             <div class="mt-3">
                 <h4>Nội dung:</h4>

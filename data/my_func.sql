@@ -12,6 +12,17 @@ END $$
 DELIMITER ;
 
 DELIMITER $$
+DROP PROCEDURE IF EXISTS get_events_info_by_search $$
+CREATE PROCEDURE get_events_info_by_search(search varchar(255))
+BEGIN
+	select name, limited, trainingpoint, content, timestamp, concat(lastname,' ',firstname) as name_staff, FUNC_NUM_STUDENT_REGISTER_EVENT(name) as num_register
+    from event join staff on political_staffid=id
+    WHERE name LIKE search OR trainingpoint LIKE search
+    order by timestamp desc;
+END $$
+DELIMITER ;
+
+DELIMITER $$
 DROP PROCEDURE IF EXISTS get_detail_event $$
 CREATE PROCEDURE get_detail_event(ename varchar(255))
 BEGIN

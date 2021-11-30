@@ -26,10 +26,9 @@ if ($action == 'create-event') { // Create event
         $param_timestamp = $timestamp;
         $param_political_staffid = $political_staffid;
         if ($stmt->execute()) {
-            echo "Tạo thành công!!!";
+            echo "Tạo thành công!";
         } else {
-            // echo "Something went wrong!!!";
-            echo $stmt->error;
+            echo "Tên sự kiện đã tồn tại! Vui lòng tạo sự kiện mới...";
         }
     }
 } else if ($action == 'remove-event') { // Remove event
@@ -43,9 +42,8 @@ if ($action == 'create-event') { // Create event
 
         $param_name = $name;
         if ($stmt->execute()) {
-            echo "Xóa thành công!!!";
+            echo "Xóa thành công!";
         } else {
-            // echo "Something went wrong!!!";
             echo $stmt->error;
         }
     }

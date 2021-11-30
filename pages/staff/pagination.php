@@ -1,4 +1,4 @@
-<div id="pagination">
+<div id="pagination" class="col-12">
     <?php
     if ($current_page > 3) {
         $first_page = 1;
@@ -9,7 +9,7 @@
     if ($current_page > 1) {
         $prev_page = $current_page - 1;
     ?>
-        <a class="page-item" href="?per_page=<?= $item_per_page ?>&page=<?= $prev_page ?>">Prev</a>
+        <a class="page-item" href="?per_page=<?= $item_per_page ?>&page=<?= $prev_page ?>"><i class="fas fa-angle-double-left"></i></a>
     <?php }
     ?>
     <?php for ($num = 1; $num <= $totalPages; $num++) { ?>
@@ -25,7 +25,7 @@
     if ($current_page < $totalPages - 1) {
         $next_page = $current_page + 1;
     ?>
-        <a class="page-item" href="?per_page=<?= $item_per_page ?>&page=<?= $next_page ?>">Next</a>
+        <a class="page-item" href="?per_page=<?= $item_per_page ?>&page=<?= $next_page ?>"><i class="fas fa-angle-double-right"></i></a>
     <?php
     }
     if ($current_page < $totalPages - 3) {

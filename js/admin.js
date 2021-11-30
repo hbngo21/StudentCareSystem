@@ -103,13 +103,15 @@ function checkContent(content, validate) {
 
 // Delete event
 function removeEvent(event_name) {
-  //   console.log(event_name);
-  let action = 'action.php?action=remove-event&event_name=' + event_name;
-  $.get(action, function (data, status) {
-    alert(data);
-    window.location.href = 'event.php';
-  });
+  if (confirm('Bạn có chắc chắn muốn xóa?')) {
+    let action = 'action.php?action=remove-event&event_name=' + event_name;
+    $.get(action, function (data, status) {
+      alert(data);
+      window.location.href = 'event.php';
+    });
+  }
 }
+
 function logout() {
   console.log('logout');
   xmlhttp = new XMLHttpRequest();
@@ -120,4 +122,24 @@ function logout() {
     }
   };
   xmlhttp.send();
+}
+
+function searchProducts(e) {
+  let value = document.getElementById('searchText').value;
+  if (value == '') return false;
+  if (e.keyCode === 13) {
+    //Search for products here
+    let action = 'event.php?action=search&value=' + value;
+    window.location.href = action;
+  }
+  return false;
+}
+
+function searchButton() {
+  console.log('click');
+  let value = document.getElementById('searchText').value;
+  if (value == '') return false;
+  //Search for products here
+  let action = 'event.php?action=search&value=' + value;
+  window.location.href = action;
 }

@@ -33,3 +33,25 @@ function logout() {
   };
   xmlhttp.send();
 }
+
+function searchProducts(e) {
+  let value = document.getElementById('searchText').value;
+  if (value == '') return false;
+  if (e.keyCode === 13) {
+    //Search for products here
+    let action = 'event.php?action=search&value=' + value;
+    window.location.href = action;
+  }
+  return false;
+}
+
+function searchButton() {
+  console.log('click');
+  let value = document.getElementById('searchText').value;
+  if (value == '') return false;
+  //Search for products here
+  let action = 'event.php?action=search&value=' + value;
+  window.location.href = action;
+}
+
+
