@@ -76,7 +76,7 @@ if (isset($_SESSION['student'])) {
   <div id="myCarousel" class="carousel-slide" data-ride="carousel">
     <div class="carousel-inner">
       <div class="carousel-item active" >
-          <div class="overlay-img" style="background-image: url(https://images.unsplash.com/photo-1591123120675-6f7f1aae0e5b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80)"></div>
+          <div class="overlay-img" style="background-image: url(https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80)"></div>
       <div class="container">
               <h1> Chào mừng bạn đến với hệ thống StudentCare</h1>
               <p> Cung cấp các dịch vụ cần thiết cho sinh viên </p>
