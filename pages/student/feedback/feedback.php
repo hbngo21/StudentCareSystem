@@ -88,7 +88,8 @@ if (isset($_SESSION['student'])) {
 <body style="background-color: #f3f4f6;">
   <!-- mainNav -->
   <?php
-  require_once('../navbar.php')
+  $active_nav_item = 'service';
+  require_once('../navbar.php');
   ?>
   <div class="banner text-center">
     Để chất lượng hệ thống ngày càng được nâng cao<br>

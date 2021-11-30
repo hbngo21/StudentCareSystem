@@ -78,11 +78,13 @@ if ($stmt = $mysqli->prepare($sql)) {
             font-size: 30px;
             text-decoration: none;
         }
+
         .card {
             position: relative;
             display: flex;
             flex-direction: column;
         }
+
         .content {
             background-color: whitesmoke;
         }
@@ -91,7 +93,8 @@ if ($stmt = $mysqli->prepare($sql)) {
 </head>
 
 <body>
-    <?php require_once '../navbar.php'; ?>
+    <?php $active_nav_item = '';
+    require_once("../navbar.php"); ?>
     <main>
         <div class="container">
             <div class="main">

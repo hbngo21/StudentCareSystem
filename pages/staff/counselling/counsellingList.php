@@ -43,27 +43,27 @@ if (isset($_REQUEST['ok'])) {
         #pagination {
             text-align: right;
             padding: .5rem 1rem 1rem;
+            cursor: pointer;
         }
 
         .page-item {
-            padding: 5px 9px;
-            color: #f94144;
+            padding: 5px 10px;
+            color: #d00000;
             background-color: #fff;
 
-            border-radius: 5px;
+            border-radius: 2px;
             text-decoration: none;
             font-weight: bold;
             box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-
         }
 
         .page-item:hover {
-            color: black;
+            color: #370617;
             text-decoration: none;
         }
 
         .current-page {
-            background-color: #f94144;
+            background-color: #d00000;
             color: #fff;
         }
 
@@ -103,10 +103,11 @@ if (isset($_REQUEST['ok'])) {
     <title>Danh sách yêu cầu tư vấn tâm lý</title>
 </head>
 
-<body style="background-color: #f3f4f6;">
+<body>
     <!-- mainNav -->
     <?php
-    require_once('../navbar.php')
+    $active_nav_item = 'service';
+    require_once("../navbar.php");
     ?>
     <div class="banner text-center">
         Các yêu cầu tư vấn của sinh viên
@@ -188,7 +189,7 @@ if (isset($_REQUEST['ok'])) {
                     else echo "<td style='text-align: center'></td>";
                     if (empty($row['MEDICAL_STAFFID']))
                         echo "<td style='text-align: center'><a href='./response.php?studentid=" . $row['STUDENTID'] . "&timestamp=" . $row['REQUEST_TIMESTAMP'] . "'><button class='btn'" . ($typeOfStaff != 'medicalstaff' ? 'disabled' : '') . ">Phản hồi</button></a></td>";
-                    else echo "<td style='text-align: center; color: red'><b>Đã giải quyết</b></td>";
+                    else echo "<td style='text-align: center; color: green'><b>Đã giải quyết</b></td>";
                     echo "</tr>
                         </tbody>";
                 }

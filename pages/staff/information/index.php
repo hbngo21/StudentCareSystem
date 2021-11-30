@@ -81,7 +81,8 @@ $result = mysqli_fetch_array($query);
 </head>
 
 <body>
-    <?php require_once '../navbar.php'; ?>
+    <?php $active_nav_item = '';
+    require_once("../navbar.php"); ?>
     <main>
         <div class="container">
             <div class="main">

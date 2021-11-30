@@ -30,26 +30,27 @@ if (isset($_REQUEST['ok'])) {
     #pagination {
       text-align: right;
       padding: .5rem 1rem 1rem;
+      cursor: pointer;
     }
 
     .page-item {
-      padding: 5px 9px;
-      color: #f94144;
+      padding: 5px 10px;
+      color: #d00000;
       background-color: #fff;
 
-      border-radius: 5px;
+      border-radius: 2px;
       text-decoration: none;
       font-weight: bold;
       box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-
     }
 
     .page-item:hover {
-      color: black;
+      color: #370617;
+      text-decoration: none;
     }
 
     .current-page {
-      background-color: #f94144;
+      background-color: #d00000;
       color: #fff;
     }
 
@@ -148,16 +149,16 @@ if (isset($_REQUEST['ok'])) {
     .wrapper .form .inputfield .input:focus,
     .wrapper .form .inputfield .textarea:focus,
     .wrapper .form .inputfield .custom_select select:focus {
-      border: 1px solid #ef9273;
+      border: 1px solid #d00000;
     }
 
     .wrapper .form .inputfield .btn {
       width: 100%;
       padding: 8px 10px;
       font-size: 15px;
-      border: 1px solid #ef9273;
+      border: 1px solid #d00000;
       background: #fff;
-      color: #ef9273;
+      color: #d00000;
       cursor: pointer;
 
       border-radius: 3px;
@@ -165,7 +166,7 @@ if (isset($_REQUEST['ok'])) {
     }
 
     .wrapper .form .inputfield .btn:hover {
-      background: #ef9273;
+      background: #d00000;
       color: #fff;
     }
 
@@ -189,13 +190,13 @@ if (isset($_REQUEST['ok'])) {
     }
   </style>
   <title>Danh sách yêu cầu</title>
-  </title>
 </head>
 
 <body style="background-color: #f3f4f6;">
   <!-- mainNav -->
   <?php
-  require_once('../navbar.php')
+  $active_nav_item = 'service';
+  require_once('../navbar.php');
   ?>
   <div class="wrapper pt-1" style="margin-left: 30rem; border-radius: .5rem;">
     <div class="title">
@@ -305,7 +306,6 @@ if (isset($_REQUEST['ok'])) {
                     <thead>
                       <tr>
                         <th class = 'align-middle' style='text-align: center'>Ngày đăng ký</th>
-                        
                         <th class = 'align-middle' style='text-align: center'>Mã yêu cầu</th>
                         <th class = 'align-middle' style='text-align: center'>Nội dung yêu cầu</th>
                         <th class = 'align-middle' style='text-align: center'>Nhân viên phản hồi</th>
@@ -359,7 +359,6 @@ if (isset($_REQUEST['ok'])) {
                 <thead>
                   <tr>
                     <th class = 'align-middle' style='text-align: center'>Ngày đăng ký</th>
-                   
                     <th class = 'align-middle' style='text-align: center'>Mã yêu cầu</th>
                     <th class = 'align-middle' style='text-align: center'>Địa chỉ nhận</th>
                     <th class = 'align-middle' style='text-align: center'>Nhân viên phản hồi</th>

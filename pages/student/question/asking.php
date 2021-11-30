@@ -62,13 +62,14 @@ if (isset($_SESSION['student'])) {
         }
     </style>
 
-    <title>Đặt câu hỏi | BVMT</title>
+    <title>Đặt câu hỏi</title>
     <link rel="icon" sizes="192x192" href="../../avatarjpg.jpg">
 </head>
 
 <body style="background-color: #f3f4f6;">
     <?php
-    require_once('../navbar.php')
+    $active_nav_item = 'service';
+    require_once('../navbar.php');
     ?>
     <div style="padding-top: 100px; padding-bottom: 100px;" class="px-5">
         <div class="text-center mt-5">

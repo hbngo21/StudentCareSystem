@@ -25,7 +25,8 @@ if (isset($_SESSION['staff'])) {
 
 <body>
     <?php
-    require_once '../../navbar.php';
+    $active_nav_item = 'home';
+    require_once("../../navbar.php");
     if (isset($_GET['page_layout'])) {
         switch ($_GET['page_layout']) {
             case 'danhsach':

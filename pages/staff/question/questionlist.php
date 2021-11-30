@@ -41,27 +41,27 @@ if (isset($_REQUEST['ok'])) {
         #pagination {
             text-align: right;
             padding: .5rem 1rem 1rem;
+            cursor: pointer;
         }
 
         .page-item {
-            padding: 5px 9px;
-            color: #f94144;
+            padding: 5px 10px;
+            color: #d00000;
             background-color: #fff;
 
-            border-radius: 5px;
+            border-radius: 2px;
             text-decoration: none;
             font-weight: bold;
             box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-
         }
 
         .page-item:hover {
-            color: black;
+            color: #370617;
             text-decoration: none;
         }
 
         .current-page {
-            background-color: #f94144;
+            background-color: #d00000;
             color: #fff;
         }
 
@@ -73,13 +73,13 @@ if (isset($_REQUEST['ok'])) {
             font-size: 13px;
         }
     </style>
-
     <title>Danh sách câu hỏi</title>
 </head>
 
-<body style="background-color: #f3f4f6;">
+<body>
     <?php
-    require_once('../navbar.php')
+    $active_nav_item = 'service';
+    require_once("../navbar.php");
     ?>
     <div style="padding-top: 100px; padding-bottom: 100px;" class="px-5">
         <div class="row mt-5">

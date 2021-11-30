@@ -27,25 +27,6 @@ $result = mysqli_fetch_array($query);
     <link rel="stylesheet" href="../../../css/main.css">
     <title>Thông tin cá nhân</title>
     <style>
-        /* .container-fluid{
-        margin-top:5rem;
-    }
-    .card{
-        border-radius:50px;
-    
-    }
-    /* .card-header{
-        background-color:#blanchedalmond;
-        border:1px solid #ef9273;
-        border-radius:50px;
-    } */
-        /*.card-body{
-        background-color:blanchedalmond;
-        border:1px solid #ef9273;
-        border-radius:5px;
-        height: 10rem;
-    
-    } */
         body {
             margin-top: 20px;
             background-color: lightgray;
@@ -102,11 +83,10 @@ $result = mysqli_fetch_array($query);
 </head>
 
 <body>
-    <header>
-
-        <?php require_once '../navbar.php'; ?>
-
-    </header>
+    <?php
+    $active_nav_item = 'home';
+    require_once '../navbar.php';
+    ?>
     <main>
         <div class="container">
             <div class="main">

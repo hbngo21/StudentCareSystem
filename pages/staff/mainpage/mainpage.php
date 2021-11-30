@@ -41,7 +41,8 @@ if (isset($_SESSION['staff'])) {
 </head>
 
 <body>
-  <?php require_once '../navbar.php'; ?>
+  <?php $active_nav_item = 'home';
+  require_once("../navbar.php"); ?>
   <main>
 
     <div class="banner" style="margin-top:4rem;height:25rem">

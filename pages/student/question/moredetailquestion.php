@@ -68,6 +68,7 @@ if (isset($_SESSION['student'])) {
 
 <body style="background-color: #f3f4f6;">
     <?php
+    $active_nav_item = 'service';
     require_once('../navbar.php');
     $questionid = $_GET['id'];
     $sql = "SELECT timestamp, CONCAT(S.LASTNAME,' ',S.FIRSTNAME) AS sname, studentid, title, content

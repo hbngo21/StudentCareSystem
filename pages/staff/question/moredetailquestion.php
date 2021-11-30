@@ -80,9 +80,10 @@ $stmt->close();
     <link rel="icon" sizes="192x192" href="../../avatarjpg.jpg">
 </head>
 
-<body style="background-color: #f3f4f6;">
+<body>
     <?php
-    require_once('../navbar.php');
+    $active_nav_item = 'service';
+    require_once("../navbar.php");
     $questionid = $_GET['id'];
     $sql = "SELECT timestamp, CONCAT(S.LASTNAME,' ',S.FIRSTNAME) AS sname, studentid, title, content
         from question q
@@ -146,10 +147,11 @@ $stmt->close();
                         <textarea class="form-control" name='answer' placeholder="Nội dung" id="floatingTextarea" style="height: 100px" required></textarea>
                     </div><br>
                     <div class="d-flex justify-content-center">
-                        <button type="submit" class="btn mt-4" <?php echo ($typeOfStaff == 'manager'? 'disabled': '') ?> name="ok">
+                        <button type="submit" class="btn mt-4" <?php echo ($typeOfStaff == 'manager' ? 'disabled' : '') ?> name="ok">
                             Phản hồi
                             <i class="fas fa-paper-plane"></i>
-                        </button></div>
+                        </button>
+                    </div>
                     <?php
                     if (isset($_REQUEST['ok'])) {
                         $answer  = $_POST['answer'];

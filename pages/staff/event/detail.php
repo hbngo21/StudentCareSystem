@@ -61,14 +61,16 @@ $stmt->close();
 <body style="background-color: #f3f4f6;">
     <!-- mainNav -->
     <?php
-    require_once "../navbar.php";
+    $active_nav_item = 'event';
+    require_once("../navbar.php")
     ?>
     <!-- Event detail -->
     <div class="row event__detail animate__animated animate__fadeIn">
         <div class="col-md-4 pt-2"><img src="https://media.istockphoto.com/photos/chalkboard-and-colored-balloons-on-a-wooden-background-picture-id1263908025?b=1&k=20&m=1263908025&s=170667a&w=0&h=DDeDvtWSu99Z5yKrbx0X3M26uHGP1SCBV_-zXKS-FSQ=" class="img-fluid rounded b-shadow-a" width="100%" alt=""></div>
         <div class="col-md-8 pt-2">
             <div class="event__detail__title mt-2"><?= $name ?></div>
-            <div><span style="font-weight: bold;">Điểm rèn luyện: </span><div class="trainingpoint d-inline-block"><?= $trainingpoint ?></div>
+            <div><span style="font-weight: bold;">Điểm rèn luyện: </span>
+                <div class="trainingpoint d-inline-block"><?= $trainingpoint ?></div>
             </div>
             <div class="mt-2">
                 <div class="event__item-info mt-1"><i class="far fa-calendar-alt"></i><span style="font-weight: bold;">Ngày tạo: </span><span><?= $timestamp ?></span></div>

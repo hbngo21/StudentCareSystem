@@ -63,7 +63,8 @@ date_default_timezone_set("Asia/Ho_Chi_Minh");
 <body style="background-color: #f3f4f6;">
     <!-- mainNav -->
     <?php
-    require_once('../navbar.php');
+    $active_nav_item = 'service';
+    require_once("../navbar.php");
     $studentid = $_GET['studentid'];
     $timestamp = $_GET['timestamp'];
     $sql = "SELECT * FROM REQUEST_COUNSELLING WHERE STUDENTID ='$studentid' AND REQUEST_TIMESTAMP = '$timestamp';";

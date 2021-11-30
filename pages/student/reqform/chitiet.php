@@ -46,11 +46,8 @@ $result = mysqli_fetch_array($query);
 </head>
 
 <body>
-    <header>
-
-        <?php require_once '../navbar.php'; ?>
-
-    </header>
+    <?php $active_nav_item = 'service';
+    require_once('../navbar.php'); ?>
     <main>
         <div class="container-fluid">
             <div class="card">

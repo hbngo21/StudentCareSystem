@@ -82,6 +82,7 @@ $stmt->close();
 <body>
     <!-- mainNav -->
     <?php
+    $active_nav_item = 'event';
     require_once("../navbar.php")
     ?>
     <!--Event Banner-->

@@ -24,10 +24,10 @@ if ($stmt = $mysqli->prepare($sql)) {
         </button>
         <div class='collapse navbar-collapse' id='navbar-list-5'>
             <ul class='navbar-nav ml-auto'>
-                <li class='nav-item'>
+                <li <?= $active_nav_item == 'home' ? "class='nav-item active-item'" : "class='nav-item'" ?>>
                     <a class='nav-link' href='/pages/student/mainpage/mainpage.php'>Trang chủ</a>
                 </li>
-                <li class='nav-item dropdown'>
+                <li <?= $active_nav_item == 'service' ? "class='nav-item active-item dropdown'" : "class='nav-item dropdown'" ?>>
                     <div class='nav-link dropdown-toggle' id='serviceDropdown' role='button' data-toggle='dropdown' aria-expanded='false'>
                         Dịch vụ
                     </div>
@@ -38,7 +38,7 @@ if ($stmt = $mysqli->prepare($sql)) {
                         <a class='dropdown-item' href='/pages/student/feedback/feedback.php'>Đánh giá</a>
                     </div>
                 </li>
-                <li class='nav-item'>
+                <li <?= $active_nav_item == 'event' ? "class='nav-item active-item'" : "class='nav-item'" ?>>
                     <a class='nav-link' href='/pages/student/event/event.php'>Sự kiện</a>
                 </li>
                 <?php

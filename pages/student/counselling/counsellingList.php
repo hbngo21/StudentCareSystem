@@ -25,26 +25,27 @@ if (isset($_SESSION['student'])) {
     #pagination {
       text-align: right;
       padding: .5rem 1rem 1rem;
+      cursor: pointer;
     }
 
     .page-item {
-      padding: 5px 9px;
-      color: #f94144;
+      padding: 5px 10px;
+      color: #d00000;
       background-color: #fff;
 
-      border-radius: 5px;
+      border-radius: 2px;
       text-decoration: none;
       font-weight: bold;
       box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     }
 
     .page-item:hover {
-      color: black;
+      color: #370617;
       text-decoration: none;
     }
 
     .current-page {
-      background-color: #f94144;
+      background-color: #d00000;
       color: #fff;
     }
 
@@ -77,17 +78,17 @@ if (isset($_SESSION['student'])) {
 
     @media only screen and (max-width: 540px) {
       .banner {
-        font-size: 1.1rem;
+        font-size: 1.5rem;
       }
     }
   </style>
   <title>Danh sách yêu cầu tư vấn tâm lý</title>
-  </title>
 </head>
 
 <body style="background-color: #f3f4f6;">
   <!-- mainNav -->
   <?php
+  $active_nav_item = 'service';
   require_once('../navbar.php')
   ?>
   <!-- main -->
@@ -160,7 +161,7 @@ if (isset($_SESSION['student'])) {
         else echo "<td class = 'align-middle' ></td>";
         if (empty($row['MEDICAL_STAFFID']))
           echo "<td class = 'align-middle' style='text-align: center; color: red'><b>Chờ phản hồi</b></td>";
-        else echo "<td class = 'align-middle' ><b>Đã giải quyết</b></td>";
+        else echo "<td class = 'align-middle' style='color: green'><b>Đã giải quyết</b></td>";
         echo "</tr>
                         </tbody>";
       }

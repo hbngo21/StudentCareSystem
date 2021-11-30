@@ -28,11 +28,6 @@ if (isset($_SESSION['student'])) {
 
         }
 
-        /* .card-header{
-        background-color:#blanchedalmond;
-        border:1px solid #ef9273;
-        border-radius:50px;
-    } */
         .card-body {
             background-color: blanchedalmond;
             border: 1px solid #ef9273;
@@ -69,13 +64,6 @@ if (isset($_SESSION['student'])) {
             height: 500px;
         }
 
-        /* .card img{
-      text-align: center;
-  } */
-        /* .cart-list card{
-      margin:0 auto;
-
-  } */
         .col {
             text-decoration: none;
             color: black;
@@ -105,11 +93,10 @@ if (isset($_SESSION['student'])) {
 </head>
 
 <body>
-    <header>
-
-        <?php require_once '../navbar.php'; ?>
-
-    </header>
+    <?php
+    $active_nav_item = 'home';
+    require_once '../navbar.php';
+    ?>
     <main>
         <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
             <ol class="breadcrumb" id="breadcrumb">

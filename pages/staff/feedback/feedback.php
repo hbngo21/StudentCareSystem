@@ -82,13 +82,13 @@ if (isset($_SESSION['staff'])) {
         }
     </style>
     <title>Danh sách đánh giá</title>
-    </title>
 </head>
 
-<body style="background-color: #f3f4f6;">
+<body>
     <!-- mainNav -->
     <?php
-    require_once('../navbar.php')
+    $active_nav_item = 'service';
+    require_once("../navbar.php");
     ?>
     <div class="banner text-center">
         Các đánh giá của sinh viên
@@ -129,7 +129,7 @@ if (isset($_SESSION['staff'])) {
                 echo "<td style='text-align: center'>" . date("d-m-Y H:i:s", strtotime($row['TIMESTAMP'])) . "</td>";
                 $sql2 = "SELECT CONCAT(LASTNAME,' ',FIRSTNAME) AS NAME FROM STUDENT WHERE ID =" . $row['STUDENTID'] . "";
                 $result2 = $mysqli->query($sql2);
-                echo "<td style='text-align: center'>" . mysqli_fetch_assoc($result2)['NAME'] ."</a></td>";
+                echo "<td style='text-align: center'>" . mysqli_fetch_assoc($result2)['NAME'] . "</a></td>";
                 echo "<td style='text-align: center'>
                             <button type='button' class='viewFeedback' data-toggle='modal' data-target='#exampleModal" . $i . "'>" . $row['TITLE'] .
                     "</button>

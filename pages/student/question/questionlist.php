@@ -37,26 +37,27 @@ if (isset($_REQUEST['ok'])) {
         #pagination {
             text-align: right;
             padding: .5rem 1rem 1rem;
+            cursor: pointer;
         }
 
         .page-item {
-            padding: 5px 9px;
-            color: #f94144;
+            padding: 5px 10px;
+            color: #d00000;
             background-color: #fff;
 
-            border-radius: 5px;
+            border-radius: 2px;
             text-decoration: none;
             font-weight: bold;
             box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-
         }
 
         .page-item:hover {
-            color: black;
+            color: #370617;
+            text-decoration: none;
         }
 
         .current-page {
-            background-color: #f94144;
+            background-color: #d00000;
             color: #fff;
         }
 
@@ -67,6 +68,31 @@ if (isset($_REQUEST['ok'])) {
             font-weight: 400;
             font-size: 13px;
         }
+
+        .banner {
+            height: 200px;
+            margin: 100px 30px 3rem;
+
+            /* Display */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            font-size: 1.8rem;
+            font-weight: 500;
+
+            color: var(--text);
+
+            background-color: white;
+            border-radius: 1rem;
+            box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+        }
+
+        @media only screen and (max-width: 540px) {
+            .banner {
+                font-size: 1.5rem;
+            }
+        }
     </style>
 
     <title>Danh sách câu hỏi</title>
@@ -74,7 +100,8 @@ if (isset($_REQUEST['ok'])) {
 
 <body style="background-color: #f3f4f6;">
     <?php
-    require_once('../navbar.php')
+    $active_nav_item = 'service';
+    require_once('../navbar.php');
     ?>
     <div style="padding-top: 100px; padding-bottom: 100px;" class="px-5">
         <div class="row mt-5">

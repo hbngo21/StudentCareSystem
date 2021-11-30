@@ -57,9 +57,10 @@ if (isset($_SESSION['staff'])) {
     </title>
 </head>
 
-<body style="background-color: #f3f4f6;">
+<body>
     <?php
-    require_once('../navbar.php');
+    $active_nav_item = 'service';
+    require_once("../navbar.php");
     $studentid = $_GET['studentid'];
     $timestamp = $_GET['timestamp'];
     $sql = "SELECT * FROM REQUEST_COUNSELLING WHERE STUDENTID = '$studentid' AND REQUEST_TIMESTAMP = '$timestamp'";

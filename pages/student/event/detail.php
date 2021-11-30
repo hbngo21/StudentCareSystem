@@ -52,6 +52,7 @@ $stmt->close();
 <body style="background-color: #f3f4f6;">
     <!-- mainNav -->
     <?php
+    $active_nav_item = 'event';
     require_once("../navbar.php")
     ?>
     <div class="row event__detail animate__animated animate__fadeIn">
