@@ -36,7 +36,7 @@ if (isset($_SESSION['staff'])) {
     } */
         .card-body {
             background-color: blanchedalmond;
-            border: 1px solid #ef9273;
+            border: 1px solid #d00000;
             border-radius: 5px;
             height: 10rem;
 
@@ -57,7 +57,7 @@ if (isset($_SESSION['staff'])) {
         ol {
             font-size: 30px;
             text-decoration: none;
-            color: #ef9273;
+            color: #d00000;
         }
 
         .card {
@@ -87,7 +87,7 @@ if (isset($_SESSION['staff'])) {
         .col:focus,
         .col.active {
             text-decoration: none;
-            color: #ef9273;
+            color: #d00000;
         }
 
         .btn-toolbar {
@@ -99,7 +99,7 @@ if (isset($_SESSION['staff'])) {
         .btn-outline-secondary:active,
         .btn-outline-secondary:focus,
         .btn-outline-secondary.active {
-            background-color: #ef9273;
+            background-color: #d00000;
             color: #fff;
         }
     </style>

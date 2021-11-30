@@ -8,7 +8,6 @@ if (isset($_SESSION['staff'])) {
 } else $logined = false;
 
 ?>
-
 <!doctype html>
 <html lang="en">
 
@@ -29,114 +28,129 @@ if (isset($_SESSION['staff'])) {
       color: white;
       padding-top: 140px;
       padding-bottom: 140px;
-      background-image: url("https://i.pinimg.com/736x/e0/41/f6/e041f6273953dd89092ad8ce15702350.jpg");
+      
+      height:100%;
     }
 
     .row a {
       text-decoration: none;
-      color: #ef9273
+      color: #d00000
     }
+    .carousel-item {
+      height: 32rem;
+      background:#545b62;
+      margin-top:5rem;
+      color:white;
+      position: relative;
+    }
+    .container{
+        margin-top:13rem;
+        text-align: center;
+        color:white;
+        position:absolute;
+        margin-left:15rem;
+       }
+    .overlay-img{
+      position:absolute;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      top: 0;
+      background-position:center;
+      background-size:cover;
+      opacity:0.5;
+    }
+    .carousel-slide{
+      margin-top:-3rem;
+    }
+   
   </style>
   <title>Trang chủ</title>
 </head>
-
 <body>
-  <?php $active_nav_item = 'home';
-  require_once("../navbar.php"); ?>
-  <main>
+  <?php
+  $active_nav_item = 'home';
+  require_once '../navbar.php';
+  ?>
 
-    <div class="banner" style="margin-top:4rem;height:25rem">
+  <main>
+  <div id="myCarousel" class="carousel-slide" data-ride="carousel">
+   
+    <div class="carousel-inner">
+      <div class="carousel-item active" >
+          <div class="overlay-img" style="background-image: url(https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80)">
+          </div>
+          <div class="container">
+              <h1> Chào mừng bạn đến với hệ thống StudentCare</h1>
+              <p> Cung cấp các dịch vụ cần thiết cho sinh viên </p>
+          </div>
+      </div>
+     
+      <!-- <div class="carousel-item " >
+          <div class="overlay-img" style="background-image: url()"></div>
+        <div class="container">
+              <h1> Chào mừng bạn đến với hệ thống StudentCare</h1>
+              <p> Cung cấp các dịch vụ cần thiết cho sinh viên </p>
+          </div>
+        </div>
+      </div> -->
+  </div>  
+    <!-- <div class="banner" style="margin-top:4rem;height: 25rem">
       <div class="container">
+        <img src="../../../assets/images/mainpage.png" alt="">
         <h1>Chào mừng bạn đến với hệ thống StudentCare</h1>
         <div style="font-size: 1.5rem;">Cung cấp các dịch vụ cần thiết cho sinh viên</div>
       </div>
-    </div>
+    </div>  -->
 
-    <div class="container pt-3 text-center" id="service" style="margin-top:3rem">
+
+
+    <div class="container pt-3 text-center" id="service" style="margin-top:3rem;color:black">
       <div class="row">
-        <a href="/pages/staff/hocbong/schoolar.php">
+        <a href="../hocbong/schoolar.php">
           <div class="col-md-4 col-sm-4">
-            <svg xmlns="http://www.w3.org/2000/svg" width="150" height="150" fill="#ef9273" class="bi bi-mortarboard-fill" viewBox="0 0 16 16">
+            <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="#d00000" class="bi bi-mortarboard-fill" viewBox="0 0 16 16">
               <path d="M8.211 2.047a.5.5 0 0 0-.422 0l-7.5 3.5a.5.5 0 0 0 .025.917l7.5 3a.5.5 0 0 0 .372 0L14 7.14V13a1 1 0 0 0-1 1v2h3v-2a1 1 0 0 0-1-1V6.739l.686-.275a.5.5 0 0 0 .025-.917l-7.5-3.5Z" />
               <path d="M4.176 9.032a.5.5 0 0 0-.656.327l-.5 1.7a.5.5 0 0 0 .294.605l4.5 1.8a.5.5 0 0 0 .372 0l4.5-1.8a.5.5 0 0 0 .294-.605l-.5-1.7a.5.5 0 0 0-.656-.327L8 10.466 4.176 9.032Z" />
             </svg>
-            <h3><a href="/pages/staff/hocbong/schoolar.php">Học bổng</a></h3>
-            <p style="font-size:20px">Học bổng Nhà trường và các doanh nghiệp trao thưởng cho các sinh viên có thành tích học tập tốt.</p>
+            <h3><a href="../hocbong/schoolar.php">Học bổng</a></h3>
+            <p style="font-size:18px">Học bổng Nhà trường và các doanh nghiệp trao thưởng cho các sinh viên có thành tích học tập tốt.</p>
           </div>
         </a>
-        <a href="/pages/staff/mainpage/rules.php">
+        <a href="rules.php">
           <div class="col-md-4 col-sm-4">
-            <svg xmlns="http://www.w3.org/2000/svg" width="150" height="150" fill="#ef9273" class="bi bi-book-half" viewBox="0 0 16 16">
+            <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="#d00000" class="bi bi-book-half" viewBox="0 0 16 16">
               <path d="M8.5 2.687c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z" />
             </svg>
-            <h3><a href="/pages/staff/mainpage/rules.php">Quy chế</a></h3>
-            <p style="font-size:20px">Nội quy của nhà trường về những nguyên tắc xử sự chung, các hành vi vi phạm kỷ luật, biện pháp xử lý vi phạm. </p>
+            <h3><a href="rules.php">Quy chế</a></h3>
+            <p style="font-size:18px">Nội quy của nhà trường về những nguyên tắc xử sự chung, các hành vi vi phạm kỷ luật, biện pháp xử lý vi phạm. </p>
 
           </div>
         </a>
-        <a href="/pages/staff/vieclam/job.php">
+        <a href="../vieclam/job.php">
           <div class="col-md-4 col-sm-4">
-            <svg xmlns="http://www.w3.org/2000/svg" width="150" height="150" fill="#ef9273" class="bi bi-tools" viewBox="0 0 16 16">
+            <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="#d00000" class="bi bi-tools" viewBox="0 0 16 16">
               <path d="M1 0 0 1l2.2 3.081a1 1 0 0 0 .815.419h.07a1 1 0 0 1 .708.293l2.675 2.675-2.617 2.654A3.003 3.003 0 0 0 0 13a3 3 0 1 0 5.878-.851l2.654-2.617.968.968-.305.914a1 1 0 0 0 .242 1.023l3.356 3.356a1 1 0 0 0 1.414 0l1.586-1.586a1 1 0 0 0 0-1.414l-3.356-3.356a1 1 0 0 0-1.023-.242L10.5 9.5l-.96-.96 2.68-2.643A3.005 3.005 0 0 0 16 3c0-.269-.035-.53-.102-.777l-2.14 2.141L12 4l-.364-1.757L13.777.102a3 3 0 0 0-3.675 3.68L7.462 6.46 4.793 3.793a1 1 0 0 1-.293-.707v-.071a1 1 0 0 0-.419-.814L1 0zm9.646 10.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708zM3 11l.471.242.529.026.287.445.445.287.026.529L5 13l-.242.471-.026.529-.445.287-.287.445-.529.026L3 15l-.471-.242L2 14.732l-.287-.445L1.268 14l-.026-.529L1 13l.242-.471.026-.529.445-.287.287-.445.529-.026L3 11z" />
             </svg>
-            <h3><a href="/pages/staff/vieclam/job.php">Việc làm</a></h3>
-            <p style="font-size:20px">Nhà trường phối hợp cùng các Doanh nghiệp lớn trong và ngoài nước cung cấp các thông tin việc làm cho sinh viên.</p>
+            <h3><a href="../vieclam/job.php">Việc làm</a></h3>
+            <p style="font-size:18px">Nhà trường phối hợp cùng các Doanh nghiệp lớn trong và ngoài nước cung cấp các thông tin việc làm cho sinh viên.</p>
           </div>
         </a>
       </div>
 
     </div>
-    <!-- Three columns of text below the carousel -->
-
-    <!-- <div class="vc_row wpb_row vc_row-fluid vc_custom_1603374045499 vc_row-has-fill" style="margin-top: 10rem">
-      <div class="container ">
-
-     
-        <div class="row">
-          <div class="col-sm">
-            <svg xmlns="http://www.w3.org/2000/svg" width="120" height="130" fill="#ef9273" class="bi bi-mortarboard-fill" viewBox="0 0 16 16">
-                <path d="M8.211 2.047a.5.5 0 0 0-.422 0l-7.5 3.5a.5.5 0 0 0 .025.917l7.5 3a.5.5 0 0 0 .372 0L14 7.14V13a1 1 0 0 0-1 1v2h3v-2a1 1 0 0 0-1-1V6.739l.686-.275a.5.5 0 0 0 .025-.917l-7.5-3.5Z"/>
-                <path d="M4.176 9.032a.5.5 0 0 0-.656.327l-.5 1.7a.5.5 0 0 0 .294.605l4.5 1.8a.5.5 0 0 0 .372 0l4.5-1.8a.5.5 0 0 0 .294-.605l-.5-1.7a.5.5 0 0 0-.656-.327L8 10.466 4.176 9.032Z"/>
-              </svg>
-            <h2>Học bổng</h2>
-            <p style="font-size:20px">Học bổng Nhà trường và các doanh nghiệp trao thưởng cho các sinh viên có <br> thành tích học tập tốt.</p>
-           
-            <a class="btn btn-secondary" href="../schoolar/schoolar.php">View details &raquo;</a>
-          </div>
-          <div class="col-sm">
-            <svg xmlns="http://www.w3.org/2000/svg" width="130" height="130" fill="#ef9273" class="bi bi-book-half" viewBox="0 0 16 16">
-                <path d="M8.5 2.687c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z"/>
-              </svg>
     
-            <h2>Quy chế</h2>
-            <p  style="font-size:20px">Nội quy của nhà trường về những nguyên tắc xử sự chung, các hành vi vi phạm kỷ luật, biện pháp xử lý vi phạm. </p>
-             
-            <a class="btn btn-secondary" href="rules.php">View details &raquo;</a>
-          </div>
-          <div class="col-sm">
-            <svg xmlns="http://www.w3.org/2000/svg" width="130" height="130" fill="#ef9273" class="bi bi-tools" viewBox="0 0 16 16">
-                <path d="M1 0 0 1l2.2 3.081a1 1 0 0 0 .815.419h.07a1 1 0 0 1 .708.293l2.675 2.675-2.617 2.654A3.003 3.003 0 0 0 0 13a3 3 0 1 0 5.878-.851l2.654-2.617.968.968-.305.914a1 1 0 0 0 .242 1.023l3.356 3.356a1 1 0 0 0 1.414 0l1.586-1.586a1 1 0 0 0 0-1.414l-3.356-3.356a1 1 0 0 0-1.023-.242L10.5 9.5l-.96-.96 2.68-2.643A3.005 3.005 0 0 0 16 3c0-.269-.035-.53-.102-.777l-2.14 2.141L12 4l-.364-1.757L13.777.102a3 3 0 0 0-3.675 3.68L7.462 6.46 4.793 3.793a1 1 0 0 1-.293-.707v-.071a1 1 0 0 0-.419-.814L1 0zm9.646 10.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708zM3 11l.471.242.529.026.287.445.445.287.026.529L5 13l-.242.471-.026.529-.445.287-.287.445-.529.026L3 15l-.471-.242L2 14.732l-.287-.445L1.268 14l-.026-.529L1 13l.242-.471.026-.529.445-.287.287-.445.529-.026L3 11z"/>
-              </svg>
-    
-            <h2>Việc làm</h2>
-            <p  style="font-size:20px" >Nhà trường phối hợp cùng các Doanh nghiệp lớn trong và ngoài nước cung cấp các thông tin việc làm cho sinh viên.</p>
-          
-            <a class="btn btn-secondary" href="../job/job.php">View details &raquo;</a>
-          </div>
-        </div>
-      </div>
-    </div> -->
 
 
-    <div class="container marketing">
+   
 
       <!-- START THE FEATURETTES -->
 
 
-      <hr class="featurette-divider">
+      <hr>
 
       <!-- /END THE FEATURETTES -->
-    </div><!-- /.container -->
+    <!-- /.container -->
 
   </main>
 

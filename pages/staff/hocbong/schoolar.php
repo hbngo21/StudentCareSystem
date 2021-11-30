@@ -59,7 +59,7 @@ $stmt->close();
     ol {
       font-size: 30px;
       text-decoration: none;
-      color: #ef9273;
+      color: #d00000;
     }
 
     .card {
@@ -80,7 +80,7 @@ $stmt->close();
     .col:focus,
     .col.active {
       text-decoration: none;
-      color: #ef9273;
+      color: #d00000;
     }
 
     .btn-toolbar {

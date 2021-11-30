@@ -76,7 +76,7 @@ if (isset($_REQUEST['ok'])) {
       font-size: 24px;
       font-weight: 700;
       margin-bottom: 25px;
-      color: #ef9273;
+      color: #d00000;
       text-transform: uppercase;
       text-align: center;
     }
@@ -275,21 +275,22 @@ if (isset($_REQUEST['ok'])) {
         $offset = ($current_page - 1) * $item_per_page;
       }
       if (empty($filter)) {
-        $sql = "SELECT * FROM request_services where STUDENTID='$studentid' ORDER BY TIMESTAMP DESC LIMIT " . $offset . ", " . $item_per_page . ";";
+        $sql = "SELECT * FROM request_services where STUDENTID='$studentid' ORDER BY STATUS DESC LIMIT " . $offset . ", " . $item_per_page . ";";
         $totalRecords = $mysqli->query("SELECT * FROM request_services where STUDENTID='$studentid'");
       }
       if (isset($_REQUEST['ok'])) {
         if ($_POST['filter'] == 'all') {
-          $sql = "SELECT * FROM request_services where STUDENTID='$studentid' ORDER BY TIMESTAMP DESC ";
+          $sql = "SELECT * FROM request_services where STUDENTID='$studentid' ORDER BY STATUS DESC ";
           $totalRecords = $mysqli->query("SELECT * FROM request_services where STUDENTID = '$studentid'");
         } elseif ($_POST['filter'] == 'waiting') {
-          $sql = "SELECT * FROM request_services WHERE STATUS = 'Waiting' and STUDENTID='$studentid' ORDER BY TIMESTAMP DESC ";
+          $sql = "SELECT * FROM request_services WHERE STATUS = 'Waiting' and STUDENTID='$studentid' ORDER BY STATUS DESC ";
           $totalRecords = $mysqli->query("SELECT * FROM request_services WHERE STUDENTID='$studentid' and STATUS = 'Waiting'");
         } elseif ($_POST['filter'] == 'confirm') {
-          $sql = "SELECT * FROM request_services WHERE STATUS = 'In Progress' and STUDENTID='$studentid' ORDER BY TIMESTAMP DESC";
+          $sql = "SELECT * FROM request_services WHERE STATUS = 'In Progress' and STUDENTID='$studentid' ORDER BY STATUS DESC";
           $totalRecords = $mysqli->query("SELECT * FROM request_services WHERE STATUS = 'In Progress' AND STUDENTID='$studentid'");
+         
         } else {
-          $sql = "SELECT * FROM request_services WHERE STATUS = 'Completed' AND STUDENTID='$studentid' ORDER BY TIMESTAMP DESC ";
+          $sql = "SELECT * FROM request_services WHERE STATUS = 'Completed' AND STUDENTID='$studentid' ORDER BY STATUS DESC ";
           $totalRecords = $mysqli->query("SELECT * FROM request_services WHERE  STATUS = 'Completed' AND STUDENTID='$studentid'");
         }
       }
@@ -297,6 +298,7 @@ if (isset($_REQUEST['ok'])) {
       $totalPages = ceil($totalRecords / $item_per_page);
       $result = $mysqli->query($sql);
       $resultCheck = mysqli_num_rows($result);
+
       if ($resultCheck > 0) {
         echo "<table
                     id='table1'
@@ -306,8 +308,8 @@ if (isset($_REQUEST['ok'])) {
                     <thead>
                       <tr>
                         <th class = 'align-middle' style='text-align: center'>Ngày đăng ký</th>
-                        <th class = 'align-middle' style='text-align: center'>Mã yêu cầu</th>
                         <th class = 'align-middle' style='text-align: center'>Nội dung yêu cầu</th>
+                        <th class = 'align-middle' style='text-align: center'>Địa chỉ nhận</th>
                         <th class = 'align-middle' style='text-align: center'>Nhân viên phản hồi</th>
                         <th class = 'align-middle' style='text-align: center'>Tình trạng</th>
                       </tr>
@@ -338,7 +340,11 @@ if (isset($_REQUEST['ok'])) {
           // switch
           echo "<td style='text-align: center'>" . $row['CONTENT'] . "</td>";
           if (!empty($row['TRAININGDEPARTMENT_STAFFID'])) {
-            echo "<td style='text-align: center'>" . $row['TRAININGDEPARTMENT_STAFFID'] . "</td>";
+            $sql1 = "SELECT concat(LASTNAME,' ',FIRSTNAME) as name_staff from staff where ID ='$row\['TRAININGDEPARTMENT_STAFFID'\]'";
+            $result1 = $mysqli->query($sql1);
+            $row1= mysqli_fetch_assoc($result1);
+            echo "<td style='text-align: center'>" . $row1['name_staff'] . "</td>";
+            
           } else echo "<td style='text-align: center'></td>";
           if ($row['STATUS'] == 'Waiting') {
             echo "<td style='text-align: center'> Chờ xác nhận</td>";
