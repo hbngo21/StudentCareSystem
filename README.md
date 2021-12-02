@@ -9,6 +9,7 @@
 Bước 1: Chạy câu lệnh:
 #### `git clone https://github.com/hbngo21/StudentCareSystem.git`
 Bước 2: Trong thư mục
+
 Bước 3: Tải XAMPP Control Panel
 Bước 4: Trong cửa sổ XAMPP Control Panel, tại module Apache, chọn Config -> Apache (httpd.conf).
 
