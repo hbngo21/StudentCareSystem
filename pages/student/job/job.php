@@ -37,7 +37,7 @@ if (isset($_SESSION['student'])) {
     ol {
       font-size: 30px;
       text-decoration: none;
-      color: #ef9273;
+      color: #d00000;
     }
 
     .card {
@@ -60,7 +60,7 @@ if (isset($_SESSION['student'])) {
     .col:focus,
     .col.active {
       text-decoration: none;
-      color: #ef9273;
+      color: #d00000;
     }
 
     .btn-toolbar {

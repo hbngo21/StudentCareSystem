@@ -56,7 +56,7 @@ $result = mysqli_fetch_array($query);
         }
 
         .sidebar {
-            background-color: #ef9273;
+            background-color: #d00000;
             color: white;
             height: 100%;
         }

@@ -41,7 +41,7 @@ $result_staff = mysqli_fetch_array($query_staff);
 
         .card-body {
             background-color: blanchedalmond;
-            border: 1px solid #ef9273;
+            border: 1px solid #d00000;
             border-radius: 5px;
             height: 10rem;
 
@@ -62,7 +62,7 @@ $result_staff = mysqli_fetch_array($query_staff);
         ol {
             font-size: 30px;
             text-decoration: none;
-            color: #ef9273;
+            color: #d00000;
         }
 
         .card {
@@ -85,7 +85,7 @@ $result_staff = mysqli_fetch_array($query_staff);
         .col:focus,
         .col.active {
             text-decoration: none;
-            color: #ef9273;
+            color: #d00000;
         }
 
         .btn-toolbar {
@@ -97,7 +97,7 @@ $result_staff = mysqli_fetch_array($query_staff);
         .btn-outline-secondary:active,
         .btn-outline-secondary:focus,
         .btn-outline-secondary.active {
-            background-color: #ef9273;
+            background-color: #d00000;
             color: #fff;
         }
     </style>

@@ -48,7 +48,7 @@ body {
 
 /* =========================mainNav========================= */
 .menu-bar {
-  background-image: linear-gradient(-90deg, #ff9966, #ff5e62);
+  background-image: linear-gradient(-90deg, #d00000, #ff5e62);
 }
 
 .nav-link {
@@ -318,7 +318,7 @@ body {
 /* ================================================== */
 
 table thead {
-  background: #ef9273;
+  background: #d00000;
   color: white;
   text-align: center;
 }
