@@ -29,7 +29,10 @@ if (isset($_SESSION['staff'])) {
       color: white;
       padding-top: 140px;
       padding-bottom: 140px;
-      background-image: url("https://i.pinimg.com/736x/e0/41/f6/e041f6273953dd89092ad8ce15702350.jpg");
+      background-position: center;
+      background-size: cover;
+      background-image: url(https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80);
+      opacity: 0.9;
     }
 
     .row a {
@@ -45,10 +48,10 @@ if (isset($_SESSION['staff'])) {
   require_once("../navbar.php"); ?>
   <main>
 
-    <div class="banner" style="margin-top:4rem;height:25rem">
+    <div class="banner" style="margin-top:4rem;height:28rem">
       <div class="container">
         <h1>Chào mừng bạn đến với hệ thống StudentCare</h1>
-        <div style="font-size: 1.5rem;">Cung cấp các dịch vụ cần thiết cho sinh viên</div>
+        <h3>Cung cấp các dịch vụ cần thiết cho sinh viên</h3>
       </div>
     </div>
 

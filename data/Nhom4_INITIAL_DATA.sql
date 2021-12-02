@@ -239,9 +239,9 @@ INSERT INTO `studentcare`.`request_services` (`STUDENTID`, `TIMESTAMP`, `ID`, `C
 INSERT INTO `studentcare`.`request_services` (`STUDENTID`, `TIMESTAMP`, `ID`, `CONTENT`, `TRAININGDEPARTMENT_STAFFID`, `STATUS`) VALUES ('66666', '2021-09-05 01:35:19', '1', 'Xã Vạn Ninh, huyện Quảng Ninh, tỉnh Quảng Bình', '5371', 'In Progress');
 INSERT INTO `studentcare`.`request_services` (`STUDENTID`, `TIMESTAMP`, `ID`, `CONTENT`, `TRAININGDEPARTMENT_STAFFID`, `STATUS`) VALUES ('77777', '2021-09-13 06:22:13', '6', 'KTX khu A', '5371', 'Completed');
 INSERT INTO `studentcare`.`request_services` (`STUDENTID`, `TIMESTAMP`, `ID`, `CONTENT`, `TRAININGDEPARTMENT_STAFFID`, `STATUS`) VALUES ('88888', '2021-09-06 15:35:07', '6', 'KTX khu B', '7383', 'Completed');
-INSERT INTO `studentcare`.`request_services` (`STUDENTID`, `TIMESTAMP`, `ID`, `CONTENT`) VALUES ('12345', '2021-09-16 11:07:52', '2', 'Nhận bằng tốt nghiệp');
+INSERT INTO `studentcare`.`request_services` (`STUDENTID`, `TIMESTAMP`, `ID`, `CONTENT`) VALUES ('12345', '2021-09-16 11:07:52', '2', 'Số nhà 75 đường Điện Biên Phủ, TP Quy Nhơn, tỉnh Bình Định');
 INSERT INTO `studentcare`.`request_services` (`STUDENTID`, `TIMESTAMP`, `ID`, `CONTENT`, `TRAININGDEPARTMENT_STAFFID`, `STATUS`) VALUES ('67890', '2021-09-16 00:54:17', '4', 'KTX Bách Khoa', '7006', 'Completed');
-INSERT INTO `studentcare`.`request_services` (`STUDENTID`, `TIMESTAMP`, `ID`, `CONTENT`) VALUES ('10000', '2021-09-25 12:57:17', '6', 'In bảng điểm rèn luyện');
+INSERT INTO `studentcare`.`request_services` (`STUDENTID`, `TIMESTAMP`, `ID`, `CONTENT`) VALUES ('10000', '2021-09-25 12:57:17', '6', 'Đại học Bách khoa CS1');
 INSERT INTO `studentcare`.`request_services` (`STUDENTID`, `TIMESTAMP`, `ID`, `CONTENT`, `TRAININGDEPARTMENT_STAFFID`, `STATUS`) VALUES ('20000', '2021-09-29 16:19:10', '3', 'Khu nhà trọ AB - tỉnh Bình Dương', '5371', 'Completed');
 INSERT INTO `studentcare`.`request_services` (`STUDENTID`, `TIMESTAMP`, `ID`, `CONTENT`, `TRAININGDEPARTMENT_STAFFID`, `STATUS`) VALUES ('30000', '2021-09-10 14:02:37', '6', '73 Trần Thúc Nhẫn, TP Huế, tỉnh Thừa Thiên Huế', '5371', 'In Progress');
 INSERT INTO `studentcare`.`request_services` (`STUDENTID`, `TIMESTAMP`, `ID`, `CONTENT`, `TRAININGDEPARTMENT_STAFFID`, `STATUS`) VALUES ('40000', '2021-10-01 16:41:42', '6', '20/15 đường Cao Bá Quát, TP Hội An, tỉnh Quảng Nam', '7383', 'Completed');
