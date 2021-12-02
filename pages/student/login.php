@@ -2,7 +2,7 @@
 // Check if the user is already logged in, if yes then redirect him to welcome page
 session_start();
 if (isset($_SESSION["student"])) {
-    header("location: /pages/student/event/event.php");
+    header("location: /pages/student/mainpage/mainpage.php");
     exit;
 }
 

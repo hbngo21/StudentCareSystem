@@ -190,16 +190,16 @@ function sortTable(n) {
                   >
                     <thead>
                       <tr>
-                      <th onclick='sortTable(1)' class = 'align-middle' style='text-align: center'>Ngày đăng ký</th>
+                      <th onclick='sortTable(1)' class = 'align-middle' style='text-align: center; cursor: pointer;'>Ngày đăng ký</th>
                       <th class = 'align-middle' style='text-align: center; display: none'>Ngày đăng ký Không hiển thị</th>
-                      <th onclick='sortTable(3)' class = 'align-middle' style='text-align: center'>Ngày yêu cầu tư vấn</th>
+                      <th onclick='sortTable(3)' class = 'align-middle' style='text-align: center; cursor: pointer;'>Ngày yêu cầu tư vấn</th>
                       <th class = 'align-middle' style='text-align: center; display: none'>Ngày yêu cầu tư vấn Không hiển thị</th>
-                      <th onclick='sortTable(4)' class = 'align-middle' style='text-align: center'>Thời gian yêu cầu tư vấn</th>
+                      <th onclick='sortTable(4)' class = 'align-middle' style='text-align: center; cursor: pointer;'>Thời gian yêu cầu tư vấn</th>
                       <th class = 'align-middle' style='text-align: center'>Nội dung yêu cầu</th>
-                      <th onclick='sortTable(6)' class = 'align-middle' style='text-align: center'>Nhân viên phản hồi</th>
-                      <th onclick='sortTable(8)' class = 'align-middle' style='text-align: center'>Thời gian<br>phản hồi</th>
+                      <th onclick='sortTable(6)' class = 'align-middle' style='text-align: center; cursor: pointer;'>Nhân viên phản hồi</th>
+                      <th onclick='sortTable(8)' class = 'align-middle' style='text-align: center; cursor: pointer;'>Thời gian<br>phản hồi</th>
                       <th class = 'align-middle' style='text-align: center; display:none'>Thời gian<br>phản hồi Không hiển thị</th>
-                      <th onclick='sortTable(9)' class = 'align-middle' style='text-align: center'>Tình trạng</th>
+                      <th onclick='sortTable(9)' class = 'align-middle' style='text-align: center; cursor: pointer;'>Tình trạng</th>
                       </tr>
                     </thead>";
       while ($row = $result->fetch_assoc()) {

@@ -216,12 +216,12 @@ function sortTable(n) {
                       <tr>
                       <th class = 'align-middle' style='text-align: center'>#</th>
                       <th class = 'align-middle' style='text-align: center'>Sinh viên</th>
-                      <th onClick='sortTable(3)' class = 'align-middle' style='text-align: center'>Thời gian yêu cầu</th>
+                      <th onClick='sortTable(3)' class = 'align-middle' style='text-align: center; cursor: pointer;'>Thời gian yêu cầu</th>
                       <th class = 'align-middle' style='text-align: center; display: none'>Thời gian yêu cầu Không hiển thị</th>
-                      <th onClick='sortTable(5)' class = 'align-middle' style='text-align: center'>Loại yêu cầu</th>
+                      <th onClick='sortTable(5)' class = 'align-middle' style='text-align: center; cursor: pointer;'>Loại yêu cầu</th>
                       <th class = 'align-middle' style='text-align: center; display: none'>Loại yêu cầu Không hiển thị</th>
-                      <th onClick='sortTable(6)' class = 'align-middle' style='text-align: center'>Nhân viên thực hiện</th>
-                      <th onClick='sortTable(7)' class = 'align-middle' style='text-align: center'>Tình trạng</th>
+                      <th onClick='sortTable(6)' class = 'align-middle' style='text-align: center; cursor: pointer;'>Nhân viên thực hiện</th>
+                      <th onClick='sortTable(7)' class = 'align-middle' style='text-align: center; cursor: pointer;'>Tình trạng</th>
                       </tr>
                     </thead>";
                 $i = 1;

@@ -349,11 +349,11 @@ if (isset($_REQUEST['ok'])) {
             
           } else echo "<td style='text-align: center'></td>";
           if ($row['STATUS'] == 'Waiting') {
-            echo "<td style='text-align: center'> Chờ xác nhận</td>";
+            echo "<td style='text-align: center; color: red; font-weight: bold;'> Chờ xác nhận</td>";
           } elseif ($row['STATUS'] == 'In Progress') {
-            echo "<td style='text-align: center'> Trong tiến trình </td>";
+            echo "<td style='text-align: center; color: rgb(233, 205, 44); font-weight: bold;'> Trong tiến trình </td>";
           } elseif ($row['STATUS'] == 'Completed') {
-            echo "<td style='text-align: center'> Đã giải quyết</td>";
+            echo "<td style='text-align: center; color: green; font-weight: bold;'> Đã giải quyết</td>";
           }
           echo "</tr>
                         </tbody>";
