@@ -13,7 +13,7 @@ Bước 3: Trong cửa sổ XAMPP Control Panel, tại module Apache, chọn Con
 
 Lúc này file httpd.conf được mở ra, tìm từ khóa "DocumentRoot", ta thấy 2 câu lệnh như sau:
 
-`DocumentRoot "C:/xampp/htdocs" <br/>
+`DocumentRoot "C:/xampp/htdocs" 
 <Directory "C:/xampp/htdocs">`
 
 
