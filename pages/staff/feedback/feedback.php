@@ -19,6 +19,65 @@ if (isset($_SESSION['staff'])) {
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
 
+ <!-- Javascript Library -->
+ <script>
+function sortTable(n) {
+  var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+  table = document.getElementById("lst_xetccnn");
+  switching = true;
+  // Set the sorting direction to ascending:
+  dir = "asc";
+  /* Make a loop that will continue until
+  no switching has been done: */
+  while (switching) {
+    // Start by saying: no switching is done:
+    switching = false;
+    rows = table.rows;
+    /* Loop through all table rows (except the
+    first, which contains table headers): */
+    for (i = 1; i < (rows.length - 1); i++) {
+      // Start by saying there should be no switching:
+      shouldSwitch = false;
+      /* Get the two elements you want to compare,
+      one from current row and one from the next: */
+      x = rows[i].getElementsByTagName("TD")[n];
+      y = rows[i + 1].getElementsByTagName("TD")[n];
+      /* Check if the two rows should switch place,
+      based on the direction, asc or desc: */
+      if (dir == "asc") {
+        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+          // If so, mark as a switch and break the loop:
+          shouldSwitch = true;
+          break;
+        }
+      } else if (dir == "desc") {
+        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+          // If so, mark as a switch and break the loop:
+          shouldSwitch = true;
+          break;
+        }
+      }
+    }
+    if (shouldSwitch) {
+      /* If a switch has been marked, make the switch
+      and mark that a switch has been done: */
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switching = true;
+      // Each time a switch is done, increase this count by 1:
+      switchcount ++;
+    } else {
+      /* If no switching has been done AND the direction is "asc",
+      set the direction to "desc" and run the while loop again. */
+      if (switchcount == 0 && dir == "asc") {
+        dir = "desc";
+        switching = true;
+      }
+    }
+  }
+}
+</script>
+
+
     <!-- user.css -->
     <link rel="stylesheet" href="../../../css/main.css">
     <style>
@@ -117,9 +176,11 @@ if (isset($_SESSION['staff'])) {
                   >
                     <thead class = 'align-middle'>
                       <tr>
-                        <th style='text-align: center'>Ngày đánh giá</th>
+                        <th onclick='sortTable(1)' style='text-align: center'>Ngày đánh giá</th>
+                        <th style='text-align: center; display: none'>Ngày đánh giá Không hiển thị</th>
                         <th style='text-align: center'>Sinh viên</th>
-                        <th style='text-align: center'>Tiêu đề đánh giá</th>
+                        <th onclick='sortTable(4)' style='text-align: center'>Tiêu đề đánh giá</th>
+                        <th style='text-align: center; display: none'>Tiêu đề đánh giá Không hiển thị</th>
                       </tr>
                     </thead>";
             $i = 0;
@@ -127,9 +188,10 @@ if (isset($_SESSION['staff'])) {
                 echo "<tbody>
                         <tr>";
                 echo "<td style='text-align: center'>" . date("d-m-Y H:i:s", strtotime($row['TIMESTAMP'])) . "</td>";
+                echo "<td style='text-align: center; display: none'>" . date("Y-m-d H:i:s", strtotime($row['TIMESTAMP'])) . "</td>";
                 $sql2 = "SELECT CONCAT(LASTNAME,' ',FIRSTNAME) AS NAME FROM STUDENT WHERE ID =" . $row['STUDENTID'] . "";
                 $result2 = $mysqli->query($sql2);
-                echo "<td style='text-align: center'>" . mysqli_fetch_assoc($result2)['NAME'] . "</a></td>";
+                echo "<td style='text-align: center'>" . mysqli_fetch_assoc($result2)['NAME'] . "</td>";
                 echo "<td style='text-align: center'>
                             <button type='button' class='viewFeedback' data-toggle='modal' data-target='#exampleModal" . $i . "'>" . $row['TITLE'] .
                     "</button>
@@ -147,6 +209,7 @@ if (isset($_SESSION['staff'])) {
                                 </div>
                                 </div>
                             </div></button>";
+                echo "<td style='text-align: center; display: none'>" . $row['TITLE'] . "</td>";
                 echo "</td></tr>
                         </tbody>";
                 $i++;

@@ -60,6 +60,30 @@ if (isset($_SESSION['student'])) {
             font-weight: 400;
             font-size: 13px;
         }
+        .banner {
+      height: 200px;
+      margin: 100px 30px 3rem;
+
+      /* Display */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      font-size: 1.8rem;
+      font-weight: 500;
+
+      color: var(--text);
+
+      background-color: white;
+      border-radius: 1rem;
+      box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    }
+
+    @media only screen and (max-width: 540px) {
+      .banner {
+        font-size: 1.1rem;
+      }
+    }
     </style>
 
     <title>Đặt câu hỏi</title>
@@ -71,12 +95,12 @@ if (isset($_SESSION['student'])) {
     $active_nav_item = 'service';
     require_once('../navbar.php');
     ?>
-    <div style="padding-top: 100px; padding-bottom: 100px;" class="px-5">
-        <div class="text-center mt-5">
-            <h4>BẠN ĐANG GẶP KHÓ KHĂN VỀ VẤN ĐỀ SỨC KHỎE, TÂM LÝ?</h4>
-            <h4>HÃY ĐIỀN ĐƠN ĐĂNG KÝ ĐỂ ĐƯỢC GẶP TƯ VẤN VIÊN.</h4>
-            <h4>CHÚNG TÔI LUÔN Ở ĐÂY ĐỂ HỖ TRỢ BẠN.</h4>
-        </div>
+    <div class="banner text-center">
+        Bạn đang gặp khó khăn về vấn đề sức khỏe, tâm lý?<br>
+        Hãy điền đơn đăng ký để gặp được tư vấn viên.<br>
+        Chúng tôi luôn ở đây để hỗ trợ bạn.
+    </div>
+    <div style="padding-bottom: 100px;" class="px-5">
         <div class="row mt-5">
             <div class="col-md-6">
                 <img src="../../../assets/images/asking.svg" alt="" width="95%">

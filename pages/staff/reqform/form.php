@@ -25,6 +25,65 @@ if (isset($_REQUEST['ok'])) {
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
 
+ <!-- Javascript Library -->
+ <script>
+function sortTable(n) {
+  var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+  table = document.getElementById("table1");
+  switching = true;
+  // Set the sorting direction to ascending:
+  dir = "asc";
+  /* Make a loop that will continue until
+  no switching has been done: */
+  while (switching) {
+    // Start by saying: no switching is done:
+    switching = false;
+    rows = table.rows;
+    /* Loop through all table rows (except the
+    first, which contains table headers): */
+    for (i = 1; i < (rows.length - 1); i++) {
+      // Start by saying there should be no switching:
+      shouldSwitch = false;
+      /* Get the two elements you want to compare,
+      one from current row and one from the next: */
+      x = rows[i].getElementsByTagName("TD")[n];
+      y = rows[i + 1].getElementsByTagName("TD")[n];
+      /* Check if the two rows should switch place,
+      based on the direction, asc or desc: */
+      if (dir == "asc") {
+        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+          // If so, mark as a switch and break the loop:
+          shouldSwitch = true;
+          break;
+        }
+      } else if (dir == "desc") {
+        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+          // If so, mark as a switch and break the loop:
+          shouldSwitch = true;
+          break;
+        }
+      }
+    }
+    if (shouldSwitch) {
+      /* If a switch has been marked, make the switch
+      and mark that a switch has been done: */
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switching = true;
+      // Each time a switch is done, increase this count by 1:
+      switchcount ++;
+    } else {
+      /* If no switching has been done AND the direction is "asc",
+      set the direction to "desc" and run the while loop again. */
+      if (switchcount == 0 && dir == "asc") {
+        dir = "desc";
+        switching = true;
+      }
+    }
+  }
+}
+</script>
+
+
     <!-- user.css -->
     <link rel="stylesheet" href="../../../css/main.css">
     <style>
@@ -156,11 +215,13 @@ if (isset($_REQUEST['ok'])) {
                     <thead>
                       <tr>
                       <th class = 'align-middle' style='text-align: center'>#</th>
-                      <th class = 'align-middle' style='text-align: center'>Mã số Sinh viên</th>
-                      <th onClick='sortTable(2)' class = 'align-middle' style='text-align: center'>Thời gian yêu cầu</th>
-                      <th onClick='sortTable(3)' class = 'align-middle' style='text-align: center'>Loại yêu cầu</th>
-                      <th onClick='sortTable(4)' class = 'align-middle' style='text-align: center'>Nhân viên thực hiện</th>
-                      <th onClick='sortTable(5)' class = 'align-middle' style='text-align: center'>Tình trạng</th>
+                      <th class = 'align-middle' style='text-align: center'>Sinh viên</th>
+                      <th onClick='sortTable(3)' class = 'align-middle' style='text-align: center'>Thời gian yêu cầu</th>
+                      <th class = 'align-middle' style='text-align: center; display: none'>Thời gian yêu cầu Không hiển thị</th>
+                      <th onClick='sortTable(5)' class = 'align-middle' style='text-align: center'>Loại yêu cầu</th>
+                      <th class = 'align-middle' style='text-align: center; display: none'>Loại yêu cầu Không hiển thị</th>
+                      <th onClick='sortTable(6)' class = 'align-middle' style='text-align: center'>Nhân viên thực hiện</th>
+                      <th onClick='sortTable(7)' class = 'align-middle' style='text-align: center'>Tình trạng</th>
                       </tr>
                     </thead>";
                 $i = 1;
@@ -172,6 +233,7 @@ if (isset($_REQUEST['ok'])) {
                     $result3 = $mysqli->query($sql3);
                     echo "<td style='text-align: center'>" . mysqli_fetch_assoc($result3)['NAME'] . "</td>";
                     echo "<td style='text-align: center'>" . date("d-m-Y H:i:s", strtotime($row['TIMESTAMP'])) . "</td>";
+                    echo "<td style='text-align: center; display: none'>" . date("Y-m-d H:i:s", strtotime($row['TIMESTAMP'])) . "</td>";
                     echo "<td style='text-align: center'>";
                     if ($row['STATUS'] != 'Completed') {
                         echo "<a class='text-decoration-none' href='./detail.php?studentid=" . $row['STUDENTID'] . "&timestamp=" . $row['TIMESTAMP'] . "'>";
@@ -197,6 +259,27 @@ if (isset($_REQUEST['ok'])) {
                     }
                     if ($row['STATUS'] != 'Completed')
                         echo "</a>";
+                    echo "</td>";
+                    echo "<td style='text-align: center; display: none'>";
+                    switch ($row['ID']) {
+                        case '1':
+                            echo "In bảng điểm học tập";
+                            break;
+                        case '2':
+                            echo "Nhận bằng tốt nghiệp";
+                            break;
+                        case '3':
+                            echo "Giấy xác nhận sinh viên";
+                            break;
+                        case '4':
+
+                            echo "Làm lại thẻ sinh viên";
+                            break;
+                        case '6':
+
+                            echo "In bảng điểm rèn luyện";
+                            break;
+                    }
                     echo "</td>";
                     if (!empty($row['TRAININGDEPARTMENT_STAFFID'])) {
                         $sql2 = "SELECT CONCAT(LASTNAME,' ',FIRSTNAME) AS NAME FROM STAFF WHERE ID =" . $row['TRAININGDEPARTMENT_STAFFID'] . "";

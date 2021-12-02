@@ -35,6 +35,63 @@ if (isset($_REQUEST['ok'])) {
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
 
+    <!-- Javascript Library -->
+<script>
+function sortTable(n) {
+  var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+  table = document.getElementById("table1");
+  switching = true;
+  // Set the sorting direction to ascending:
+  dir = "asc";
+  /* Make a loop that will continue until
+  no switching has been done: */
+  while (switching) {
+    // Start by saying: no switching is done:
+    switching = false;
+    rows = table.rows;
+    /* Loop through all table rows (except the
+    first, which contains table headers): */
+    for (i = 1; i < (rows.length - 1); i++) {
+      // Start by saying there should be no switching:
+      shouldSwitch = false;
+      /* Get the two elements you want to compare,
+      one from current row and one from the next: */
+      x = rows[i].getElementsByTagName("TD")[n];
+      y = rows[i + 1].getElementsByTagName("TD")[n];
+      /* Check if the two rows should switch place,
+      based on the direction, asc or desc: */
+      if (dir == "asc") {
+        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+          // If so, mark as a switch and break the loop:
+          shouldSwitch = true;
+          break;
+        }
+      } else if (dir == "desc") {
+        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+          // If so, mark as a switch and break the loop:
+          shouldSwitch = true;
+          break;
+        }
+      }
+    }
+    if (shouldSwitch) {
+      /* If a switch has been marked, make the switch
+      and mark that a switch has been done: */
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switching = true;
+      // Each time a switch is done, increase this count by 1:
+      switchcount ++;
+    } else {
+      /* If no switching has been done AND the direction is "asc",
+      set the direction to "desc" and run the while loop again. */
+      if (switchcount == 0 && dir == "asc") {
+        dir = "desc";
+        switching = true;
+      }
+    }
+  }
+}
+</script>
     <!-- css -->
     <link rel="stylesheet" href="../../../css/main.css">
     <style>
@@ -72,16 +129,41 @@ if (isset($_REQUEST['ok'])) {
             font-weight: 400;
             font-size: 13px;
         }
+        .banner {
+            height: 200px;
+            margin: 100px 30px 3rem;
+
+            /* Display */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            font-size: 1.8rem;
+            font-weight: 500;
+
+            color: var(--text);
+
+            background-color: white;
+            border-radius: 1rem;
+            box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+        }
+        @media only screen and (max-width: 540px) {
+      .banner {
+        font-size: 1.5rem;
+      }
     </style>
     <title>Danh sách câu hỏi</title>
 </head>
 
 <body>
     <?php
-    $active_nav_item = 'service';
-    require_once("../navbar.php");
+        $active_nav_item = 'service';
+        require_once("../navbar.php");
     ?>
-    <div style="padding-top: 100px; padding-bottom: 100px;" class="px-5">
+    <div class="banner text-center">
+        Các câu hỏi của sinh viên
+    </div>
+    <div style="padding-bottom: 100px; margin-left: 30px; margin-right: 30px;" class="px-5">
         <div class="row mt-5">
             <div class="col-md-6">
                 <h4 style="margin-bottom: 30px;">HỎI ĐÁP</h4>
@@ -192,15 +274,18 @@ if (isset($_REQUEST['ok'])) {
                     >
                     <thead>
                     <tr>
-                        <th class = 'align-middle' style='text-align: center'>Thời gian</th>
+                        <th onclick='sortTable(1)' class = 'align-middle' style='text-align: center'>Thời gian</th>
+                        <th class = 'align-middle' style='text-align: center; display: none'>Thời gian Không hiển thị</th>
                         <th class = 'align-middle' style='text-align: center'>Chủ đề</th>
-                        <th class = 'align-middle' style='text-align: center'>Loại</th>
+                        <th onclick='sortTable(3)' class = 'align-middle' style='text-align: center'>Loại</th>
+                        <th onclick='sortTable(4)' class = 'align-middle' style='text-align: center'>Tình trạng</th>
                     </tr>
                     </thead>";
                 while ($row = $q->fetch()) {
                     echo "<tbody>
                         <tr>";
                     echo "<td style='text-align: center'>" . date("d-m-Y H:i:s", strtotime($row['timestamp'])) . "</td>";
+                    echo "<td style='text-align: center; display: none'>" . date("Y-m-d H:i:s", strtotime($row['timestamp'])) . "</td>";
                     echo "<td style='text-align: center'>
                         <a class='text-decoration-none' href='./moredetailquestion.php?id=" . $row['id'] . "'>" . $row['title'] . "</a></td>";
                     switch ($row['type']) {
@@ -214,6 +299,12 @@ if (isset($_REQUEST['ok'])) {
                             echo "<td class='align-middle' style='text-align: center'> Đào tạo </td>";
                             break;
                     }
+                    $q1 = $conn->query("SELECT ID FROM ANSWER WHERE QUESTIONID =" .$row['id']);
+                    $q1->setFetchMode(PDO::FETCH_ASSOC);
+                    $row1 = $q1->fetch();
+                    if (empty($row1['ID']))
+                        echo "<td style='text-align: center; color: red'>Chưa phản hồi</td>";
+                    else echo "<td style='text-align: center; color: green'>Đã phản hồi</td>";
                     echo "</tr>
                         </tbody>";
                 }

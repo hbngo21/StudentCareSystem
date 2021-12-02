@@ -367,7 +367,7 @@ if (isset($_REQUEST['ok'])) {
                 <thead>
                   <tr>
                     <th class = 'align-middle' style='text-align: center'>Ngày đăng ký</th>
-                    <th class = 'align-middle' style='text-align: center'>Mã yêu cầu</th>
+                    <th class = 'align-middle' style='text-align: center'>Nội dung yêu cầu yêu cầu</th>
                     <th class = 'align-middle' style='text-align: center'>Địa chỉ nhận</th>
                     <th class = 'align-middle' style='text-align: center'>Nhân viên phản hồi</th>
                     <th class = 'align-middle' style='text-align: center'>Tình trạng</th>
