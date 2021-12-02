@@ -6,7 +6,7 @@
 4. Trần Quốc Việt - 1915919
 
 ## Hướng dẫn chạy ứng dụng:
-1. Chạy câu lệnh:
+Bước 1: Chạy câu lệnh:
 #### `git clone https://github.com/hbngo21/StudentCareSystem.git`
-2. 
+
 
