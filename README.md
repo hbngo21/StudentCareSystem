@@ -8,14 +8,17 @@
 ## Hướng dẫn chạy ứng dụng:
 Bước 1: Chạy câu lệnh:
 #### `git clone https://github.com/hbngo21/StudentCareSystem.git`
-Bước 2: Tải XAMPP Control Panel
-Bước 3: Trong cửa sổ XAMPP Control Panel, tại module Apache, chọn Config -> Apache (httpd.conf).
+Bước 2: Trong thư mục
+Bước 3: Tải XAMPP Control Panel
+Bước 4: Trong cửa sổ XAMPP Control Panel, tại module Apache, chọn Config -> Apache (httpd.conf).
 
 Lúc này file httpd.conf được mở ra, tìm từ khóa "DocumentRoot", ta thấy 2 câu lệnh như sau:
 
 `DocumentRoot "C:/xampp/htdocs"`<br/>
 `<Directory "C:/xampp/htdocs">`
 
-Thay đổi "C:/xampp/htdocs" bằng đường dẫn tới thư mục StudentCareSystem.
+Thay đổi "C:/xampp/htdocs" bằng đường dẫn tới thư mục StudentCareSystem và lưu file.
+
+
 
 
