@@ -16,6 +16,6 @@ Lúc này file httpd.conf được mở ra, tìm từ khóa "DocumentRoot", ta t
 `DocumentRoot "C:/xampp/htdocs"`<br/>
 `<Directory "C:/xampp/htdocs">`
 
-Thay đổi C:/xampp/htdocs bằng đường dẫn tới thư mục StudentCareSystem.
+Thay đổi 'C:/xampp/htdocs' bằng đường dẫn tới thư mục StudentCareSystem.
 
 
