@@ -27,6 +27,8 @@ Lúc này file httpd.conf được mở ra, tìm từ khóa "DocumentRoot", ta t
 
 Thay đổi "C:/xampp/htdocs" bằng đường dẫn tới thư mục StudentCareSystem và lưu file.
 
+Bước 5. Trong cửa sổ XAMPP Control Panel, Start module Apache và chọn Admin để sử dụng web.
+
 
 
 
