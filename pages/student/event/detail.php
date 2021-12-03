@@ -64,7 +64,7 @@ $stmt->close();
             </div>
             <div class="mt-2">
                 <div class="event__item-info mt-1"><i class="far fa-calendar-alt"></i><span style="font-weight: bold;">Ngày tạo: </span><span><?= $timestamp ?></span></div>
-                <div class="event__item-info mt-1"><i class="fas fa-user-edit"></i><span style="font-weight: bold;">Ngày viên tạo: </span><span><?= $name_staff ?></span></div>
+                <div class="event__item-info mt-1"><i class="fas fa-user-edit"></i><span style="font-weight: bold;">Nhân viên tạo: </span><span><?= $name_staff ?></span></div>
                 <div class="event__item-info mt-1"><i class="far fa-users"></i><span style="font-weight: bold;">Số sinh viên tham gia: </span><span><?= $num_register ?>/<?= $limited ?></span></div>
             </div>
             <div class="mt-3">

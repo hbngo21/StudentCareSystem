@@ -96,7 +96,11 @@ if (isset($_SESSION['student'])) {
                 <div class="card-header">Chi tiết phản hồi</div>
                 <div class="card-body">
                     <div class="card-text">
-                        Nhân viên: <?php echo $row['MEDICAL_STAFFID'] ?><br>
+                        <?php 
+                            $sql2 = "SELECT CONCAT(LASTNAME,' ',FIRSTNAME) AS NAME FROM STAFF WHERE ID =" . $row['MEDICAL_STAFFID'] . "";
+                            $result2 = $mysqli->query($sql2);
+                        ?>
+                        Nhân viên: <?php echo mysqli_fetch_assoc($result2)['NAME']; ?><br>
                         Thời gian phản hồi: <?php echo date("d-m-Y H:i:s", strtotime($row['RESPONSE_TIMESTAMP'])); ?>
                         <br>Nội dung phản hồi:<br><?php echo $row['RESPONSE_CONTENT']; ?><br>
                     </div>
